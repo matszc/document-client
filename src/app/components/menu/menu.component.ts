@@ -33,7 +33,7 @@ export class MenuComponent implements OnInit {
         icon: 'pi pi-fw pi-pencil',
         items: [
           {label: 'Login', icon: 'pi pi-fw pi-sign-in', routerLink: ['account/login']},
-          {label: 'Register', icon: 'pi pi-fw pi-user-plus'},
+          {label: 'My Profile', icon: 'pi pi-fw pi-user', routerLink: ['account/profile']},
           {label: 'Logout', icon: 'pi pi-fw pi-sign-out'}
         ]
       }

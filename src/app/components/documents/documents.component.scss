@@ -1,0 +1,16 @@
+app-document-menu {
+}
+section {
+  width: calc(100% - 200px);
+}
+
+@media (min-width: 600px) {
+  app-document-menu, section {
+    float: left;
+  }
+}
+@media (max-width: 600px) {
+  section {
+    width: 100%;
+  }
+}

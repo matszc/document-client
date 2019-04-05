@@ -1,0 +1,23 @@
+<form class="send-form" [formGroup]="sendForm" (ngSubmit)="onSubmit(sendForm.value)">
+  <p-panel class="send-panel">
+    <p-header>
+      Formularz wysyłania dokumentu
+    </p-header>
+    <div class="ui-inputgroup ui-float-label input-field">
+      <input id="float-input" type="text" size="33" formControlName="title" pInputText>
+      <label for="float-input" class="field-label">Title</label>
+    </div>
+    <div class="message-space">
+      <div *ngIf="f.title.errors && enabledValidators">
+        <p-message *ngIf="f.title.hasError('required')" severity="error" text="Title Is Required"
+                   class="message"></p-message>
+      </div>
+    </div>
+
+
+
+    <p-footer class="footer">
+      <p-button label="Send" styleClass="ui-button-info ui-button-raised" class="send-btn"></p-button>
+    </p-footer>
+  </p-panel>
+</form>

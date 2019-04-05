@@ -1,8 +1,39 @@
 ::ng-deep   {
   p-menubarsub {
-    /*float: right;
-    margin-right: 80px;*/
+
+
+    .ui-widget-content {
+      margin-left: -70px;
+    }
+
   }
 
+  .ui-menubar {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+  }
+
+  .ui-menubar-custom {
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+  }
+
+  .app-title {
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 8px;
+
+    span {
+      @media (max-width: 460px) {
+        & {
+          display: none;
+        }
+      }
+    }
+
+
+  }
 
 }

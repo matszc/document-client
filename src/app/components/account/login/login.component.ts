@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../../services/auth.service';
 import {LoginData} from '../../../models/login';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -14,13 +15,13 @@ export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
   public enabledValidators: boolean;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
     this.enabledValidators = false;
   }
 
   get f(): any { return this.loginForm.controls; }
 
-  onSubmit(value) {
+  public onSubmit(value): void {
     this.enabledValidators = true;
 
     if (!this.loginForm.invalid) {
@@ -29,8 +30,7 @@ export class LoginComponent implements OnInit {
         password: value.password
       };
 
-      console.log(loginData);
-      this.authService.login(loginData as LoginData).subscribe(() => console.log('done'));
+      this.authService.login(loginData as LoginData).subscribe(() => this.router.navigate(['/home']));
     }
   }
 

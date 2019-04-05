@@ -1,0 +1,31 @@
+.send-form {
+  margin: 20px;
+
+  .send-panel {
+    display: flex;
+    flex-flow: column;
+
+    .input-field {
+      margin: 20px auto 5px auto;
+    }
+
+
+    .message-space {
+      height: 35px;
+    }
+
+
+
+
+    .footer {
+      float: right;
+
+      .send-btn {
+        margin-right: 10px;
+      }
+    }
+  }
+
+
+
+}

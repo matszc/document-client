@@ -1,1 +1,5 @@
-<p-menubar [model]="items" class="top-menu"></p-menubar>
+<p-menubar [model]="items" class="top-menu">
+    <a href="home" class="app-title">Document App
+        <span *ngIf="authService.currentUserValue">(user: {{authService.currentUserValue.login}})</span>
+    </a>
+</p-menubar>

@@ -13,9 +13,20 @@ import {MenuComponent} from './components/menu/menu.component';
 import {AccountComponent} from './components/account/account.component';
 import {LoginComponent} from './components/account/login/login.component';
 import {ProfileComponent} from './components/account/profile/profile.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
+import { HomeComponent } from './components/home/home.component';
+import {TieredMenuModule} from 'primeng/tieredmenu';
+import { DocumentMenuComponent } from './components/document-menu/document-menu.component';
+import {CardModule} from 'primeng/card';
+import {ToastModule} from 'primeng/toast';
+import {MessageService} from 'primeng/api';
+import {JwtInterceptor} from './helpers/jwt.interceptor';
+import {ErrorInterceptor} from './helpers/error.interceptor';
+import { DocumentsComponent } from './components/documents/documents.component';
+import { SendComponent } from './components/documents/send/send.component';
+import { ViewComponent } from './components/documents/view/view.component';
 
 
 @NgModule({
@@ -24,7 +35,12 @@ import {MessageModule} from 'primeng/message';
         MenuComponent,
         AccountComponent,
         LoginComponent,
-        ProfileComponent
+        ProfileComponent,
+        HomeComponent,
+        DocumentMenuComponent,
+        DocumentsComponent,
+        SendComponent,
+        ViewComponent
     ],
     imports: [
         BrowserModule,
@@ -38,9 +54,14 @@ import {MessageModule} from 'primeng/message';
         ReactiveFormsModule,
         HttpClientModule,
         MessagesModule,
-        MessageModule
+        MessageModule,
+        TieredMenuModule,
+        CardModule,
+        ToastModule
     ],
-    providers: [],
+    providers: [MessageService,
+        {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+        {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}],
     bootstrap: [AppComponent]
 })
 export class AppModule {

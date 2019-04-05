@@ -18,16 +18,8 @@ export class AuthGuard implements CanActivate {
             return true;
         }
 
-        this.router.navigate(['/sign-in'] );
+        this.router.navigate(['/account/login'] );
         return false;
     }
-/*    canLoad(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-      const currentUser = this.authenticationService.currentUserValue;
-      if (!currentUser) {
-        this.router.navigate(['/home'] );
-        return false;
-      }
 
-      return true;
-    }*/
 }

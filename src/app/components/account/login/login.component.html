@@ -1,3 +1,40 @@
-<p>
-  login works!
-</p>
+<form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+    <p-panel class="login-panel">
+        <p-header>
+            Login
+        </p-header>
+        <div class="ui-inputgroup ui-float-label input-field">
+            <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
+            <input id="float-input" type="text" size="33" formControlName="username" pInputText>
+            <label for="float-input" class="field-label">Username</label>
+        </div>
+        <div class="message-space">
+            <div *ngIf="f.username.errors && enabledValidators">
+                <p-message *ngIf="f.username.hasError('required')" severity="error" text="Username Is Required"
+                           class="message"></p-message>
+            </div>
+        </div>
+
+        <div class="ui-inputgroup ui-float-label input-field">
+            <span class="ui-inputgroup-addon"><i class="pi pi-key"></i></span>
+            <input id="float-input-pass" type="password" size="33" formControlName="password" pInputText>
+            <label for="float-input-pass" class="field-label">Password</label>
+        </div>
+
+        <div class="message-space">
+            <div *ngIf="f.password.errors && enabledValidators">
+                <p-message *ngIf="f.password.hasError('required')" severity="error" text="Password Is Required"
+                           class="message"></p-message>
+                <p-message *ngIf="f.password.hasError('minlength')" severity="error" text="Password Min Length Is 6"
+                           class="message"></p-message>
+            </div>
+        </div>
+
+        <p-footer class="footer">
+            <p-button label="Login" styleClass="ui-button-info ui-button-raised" class="login-btn"></p-button>
+        </p-footer>
+    </p-panel>
+</form>
+
+
+

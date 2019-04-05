@@ -16,6 +16,7 @@ export class MenuComponent implements OnInit {
     this.items = [
       {
         label: 'File',
+        icon: 'pi pi-fw pi-file',
         items: [{
           label: 'New',
           icon: 'pi pi-fw pi-plus',
@@ -28,9 +29,10 @@ export class MenuComponent implements OnInit {
           {label: 'Quit'}
         ]
       },
+      {separator: true},
       {
         label: 'Account',
-        icon: 'pi pi-fw pi-pencil',
+        icon: 'pi pi-fw pi-briefcase',
         items: [
           {label: 'Login', icon: 'pi pi-fw pi-sign-in', routerLink: ['account/login']},
           {label: 'My Profile', icon: 'pi pi-fw pi-user', routerLink: ['account/profile']},

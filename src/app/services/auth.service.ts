@@ -31,6 +31,7 @@ export class AuthService {
     public login(data: LoginData): Observable<User> {
         return this.http.post<User>(`${GLOBAL.URL}/Login`, data)
             .pipe(map(user => {
+                console.log(user);
                 // login successful if there's a jwt token in the response
                 if (user && user.token) {
                     this.loading = false;
@@ -42,9 +43,9 @@ export class AuthService {
             }));
     }
 
-    public register(data: RegisterData): Observable<User> {
+    /*public register(data: RegisterData): Observable<User> {
         return this.http.post<User>(`${GLOBAL.URL}/Registration`, data);
-    }
+    }*/
 
     public logout(): void {
         localStorage.removeItem('currentUser');

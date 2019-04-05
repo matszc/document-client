@@ -1,0 +1,43 @@
+/*
+::ng-deep {
+  p-panel div {
+    width: 300px;
+  }
+}
+*/
+
+.login-form {
+  width: 350px;
+  margin: 100px auto;
+
+  .login-panel {
+    display: flex;
+    flex-flow: column;
+
+    .input-field {
+      margin: 20px auto 5px auto;
+    }
+
+    .field-label {
+      margin-left: 30px;
+    }
+    .message-space {
+      height: 35px;
+
+      .message {
+        margin-left: -4px;
+      }
+    }
+
+
+    .footer {
+      float: right;
+
+      .login-btn {
+        margin-right: 10px;
+      }
+    }
+  }
+
+
+}

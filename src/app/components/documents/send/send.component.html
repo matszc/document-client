@@ -1,23 +1,53 @@
 <form class="send-form" [formGroup]="sendForm" (ngSubmit)="onSubmit(sendForm.value)">
-  <p-panel class="send-panel">
-    <p-header>
-      Formularz wysyłania dokumentu
-    </p-header>
-    <div class="ui-inputgroup ui-float-label input-field">
-      <input id="float-input" type="text" size="33" formControlName="title" pInputText>
-      <label for="float-input" class="field-label">Title</label>
-    </div>
-    <div class="message-space">
-      <div *ngIf="f.title.errors && enabledValidators">
-        <p-message *ngIf="f.title.hasError('required')" severity="error" text="Title Is Required"
-                   class="message"></p-message>
-      </div>
-    </div>
+    <p-panel class="send-panel">
+        <p-header>
+            Formularz wysyłania dokumentu
+        </p-header>
+        <div class="full-input">
+            <div class="ui-inputgroup ui-float-label input-field">
+                <input id="float-input" type="text" size="33" formControlName="title" pInputText>
+                <label for="float-input" class="field-label">Tytuł</label>
+            </div>
+            <div class="message-space">
+                <div *ngIf="f.title.errors && enabledValidators">
+                    <p-message *ngIf="f.title.hasError('required')" severity="error" text="Title Is Required"
+                               class="message"></p-message>
+                </div>
+            </div>
+        </div>
+
+        <div class="full-input">
+            <div class="ui-inputgroup ui-float-label input-field">
+                <input id="float-input-email" type="email" size="33" formControlName="email" pInputText>
+                <label for="float-input-email" class="field-label">Twój Email</label>
+            </div>
+            <div class="message-space">
+                <div *ngIf="f.email.errors && enabledValidators">
+                    <p-message *ngIf="f.email.hasError('required')" severity="error" text="Email Is Required"
+                               class="message"></p-message>
+                    <p-message *ngIf="f.email.hasError('email')" severity="error" text="Email Format Is Wrong"
+                               class="message"></p-message>
+                </div>
+            </div>
+        </div>
+
+        <div class="full-input full-input-select">
+            <p-dropdown [options]="documentTypes" formControlName="type"></p-dropdown>
+            <p-dropdown [options]="documentReceivers" [filter]="true" formControlName="receiver" class="select-receiver"></p-dropdown>
+            <div *ngIf="(f.type.errors || f.receiver.errors) && enabledValidators">
+                <p-message *ngIf="f.type.hasError('required')" severity="error" text="Typ Dokumentu Jest Wymagany"
+                           class="message"></p-message>
+                <p-message *ngIf="f.receiver.hasError('required')" severity="error" text="Odbiorca Dokumentu Jest Wymagany"
+                           class="message"></p-message>
+            </div>
+        </div>
+
+        <app-uploader></app-uploader>
 
 
-
-    <p-footer class="footer">
-      <p-button label="Send" styleClass="ui-button-info ui-button-raised" class="send-btn"></p-button>
-    </p-footer>
-  </p-panel>
+        <p-footer class="footer">
+            <p-button label="Send" styleClass="ui-button-info ui-button-raised" class="send-btn"></p-button>
+        </p-footer>
+    </p-panel>
 </form>
+

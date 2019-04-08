@@ -1,17 +1,35 @@
 .send-form {
-  margin: 20px;
+  margin: 10px 20px;
 
   .send-panel {
     display: flex;
     flex-flow: column;
 
+    .full-input {
+      display: flex;
+    }
+
+    .full-input-select {
+      div {
+        margin-left: 10px;
+      }
+    }
+
     .input-field {
-      margin: 20px auto 5px auto;
+      margin: 20px 5px 5px 0;
+    }
+    p-dropdown {
+      margin-top: 20px;
+    }
+
+    .select-receiver {
+      margin-left: 20px;
     }
 
 
     .message-space {
       height: 35px;
+      margin-top: 20px;
     }
 
 

@@ -1,11 +1,23 @@
-app-document-menu {
+.doc-menu-container {
+  width: 200px;
+  height: 115px;
+  margin-top: 10px;
+
+  app-document-menu {
+    position: absolute;
+  }
+  * {
+    z-index: 2;
+  }
+
 }
+
 section {
   width: calc(100% - 200px);
 }
 
 @media (min-width: 600px) {
-  app-document-menu, section {
+  .doc-menu-container, section {
     float: left;
   }
 }

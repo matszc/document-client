@@ -27,6 +27,14 @@ import {ErrorInterceptor} from './helpers/error.interceptor';
 import { DocumentsComponent } from './components/documents/documents.component';
 import { SendComponent } from './components/documents/send/send.component';
 import { ViewComponent } from './components/documents/view/view.component';
+import {DropdownModule} from 'primeng/dropdown';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage';
+import { UploaderComponent } from './components/documents/send/uploader/uploader.component';
+import { UploaderTaskComponent } from './components/documents/send/uploader/uploader-task/uploader-task.component';
+import {DropzoneDirective} from './dropzone.directive';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
 
 
 @NgModule({
@@ -40,7 +48,10 @@ import { ViewComponent } from './components/documents/view/view.component';
         DocumentMenuComponent,
         DocumentsComponent,
         SendComponent,
-        ViewComponent
+        ViewComponent,
+        UploaderComponent,
+        UploaderTaskComponent,
+        DropzoneDirective
     ],
     imports: [
         BrowserModule,
@@ -57,11 +68,18 @@ import { ViewComponent } from './components/documents/view/view.component';
         MessageModule,
         TieredMenuModule,
         CardModule,
-        ToastModule
+        ToastModule,
+        DropdownModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFirestoreModule,
+        AngularFireStorageModule
     ],
-    providers: [MessageService,
-        {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-        {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}],
+    providers: [
+        MessageService,
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+/*        { provide: StorageBucket, useValue: 'my-bucket-name' }*/
+        ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

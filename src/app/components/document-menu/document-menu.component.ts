@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MenuItem} from 'primeng/api';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-document-menu',
@@ -10,7 +11,7 @@ export class DocumentMenuComponent implements OnInit {
 
   public items: MenuItem[];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.items = [
@@ -21,11 +22,15 @@ export class DocumentMenuComponent implements OnInit {
           label: 'New',
           icon: 'pi pi-fw pi-plus',
           items: [
-            {label: 'Document'},
+            {label: 'Document', command: () => this.router.navigate(['documents/send'])},
             {label: 'Other'},
           ]
         },
-          {label: 'Open'}
+          {label: 'View',
+            items: [
+                {label: 'My Documents', command: () => this.router.navigate(['documents/view'])}
+              ]
+          }
         ]
       },
       {

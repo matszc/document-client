@@ -46,7 +46,7 @@ export class AuthService {
     }
 
     public loginGuest() {
-        const guest = {login: 'guest'};
+        const guest = {login: 'guest', email: ''};
         this.messageService.add({severity: 'success', summary: 'Info', detail: 'Logged In As Guest'});
         localStorage.setItem('currentUser', JSON.stringify(guest));
         this.currentUserSubject.next(guest);

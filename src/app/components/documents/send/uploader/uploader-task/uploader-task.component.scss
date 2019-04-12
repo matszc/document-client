@@ -1,9 +1,23 @@
 .upload-element {
   display: flex;
   align-items: center;
+  margin: 0;
+  position: absolute;
+  padding: 0;
+  top: -8px;
+  width: 500px;
 
   p {
     margin-left: 10px;
     margin-right: 10px;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 200px;
+  }
+
+  .delete-btn {
+    font-size: 12px;
   }
 }

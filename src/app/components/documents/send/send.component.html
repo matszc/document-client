@@ -3,46 +3,76 @@
         <p-header>
             Formularz wysyłania dokumentu
         </p-header>
-        <div class="full-input">
-            <div class="ui-inputgroup ui-float-label input-field">
-                <input id="float-input" type="text" size="33" formControlName="title" pInputText>
-                <label for="float-input" class="field-label">Tytuł</label>
-            </div>
-            <div class="message-space">
-                <div *ngIf="f.title.errors && enabledValidators">
-                    <p-message *ngIf="f.title.hasError('required')" severity="error" text="Title Is Required"
-                               class="message"></p-message>
-                </div>
+        <div formArrayName="docs">
+            <div *ngFor="let doc of inFormArray.controls; let i = index" [formGroupName]="i">
+                <p-panel [toggleable]="true" [collapsed]="true">
+                    <p-header>
+                        <app-uploader-task [file]="uploadService.files[i]"></app-uploader-task>
+                    </p-header>
+                    <div class="full-input">
+                        <div class="ui-inputgroup ui-float-label input-field">
+                            <input id="float-input" type="text" size="33" formControlName="title" pInputText>
+                            <label for="float-input" class="field-label">Tytuł</label>
+                        </div>
+                        <div class="message-space">
+                            <div *ngIf="doc.get('title').errors && enabledValidators">
+                                <p-message *ngIf="doc.get('title').hasError('required')" severity="error"
+                                           text="Wymagany Tytuł"
+                                           class="message"></p-message>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="full-input">
+                        <p-dropdown [options]="documentTypes" formControlName="type"></p-dropdown>
+                        <div class="message-space">
+                            <div *ngIf="doc.get('type').errors && enabledValidators">
+                                <p-message *ngIf="doc.get('type').hasError('required')" severity="error"
+                                           text="Wymagany Typ Dokumentu"
+                                           class="message"></p-message>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="full-input">
+            <span class="ui-float-label input-field">
+                <textarea id="float-input-desc" rows="5" cols="50" pInputTextarea formControlName="description"
+                          autoResize="autoResize"></textarea>
+                <label for="float-input-desc">Opis</label>
+            </span>
+
+                        <div class="message-space">
+                            <div *ngIf="doc.get('description').errors && enabledValidators">
+                                <p-message *ngIf="doc.get('description').hasError('required')" severity="error"
+                                           text="Wymagany Opis"
+                                           class="message"></p-message>
+                            </div>
+                        </div>
+                    </div>
+
+                </p-panel>
+
             </div>
         </div>
 
+
+        <app-uploader></app-uploader>
+
         <div class="full-input">
             <div class="ui-inputgroup ui-float-label input-field">
-                <input id="float-input-email" type="email" size="33" formControlName="email" pInputText>
+                <input id="float-input-email" type="email" size="33" formControlName="email" pInputText
+                       [value]="authService.currentUserValue.email">
                 <label for="float-input-email" class="field-label">Twój Email</label>
             </div>
             <div class="message-space">
                 <div *ngIf="f.email.errors && enabledValidators">
-                    <p-message *ngIf="f.email.hasError('required')" severity="error" text="Email Is Required"
+                    <p-message *ngIf="f.email.hasError('required')" severity="error" text="Wymagany Email"
                                class="message"></p-message>
-                    <p-message *ngIf="f.email.hasError('email')" severity="error" text="Email Format Is Wrong"
+                    <p-message *ngIf="f.email.hasError('email')" severity="error" text="Email Ma Zły Format"
                                class="message"></p-message>
                 </div>
             </div>
         </div>
-
-        <div class="full-input full-input-select">
-            <p-dropdown [options]="documentTypes" formControlName="type"></p-dropdown>
-            <p-dropdown [options]="documentReceivers" [filter]="true" formControlName="receiver" class="select-receiver"></p-dropdown>
-            <div *ngIf="(f.type.errors || f.receiver.errors) && enabledValidators">
-                <p-message *ngIf="f.type.hasError('required')" severity="error" text="Typ Dokumentu Jest Wymagany"
-                           class="message"></p-message>
-                <p-message *ngIf="f.receiver.hasError('required')" severity="error" text="Odbiorca Dokumentu Jest Wymagany"
-                           class="message"></p-message>
-            </div>
-        </div>
-
-        <app-uploader></app-uploader>
 
 
         <p-footer class="footer">
@@ -50,4 +80,3 @@
         </p-footer>
     </p-panel>
 </form>
-

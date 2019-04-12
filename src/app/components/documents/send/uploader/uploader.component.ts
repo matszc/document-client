@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AngularFireUploadTask} from '@angular/fire/storage';
 import {UploadService} from '../../../../services/upload.service';
+import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-uploader',
@@ -15,7 +16,7 @@ export class UploaderComponent implements OnInit {
 
 
 
-  constructor(public uploadService: UploadService) { }
+  constructor(public uploadService: UploadService, private messageService: MessageService) { }
 
   public toggleHover(event: boolean) {
     this.isHovering = event;
@@ -23,7 +24,13 @@ export class UploaderComponent implements OnInit {
 
   public onDrop(files: FileList) {
     for (let i = 0; i < files.length; i++) {
-      this.uploadService.files.push(files.item(i));
+      const reg = new RegExp('(.*?)\.(docx|doc)$');
+
+      if ((reg.test(files.item(i).name))) {
+        this.uploadService.files.push(files.item(i));
+      } else {
+        this.messageService.add({severity: 'warn', summary: 'Warning', detail: 'Złe Rozszerzenie Pliku'});
+      }
     }
   }
 

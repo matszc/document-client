@@ -35,6 +35,7 @@ import { UploaderComponent } from './components/documents/send/uploader/uploader
 import { UploaderTaskComponent } from './components/documents/send/uploader/uploader-task/uploader-task.component';
 import {DropzoneDirective} from './dropzone.directive';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 
 
 @NgModule({
@@ -72,7 +73,8 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
         DropdownModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule,
-        AngularFireStorageModule
+        AngularFireStorageModule,
+        InputTextareaModule
     ],
     providers: [
         MessageService,

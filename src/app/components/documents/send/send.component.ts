@@ -1,77 +1,112 @@
-import { Component, OnInit } from '@angular/core';
-import {LoginData} from '../../../models/login';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Component, DoCheck, IterableDiffers, OnInit} from '@angular/core';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
-import {SelectItem} from 'primeng/api';
-import { AngularFireStorage } from '@angular/fire/storage';
-import { finalize } from 'rxjs/operators';
-import {Observable} from 'rxjs';
+import {MessageService, SelectItem} from 'primeng/api';
 import {UploadService} from '../../../services/upload.service';
 
 @Component({
-  selector: 'app-send',
-  templateUrl: './send.component.html',
-  styleUrls: ['./send.component.scss']
+    selector: 'app-send',
+    templateUrl: './send.component.html',
+    styleUrls: ['./send.component.scss']
 })
-export class SendComponent implements OnInit {
+export class SendComponent implements OnInit, DoCheck {
 
-  public sendForm: FormGroup;
-  public enabledValidators: boolean;
-  public documentTypes: SelectItem[];
-  public documentReceivers: SelectItem[];
-  uploadPercent: Observable<number>;
-  downloadURL: Observable<string>;
+    public sendForm: FormGroup;
+    public enabledValidators: boolean;
+    public documentTypes: SelectItem[];
+    private differ: any;
 
 
+    constructor(
+        private formBuilder: FormBuilder,
+        private authService: AuthService,
+        private router: Router,
+        private uploadService: UploadService,
+        private messageService: MessageService,
+        private iterableDiffers: IterableDiffers) {
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private uploadService: UploadService) {
-    this.enabledValidators = false;
-    this.documentTypes = [
-      { label: 'Wybierz Rodzaj', value: null },
-      { label: 'Podanie', value: 5 },
-      { label: 'Skarga', value: 4 },
+        this.enabledValidators = false;
+        this.documentTypes = [
+            {label: 'Wybierz Rodzaj', value: null},
+            {label: 'Podanie', value: 5},
+            {label: 'Skarga', value: 4},
 
-    ];
-    this.documentReceivers = [
-      { label: 'Wybierz Odbiorcę', value: null },
-      { label: 'Jan Kowalski', value: 1 },
-      { label: 'Piotr Domaniewski', value: 2 },
-      { label: 'Bożena Wiśniewska', value: 2 },
+        ];
+        this.differ = this.iterableDiffers.find([]).create(null);
+    }
 
-    ];
-  }
 
-  uploadFile(event) {
-    const file = event.target.files[0];
-    const re = /(?:\.([^.]+))?$/;
-    // console.log(re.exec(file.name));
-    console.log(`${Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)}.${re.exec(file.name)[1]}`);
-    /*const filePath = 'name-your-file-path-here';
-    const ref = this.storage.ref(filePath);
-    const task = ref.put(file);*/
-  }
+    get f(): any {
+        return this.sendForm.controls;
+    }
 
-  get f(): any { return this.sendForm.controls; }
+    public onSubmit(value): void {
+        console.log(value);
+        if (this.uploadService.files.length) {
+            this.enabledValidators = true;
+            if (!this.sendForm.invalid) {
+                // this.uploadService.startUpload();
+            }
+        } else {
+            this.messageService.add({severity: 'warn', summary: 'Warning', detail: 'Nie Dodano Plików'});
+        }
 
-  public onSubmit(value): void {
-    this.enabledValidators = true;
+    }
 
-    console.log(value);
-    this.uploadService.startUpload();
-  }
+    private updateForm(): void {
+        this.inFormArray.controls.forEach((el, i) => {
+            const deleted = !this.uploadService.files.map(f => f.name).includes(el.get('file').value);
 
-  ngOnInit() {
-    console.log();
-    this.sendForm = this.formBuilder.group({
-      'title': ['', Validators.required],
-      'type': ['', Validators.required],
-      'email': ['', [Validators.required, Validators.email]],
-      'message': ['', Validators.required],
-      'filename': ['', Validators.required],
-      'receiver': ['', Validators.required],
-    });
+            if (deleted) {
+                this.inFormArray.removeAt(i);
+            }
+        });
 
-  }
+
+        this.uploadService.files.forEach((f: File, i: number) => {
+            const duplicate = this.inFormArray.controls.some(control => f.name === control.get('file').value);
+
+            if (!duplicate) {
+                const formGroup: FormGroup = this.formBuilder.group({
+                    'title': ['', Validators.required],
+                    'type': ['', Validators.required],
+                    'description': ['', Validators.required],
+                    'file': [f.name]
+                });
+                this.inFormArray.push(formGroup);
+            }
+        });
+
+    }
+
+
+    ngOnInit() {
+        this.sendForm = this.formBuilder.group({
+            'docs': this.formBuilder.array([
+                this.formBuilder.group({
+                    'title': ['', Validators.required],
+                    'type': ['', Validators.required],
+                    'description': ['', Validators.required],
+                    'file': ['']
+                })]),
+            'email': ['', [Validators.required, Validators.email]]
+        });
+
+        this.inFormArray.removeAt(0);
+
+
+    }
+
+    get inFormArray(): FormArray {
+        return this.sendForm.get('docs') as FormArray;
+    }
+
+    ngDoCheck(): void {
+        const changes = this.differ.diff(this.uploadService.files);
+        if (changes) {
+            this.updateForm();
+        }
+    }
 
 }

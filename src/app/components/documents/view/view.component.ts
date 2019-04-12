@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewComponent implements OnInit {
 
-  constructor() { }
+  public mockData;
+
+  constructor() {
+    this.mockData = [];
+    for (let i = 0; i < 50; i++) {
+      this.mockData.push(Math.random().toString(36).substring(2, 16) + Math.random().toString(36).substring(2, 16) + '.docx');
+    }
+  }
 
   ngOnInit() {
+
   }
 
 }

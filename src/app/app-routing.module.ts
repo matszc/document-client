@@ -24,7 +24,7 @@ const routes: Routes = [
     },
     {
         path: 'documents', component: DocumentsComponent, canActivate: [AuthGuard], children: [
-            {path: '', redirectTo: 'send', pathMatch: 'full'},
+            {path: '', redirectTo: 'view', pathMatch: 'full'},
             {path: 'send', component: SendComponent},
             {path: 'view', component: ViewComponent}
         ]

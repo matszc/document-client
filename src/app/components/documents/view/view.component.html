@@ -1,3 +1,8 @@
-<p>
-  view works!
-</p>
+<p-panel >
+  <p-header>
+    Lista Twoich Dokumentów
+  </p-header>
+  <section>
+    <app-tile *ngFor="let title of mockData" [title]="title"></app-tile>
+  </section>
+</p-panel>

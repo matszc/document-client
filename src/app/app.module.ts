@@ -36,6 +36,8 @@ import { UploaderTaskComponent } from './components/documents/send/uploader/uplo
 import {DropzoneDirective} from './dropzone.directive';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {InputTextareaModule} from 'primeng/inputtextarea';
+import { TileComponent } from './components/documents/view/tile/tile.component';
+import {TooltipModule} from 'primeng/tooltip';
 
 
 @NgModule({
@@ -52,7 +54,8 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
         ViewComponent,
         UploaderComponent,
         UploaderTaskComponent,
-        DropzoneDirective
+        DropzoneDirective,
+        TileComponent
     ],
     imports: [
         BrowserModule,
@@ -74,7 +77,8 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule,
         AngularFireStorageModule,
-        InputTextareaModule
+        InputTextareaModule,
+        TooltipModule
     ],
     providers: [
         MessageService,

@@ -62,6 +62,7 @@ export class AuthService {
             localStorage.removeItem('currentUser');
             this.currentUserSubject.next(null);
             this.messageService.add({severity: 'warn', summary: 'Warning', detail: 'User Logged Out'});
+            this.router.navigate(['']);
         }
 
     }

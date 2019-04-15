@@ -1,8 +1,15 @@
-<p-panel >
-  <p-header>
-    Lista Twoich Dokumentów
-  </p-header>
-  <section>
-    <app-tile *ngFor="let title of mockData" [title]="title"></app-tile>
-  </section>
-</p-panel>
+<article>
+
+  <app-document-menu></app-document-menu>
+
+  <p-panel class="view-element">
+    <p-header>
+      Lista Twoich Dokumentów
+    </p-header>
+    <section>
+      <app-tile *ngFor="let doc of mockData" [title]="doc.title" [id]="doc.id"></app-tile>
+    </section>
+  </p-panel>
+
+</article>
+

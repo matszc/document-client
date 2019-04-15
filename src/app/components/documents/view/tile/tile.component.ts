@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-tile',
@@ -8,8 +9,13 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TileComponent implements OnInit {
 
   @Input() title: string;
+  @Input() id: string;
 
-  constructor() { }
+  constructor(private router: Router) { }
+
+  public viewDoc(): void {
+    this.router.navigate([`documents/view/${this.id}`]);
+  }
 
   ngOnInit() {
   }

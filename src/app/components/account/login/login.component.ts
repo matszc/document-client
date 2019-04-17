@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
         password: value.password
       };
 
-      this.authService.login(loginData as LoginData).subscribe(() => this.router.navigate(['/home']));
+      this.authService.login(loginData as LoginData).subscribe(() => this.router.navigate(['/documents/view']));
     }
   }
 

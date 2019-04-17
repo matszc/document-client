@@ -9,11 +9,21 @@ import {SendComponent} from './send/send.component';
 import {UploaderComponent} from './send/uploader/uploader.component';
 import {UploaderTaskComponent} from './send/uploader/uploader-task/uploader-task.component';
 import {PanelModule} from 'primeng/panel';
-import {ButtonModule, CardModule, DropdownModule, MessageModule, MessagesModule, TieredMenuModule, TooltipModule} from 'primeng/primeng';
+import {
+    ButtonModule,
+    CardModule,
+    DropdownModule,
+    InputTextModule,
+    MessageModule,
+    MessagesModule,
+    TieredMenuModule,
+    TooltipModule
+} from 'primeng/primeng';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ToastModule} from 'primeng/toast';
 import {DocumentMenuComponent} from '../document-menu/document-menu.component';
 import {DropzoneDirective} from '../../dropzone.directive';
+import {DataViewModule} from 'primeng/dataview';
 
 @NgModule({
     declarations: [
@@ -38,6 +48,8 @@ import {DropzoneDirective} from '../../dropzone.directive';
         FormsModule,
         ReactiveFormsModule,
         TieredMenuModule,
+        InputTextModule,
+        DataViewModule
     ]
 })
 export class DocumentsModule {

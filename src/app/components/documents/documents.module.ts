@@ -12,7 +12,7 @@ import {PanelModule} from 'primeng/panel';
 import {
     ButtonModule,
     CardModule,
-    DropdownModule,
+    DropdownModule, InputTextareaModule,
     InputTextModule,
     MessageModule,
     MessagesModule,
@@ -49,7 +49,8 @@ import {DataViewModule} from 'primeng/dataview';
         ReactiveFormsModule,
         TieredMenuModule,
         InputTextModule,
-        DataViewModule
+        DataViewModule,
+        InputTextareaModule
     ]
 })
 export class DocumentsModule {

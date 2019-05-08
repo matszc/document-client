@@ -48,7 +48,6 @@ import {DocumentsComponent} from './components/documents/documents.component';
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule,
         AngularFireStorageModule,
-        InputTextareaModule,
         ButtonModule,
     ],
     providers: [

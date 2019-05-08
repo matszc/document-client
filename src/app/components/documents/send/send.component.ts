@@ -4,6 +4,7 @@ import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
 import {MessageService, SelectItem} from 'primeng/api';
 import {UploadService} from '../../../services/upload.service';
+import {DocumentService} from '../../../services/document.service';
 
 @Component({
     selector: 'app-send',
@@ -24,7 +25,8 @@ export class SendComponent implements OnInit, DoCheck {
         private router: Router,
         private uploadService: UploadService,
         private messageService: MessageService,
-        private iterableDiffers: IterableDiffers) {
+        private iterableDiffers: IterableDiffers,
+        private documentService: DocumentService) {
 
         this.enabledValidators = false;
         this.documentTypes = [
@@ -42,11 +44,17 @@ export class SendComponent implements OnInit, DoCheck {
     }
 
     public onSubmit(value): void {
-        console.log(value);
         if (this.uploadService.files.length) {
             this.enabledValidators = true;
             if (!this.sendForm.invalid) {
-                // this.uploadService.startUpload();
+                this.uploadService.startUpload()
+                    .then((urls: Array<string>) => {
+                        value.files = urls;
+                        this.documentService.sendCase(value);
+                    })
+                    .catch((error) => {
+                        console.log(`Some failed: `, error.message);
+                    });
             }
         } else {
             this.messageService.add({severity: 'warn', summary: 'Warning', detail: 'Nie Dodano Plików'});
@@ -55,7 +63,7 @@ export class SendComponent implements OnInit, DoCheck {
     }
 
     private updateForm(): void {
-        this.inFormArray.controls.forEach((el, i) => {
+        /*this.inFormArray.controls.forEach((el, i) => {
             const deleted = !this.uploadService.files.map(f => f.name).includes(el.get('file').value);
 
             if (deleted) {
@@ -67,16 +75,8 @@ export class SendComponent implements OnInit, DoCheck {
         this.uploadService.files.forEach((f: File, i: number) => {
             const duplicate = this.inFormArray.controls.some(control => f.name === control.get('file').value);
 
-            /*if (!duplicate) {
-                const formGroup: FormGroup = this.formBuilder.group({
-                    'title': ['', Validators.required],
-                    'type': ['', Validators.required],
-                    'description': ['', Validators.required],
-                    'file': [f.name]
-                });
-                this.inFormArray.push(formGroup);
-            }*/
-        });
+        });*/
+        console.log(this.uploadService.files);
 
     }
 
@@ -89,14 +89,6 @@ export class SendComponent implements OnInit, DoCheck {
             'email': ['', [Validators.required, Validators.email]],
             'files': ['']
         });
-
-        /*this.inFormArray.removeAt(0);*/
-
-
-    }
-
-    get inFormArray(): FormArray {
-        return this.sendForm.get('docs') as FormArray;
     }
 
     ngDoCheck(): void {

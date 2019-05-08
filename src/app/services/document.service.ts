@@ -13,6 +13,10 @@ export class DocumentService {
     this.notLoggedInUserEmail = '';
   }
 
+  public getToken(mail) {
+    return this.http.post(`${GLOBAL.URL}/EmailValidation/${mail}`, null);
+  }
+
   public sendCase(data) {
     console.log(data);
     // TODO implement route on server first

@@ -29,11 +29,13 @@
         <form [formGroup]="tokenForm" (ngSubmit)="onSubmitToken(tokenForm.value)">
             <div class="ui-inputgroup ui-float-label input-field">
                 <input id="float-input-token" type="text" size="33" formControlName="token" pInputText>
-                <label for="float-input-token" class="field-label">Wpisz Token</label>
+                <label for="float-input-token" class="field-label">Twój Email</label>
             </div>
             <div class="message-space">
                 <div *ngIf="t.token.errors && enabledValidatorsToken">
-                    <p-message *ngIf="t.token.hasError('required')" severity="error" text="Wymagany Token"
+                    <p-message *ngIf="t.token.hasError('required')" severity="error" text="Wymagany Email"
+                               class="message"></p-message>
+                    <p-message *ngIf="t.token.hasError('email')" severity="error" text="Email Ma Zły Format"
                                class="message"></p-message>
                 </div>
             </div>
@@ -41,3 +43,18 @@
         </form>
     </p-card>
 </article>
+
+<p-dialog [(visible)]="display" [style]="{width: '400px', height: '200px'}">
+    <p-header>
+        Wprowadź Aktualny Token
+    </p-header>
+
+    <div class="ui-inputgroup ui-float-label input-field dialog-input">
+        <input id="enter-token" type="text" size="46" pInputText #enteredToken>
+        <label for="enter-token" class="field-label">Token</label>
+    </div>
+
+    <p-footer>
+        <p-button label="Wyślij" styleClass="ui-button-info ui-button-raised" class="dialog-btn" (click)="checkToken(enteredToken.value)"></p-button>
+    </p-footer>
+</p-dialog>

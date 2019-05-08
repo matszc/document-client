@@ -9,6 +9,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SenderComponent} from './for-not-logged-in/sender/sender.component';
 import {UploaderComponent} from './for-not-logged-in/uploader/uploader.component';
 import {UploaderTaskComponent} from './for-not-logged-in/uploader/uploader-task/uploader-task.component';
+import {DialogModule} from 'primeng/dialog';
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import {UploaderTaskComponent} from './for-not-logged-in/uploader/uploader-task/
         FormsModule,
         ReactiveFormsModule,
         MessageModule,
-        DropdownModule
+        DropdownModule,
+        DialogModule
     ]
 })
 export class HomeModule {

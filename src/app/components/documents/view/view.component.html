@@ -2,14 +2,55 @@
 
   <app-document-menu></app-document-menu>
 
-  <p-panel class="view-element">
+<!--  <p-panel class="view-element">
     <p-header>
       Lista Twoich Dokumentów
     </p-header>
     <section>
       <app-tile *ngFor="let doc of mockData" [title]="doc.title" [id]="doc.id"></app-tile>
     </section>
-  </p-panel>
+  </p-panel>-->
+<div class="table">
+  <p-table [columns]="cols" [value]="mockData" [paginator]="true" [rows]="15">
+    <ng-template pTemplate="caption">
+      Lista twoich spraw
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+          {{col.header}}
+          <p-sortIcon [field]="col.field"  ariaLabel="Activate to sort"
+                      ariaLabelDesc="Activate to sort in descending order"
+                      ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+        <td *ngFor="let col of columns" (click)="viewDoc(rowData.id)">
+          {{rowData[col.field]}}
+        </td>
+      </tr>
+    </ng-template>
 
+  </p-table>
+<!--  <p-table [columns]="cols" [value]="mockData">
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+          {{col.header}}
+          <p-sortIcon [field]="col.field"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+        <td *ngFor="let col of columns">
+          {{rowData[col.field]}}
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>-->
+</div>
 </article>
 

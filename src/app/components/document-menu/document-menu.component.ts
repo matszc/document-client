@@ -26,10 +26,7 @@ export class DocumentMenuComponent implements OnInit {
             {label: 'Other'},
           ]
         },
-          {label: 'View',
-            items: [
-                {label: 'My Documents', command: () => this.router.navigate(['documents/view'])}
-              ]
+          {label: 'Moje sprawy', command: () => this.router.navigate(['documents/view'])
           }
         ]
       },

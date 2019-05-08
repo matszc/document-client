@@ -6,6 +6,7 @@ import {ProfileComponent} from './profile/profile.component';
 import {LoginComponent} from './login/login.component';
 import {ButtonModule, InputTextModule, MessageModule, MessagesModule, PanelModule} from 'primeng/primeng';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {CardModule} from 'primeng/card';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MessageModule,
     ButtonModule,
     PanelModule,
+    CardModule,
   ]
 })
 export class AccountModule { }

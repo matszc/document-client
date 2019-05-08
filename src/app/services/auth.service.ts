@@ -57,6 +57,8 @@ export class AuthService {
         return this.http.post<User>(`${GLOBAL.URL}/Registration`, data);
     }*/
 
+
+
     public logout(): void {
         if (this.currentUserValue) {
             localStorage.removeItem('currentUser');

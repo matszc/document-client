@@ -67,7 +67,7 @@ export class SendComponent implements OnInit, DoCheck {
         this.uploadService.files.forEach((f: File, i: number) => {
             const duplicate = this.inFormArray.controls.some(control => f.name === control.get('file').value);
 
-            if (!duplicate) {
+            /*if (!duplicate) {
                 const formGroup: FormGroup = this.formBuilder.group({
                     'title': ['', Validators.required],
                     'type': ['', Validators.required],
@@ -75,7 +75,7 @@ export class SendComponent implements OnInit, DoCheck {
                     'file': [f.name]
                 });
                 this.inFormArray.push(formGroup);
-            }
+            }*/
         });
 
     }
@@ -83,17 +83,14 @@ export class SendComponent implements OnInit, DoCheck {
 
     ngOnInit() {
         this.sendForm = this.formBuilder.group({
-            'docs': this.formBuilder.array([
-                this.formBuilder.group({
-                    'title': ['', Validators.required],
-                    'type': ['', Validators.required],
-                    'description': ['', Validators.required],
-                    'file': ['']
-                })]),
-            'email': ['', [Validators.required, Validators.email]]
+            'title': ['', Validators.required],
+            'type': ['', Validators.required],
+            'description': ['', Validators.required],
+            'email': ['', [Validators.required, Validators.email]],
+            'files': ['']
         });
 
-        this.inFormArray.removeAt(0);
+        /*this.inFormArray.removeAt(0);*/
 
 
     }

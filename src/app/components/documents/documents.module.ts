@@ -25,6 +25,7 @@ import {DocumentMenuComponent} from '../document-menu/document-menu.component';
 import {DropzoneDirective} from '../../dropzone.directive';
 import {DataViewModule} from 'primeng/dataview';
 import {TableModule} from 'primeng/table';
+import {SenderComponent} from './send/sender/sender.component';
 
 @NgModule({
     declarations: [
@@ -52,7 +53,8 @@ import {TableModule} from 'primeng/table';
     TieredMenuModule,
     InputTextModule,
     DataViewModule,
-    TableModule
+    TableModule,
+    InputTextareaModule
   ]
 })
 export class DocumentsModule {

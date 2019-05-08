@@ -24,6 +24,7 @@ import {ToastModule} from 'primeng/toast';
 import {DocumentMenuComponent} from '../document-menu/document-menu.component';
 import {DropzoneDirective} from '../../dropzone.directive';
 import {DataViewModule} from 'primeng/dataview';
+import {TableModule} from 'primeng/table';
 
 @NgModule({
     declarations: [
@@ -36,21 +37,22 @@ import {DataViewModule} from 'primeng/dataview';
         DocumentMenuComponent,
         DropzoneDirective,
     ],
-    imports: [
-        CommonModule,
-        DocumentsRoutingModule,
-        PanelModule,
-        TooltipModule,
-        MessagesModule,
-        MessageModule,
-        DropdownModule,
-        ButtonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        TieredMenuModule,
-        InputTextModule,
-        DataViewModule
-    ]
+  imports: [
+    CommonModule,
+    DocumentsRoutingModule,
+    PanelModule,
+    TooltipModule,
+    MessagesModule,
+    MessageModule,
+    DropdownModule,
+    ButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TieredMenuModule,
+    InputTextModule,
+    DataViewModule,
+    TableModule
+  ]
 })
 export class DocumentsModule {
 }

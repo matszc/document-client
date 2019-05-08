@@ -43,6 +43,13 @@ export class DocumentMenuComponent implements OnInit {
       },
       {label: 'Quit'}
     ];
+
+    this.items.splice(2, 0, {
+      label: 'Panel Administracyjny',
+      command: () => this.router.navigate(['/admin'])
+    });
+    console.log(this.items);
+
   }
 
 }

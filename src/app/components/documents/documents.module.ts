@@ -12,7 +12,7 @@ import {PanelModule} from 'primeng/panel';
 import {
     ButtonModule,
     CardModule,
-    DropdownModule,
+    DropdownModule, InputTextareaModule,
     InputTextModule,
     MessageModule,
     MessagesModule,
@@ -36,6 +36,7 @@ import {TableModule} from 'primeng/table';
         UploaderTaskComponent,
         DocumentMenuComponent,
         DropzoneDirective,
+        SenderComponent
     ],
   imports: [
     CommonModule,

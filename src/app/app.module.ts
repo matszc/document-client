@@ -32,7 +32,7 @@ import {DocumentsComponent} from './components/documents/documents.component';
         MenuComponent,
         AccountComponent,
         HomeComponent,
-        DocumentsComponent,
+        DocumentsComponent
     ],
     imports: [
         BrowserModule,
@@ -48,7 +48,6 @@ import {DocumentsComponent} from './components/documents/documents.component';
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule,
         AngularFireStorageModule,
-        InputTextareaModule,
         ButtonModule,
     ],
     providers: [

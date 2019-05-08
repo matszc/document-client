@@ -1,0 +1,67 @@
+<form class="send-form" [formGroup]="sendForm" (ngSubmit)="onSubmit(sendForm.value)">
+  <p-panel class="send-panel">
+    <p-header>
+      Formularz wysyłania dokumentu
+    </p-header>
+    <div class="full-input">
+      <div class="ui-inputgroup ui-float-label input-field">
+        <input id="float-input" type="text" size="33" formControlName="title" pInputText>
+        <label for="float-input" class="field-label">Tytuł</label>
+      </div>
+      <div class="message-space">
+        <div *ngIf="f.title.errors && enabledValidators">
+          <p-message *ngIf="f.title.hasError('required')"
+                     severity="error"
+                     text="Wymagany Tytuł"
+                     class="message"></p-message>
+        </div>
+      </div>
+    </div>
+    <div class="full-input">
+      <p-dropdown [options]="documentTypes" formControlName="type"></p-dropdown>
+      <div class="message-space">
+        <div *ngIf="f.type.errors && enabledValidators">
+          <p-message *ngIf="f.type.hasError('required')"
+                     severity="error"
+                     text="Wymagany Typ Dokumentu"
+                     class="message"></p-message>
+        </div>
+      </div>
+    </div>
+    <div class="full-input">
+            <span class="ui-float-label input-field">
+                <textarea id="float-input-desc" rows="5" cols="50" pInputTextarea formControlName="description"
+                          autoResize="autoResize"></textarea>
+                <label for="float-input-desc">Opis</label>
+            </span>
+
+      <div class="message-space">
+        <div *ngIf="f.description.errors && enabledValidators">
+          <p-message *ngIf="f.description.hasError('required')"
+                     severity="error"
+                     text="Wymagany Opis"
+                     class="message"></p-message>
+        </div>
+      </div>
+    </div>
+    <app-uploader></app-uploader>
+    <div class="full-input">
+      <div class="ui-inputgroup ui-float-label input-field">
+        <input id="float-input-email" type="email" size="33" formControlName="email" pInputText
+               [value]="authService.currentUserValue.email">
+        <label for="float-input-email" class="field-label">Twój Email</label>
+      </div>
+      <div class="message-space">
+        <div *ngIf="f.email.errors && enabledValidators">
+          <p-message *ngIf="f.email.hasError('required')" severity="error" text="Wymagany Email"
+                     class="message"></p-message>
+          <p-message *ngIf="f.email.hasError('email')" severity="error" text="Email Ma Zły Format"
+                     class="message"></p-message>
+        </div>
+      </div>
+    </div>
+    <p-footer class="footer">
+      <p-button label="Send" styleClass="ui-button-info ui-button-raised" class="send-btn"></p-button>
+    </p-footer>
+  </p-panel>
+</form>

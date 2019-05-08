@@ -17,7 +17,8 @@ const routes: Routes = [
 
     },
     {
-        path: 'home', component: HomeComponent
+        path: 'home', component: HomeComponent,
+        loadChildren: './components/home/home.module#HomeModule',
     },
     {
         path: 'documents',

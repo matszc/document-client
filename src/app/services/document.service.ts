@@ -7,7 +7,11 @@ import {GLOBAL} from '../config';
 })
 export class DocumentService {
 
-  constructor(private http: HttpClient) { }
+  public notLoggedInUserEmail: string;
+
+  constructor(private http: HttpClient) {
+    this.notLoggedInUserEmail = '';
+  }
 
   public sendCase(data) {
     console.log(data);

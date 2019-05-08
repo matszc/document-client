@@ -1,0 +1,15 @@
+.dropzone {
+  border: 1px dashed silver;
+  margin-top: 20px;
+  padding-left: 10px;
+  position: relative;
+
+  .upload-button {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+  }
+}
+.file-input {
+  display: none;
+}

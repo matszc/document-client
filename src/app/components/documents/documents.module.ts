@@ -24,6 +24,7 @@ import {ToastModule} from 'primeng/toast';
 import {DocumentMenuComponent} from '../document-menu/document-menu.component';
 import {DropzoneDirective} from '../../dropzone.directive';
 import {DataViewModule} from 'primeng/dataview';
+import { SenderComponent } from './send/sender/sender.component';
 
 @NgModule({
     declarations: [
@@ -35,6 +36,7 @@ import {DataViewModule} from 'primeng/dataview';
         UploaderTaskComponent,
         DocumentMenuComponent,
         DropzoneDirective,
+        SenderComponent
     ],
     imports: [
         CommonModule,

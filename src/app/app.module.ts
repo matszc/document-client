@@ -32,7 +32,7 @@ import {DocumentsComponent} from './components/documents/documents.component';
         MenuComponent,
         AccountComponent,
         HomeComponent,
-        DocumentsComponent,
+        DocumentsComponent
     ],
     imports: [
         BrowserModule,

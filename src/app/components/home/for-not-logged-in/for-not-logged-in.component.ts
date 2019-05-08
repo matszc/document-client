@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../../../services/auth.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {DocumentService} from '../../../services/document.service';
 
 @Component({
     selector: 'app-for-not-logged-in',
@@ -17,7 +18,8 @@ export class ForNotLoggedInComponent implements OnInit {
 
     constructor(private router: Router,
                 public authService: AuthService,
-                private formBuilder: FormBuilder) {
+                private formBuilder: FormBuilder,
+                private documentService: DocumentService) {
         this.enabledValidatorsEmail = false;
         this.enabledValidatorsToken = false;
     }
@@ -33,6 +35,8 @@ export class ForNotLoggedInComponent implements OnInit {
     onSubmitEmail(value) {
         this.enabledValidatorsEmail = true;
         if (!this.sendForm.invalid) {
+            this.documentService.notLoggedInUserEmail = this.f.email.value;
+            this.router.navigate([`home/for-not-logged-in/send`]);
             console.log(value);
         }
     }

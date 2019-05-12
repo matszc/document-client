@@ -26,10 +26,7 @@ export class DocumentMenuComponent implements OnInit {
             {label: 'Other'},
           ]
         },
-          {label: 'View',
-            items: [
-                {label: 'My Documents', command: () => this.router.navigate(['documents/view'])}
-              ]
+          {label: 'Moje sprawy', command: () => this.router.navigate(['documents/view'])
           }
         ]
       },
@@ -43,6 +40,13 @@ export class DocumentMenuComponent implements OnInit {
       },
       {label: 'Quit'}
     ];
+
+    this.items.splice(2, 0, {
+      label: 'Panel Administracyjny',
+      command: () => this.router.navigate(['/admin'])
+    });
+    console.log(this.items);
+
   }
 
 }

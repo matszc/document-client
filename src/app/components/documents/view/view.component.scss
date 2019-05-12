@@ -11,6 +11,14 @@ article {
       flex-flow: wrap;
     }
   }
-
+  .table {
+    width:80%;
+    margin: auto;
+    position: relative;
+    left:100px;
+  }
+  tr:hover {
+    background: #999999;
+  }
 }
 

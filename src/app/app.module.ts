@@ -24,6 +24,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {DocumentsComponent} from './components/documents/documents.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {DocumentsComponent} from './components/documents/documents.component';
         MenuComponent,
         AccountComponent,
         HomeComponent,
-        DocumentsComponent
+        DocumentsComponent,
+        AdminComponent
     ],
     imports: [
         BrowserModule,

@@ -24,7 +24,8 @@ import {ToastModule} from 'primeng/toast';
 import {DocumentMenuComponent} from '../document-menu/document-menu.component';
 import {DropzoneDirective} from '../../dropzone.directive';
 import {DataViewModule} from 'primeng/dataview';
-import { SenderComponent } from './send/sender/sender.component';
+import {TableModule} from 'primeng/table';
+import {SenderComponent} from './send/sender/sender.component';
 
 @NgModule({
     declarations: [
@@ -38,22 +39,23 @@ import { SenderComponent } from './send/sender/sender.component';
         DropzoneDirective,
         SenderComponent
     ],
-    imports: [
-        CommonModule,
-        DocumentsRoutingModule,
-        PanelModule,
-        TooltipModule,
-        MessagesModule,
-        MessageModule,
-        DropdownModule,
-        ButtonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        TieredMenuModule,
-        InputTextModule,
-        DataViewModule,
-        InputTextareaModule
-    ]
+  imports: [
+    CommonModule,
+    DocumentsRoutingModule,
+    PanelModule,
+    TooltipModule,
+    MessagesModule,
+    MessageModule,
+    DropdownModule,
+    ButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TieredMenuModule,
+    InputTextModule,
+    DataViewModule,
+    TableModule,
+    InputTextareaModule
+  ]
 })
 export class DocumentsModule {
 }

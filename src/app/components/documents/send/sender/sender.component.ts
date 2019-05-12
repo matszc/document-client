@@ -28,8 +28,8 @@ export class SenderComponent implements OnInit {
     this.enabledValidators = false;
     this.documentTypes = [
       {label: 'Wybierz Rodzaj', value: null},
-      {label: 'Podanie', value: 5},
-      {label: 'Skarga', value: 4},
+      {label: 'Podanie', value: 'podanie'},
+      {label: 'Skarga', value: 'skarga'},
 
     ];
     this.differ = this.iterableDiffers.find([]).create(null);
@@ -44,9 +44,11 @@ export class SenderComponent implements OnInit {
       this.enabledValidators = true;
       if (!this.sendForm.invalid) {
         this.uploadService.startUpload()
-            .then((urls: Array<string>) => {
-              value.files = urls;
-              this.documentService.sendCase(value);
+            .then((files: any) => {
+              value.documents = files;
+              this.documentService.sendCase(value).subscribe(() => {
+                this.router.navigate(['documents/view']);
+              });
             })
             .catch((error) => {
               console.log(`Some failed: `, error.message);
@@ -65,8 +67,7 @@ export class SenderComponent implements OnInit {
       'title': ['', Validators.required],
       'type': ['', Validators.required],
       'description': ['', Validators.required],
-      'email': ['', [Validators.required, Validators.email]],
-      'files': ['']
+      'documents': ['']
     });
   }
 

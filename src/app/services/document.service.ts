@@ -18,9 +18,7 @@ export class DocumentService {
   }
 
   public sendCase(data) {
-    console.log(data);
-    // TODO implement route on server first
-    // return this.http.post(`${GLOBAL.URL}/Documents`, data);
+    return this.http.post(`${GLOBAL.URL}/cases`, data);
   }
 
 

@@ -4,7 +4,8 @@ import {UsersComponent} from './users/users.component';
 import {AdminRoutingModule} from './admin-routing.module';
 
 @NgModule({
-    declarations: [UsersComponent],
+    declarations: [
+        UsersComponent],
     imports: [
         CommonModule,
         AdminRoutingModule

@@ -14,11 +14,15 @@ export class DocumentService {
   }
 
   public getToken(mail) {
-    return this.http.post(`${GLOBAL.URL}/EmailValidation/${mail}`, null);
+    return this.http.post(`${GLOBAL.URL}/unregistered/sendtoken/${mail}`, null);
   }
 
   public sendCase(data) {
     return this.http.post(`${GLOBAL.URL}/cases`, data);
+  }
+
+  public sendCaseUnregistred(email, data) {
+    return this.http.post(`${GLOBAL.URL}/unregistered/cases/${email}`, data);
   }
 
 

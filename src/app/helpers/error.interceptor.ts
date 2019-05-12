@@ -33,6 +33,10 @@ export class ErrorInterceptor implements HttpInterceptor {
                 // owner not found
                 this.messageService.add({severity: 'error', summary: 'Error', detail: err.error.message});
             }
+            if (err.status === 667) {
+                // owner not found
+                this.messageService.add({severity: 'error', summary: 'Error', detail: err.error.message});
+            }
 
             const error = err.error.message || err.statusText;
             return throwError(error);

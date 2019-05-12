@@ -21,9 +21,17 @@ export class DocumentService {
     return this.http.post(`${GLOBAL.URL}/cases`, data);
   }
 
+  public getCase(caseId) {
+    return this.http.get(`${GLOBAL.URL}/cases/${caseId}`);
+  }
+
   public sendCaseUnregistred(email, data) {
     return this.http.post(`${GLOBAL.URL}/unregistered/cases/${email}`, data);
   }
+
+   public editComment(caseId, comment) {
+     return this.http.put(`${GLOBAL.URL}/cases/${caseId}`, comment);
+   }
 
 
 }

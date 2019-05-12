@@ -8,4 +8,12 @@ article {
 
 
   }
+
+  .view-panel.comment-panel {
+    margin-top: 20px;
+
+    textarea {
+      width: 100%;
+    }
+  }
 }

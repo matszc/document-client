@@ -3,6 +3,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {DocumentService} from '../../../services/document.service';
 import {UploadService} from '../../../services/upload.service';
 import {MessageService} from 'primeng/api';
+import {ActivatedRoute, ParamMap} from '@angular/router';
 
 @Component({
     selector: 'app-single-doc',
@@ -19,11 +20,13 @@ export class SingleDocComponent implements OnInit {
     url;
     files;
     caseData;
+    private caseID;
 
     constructor(public sanitizer: DomSanitizer,
                 private documentService: DocumentService,
                 private uploadService: UploadService,
-                private messageService: MessageService) {
+                private messageService: MessageService,
+                private route: ActivatedRoute) {
         this.url = sanitizer.bypassSecurityTrustResourceUrl(`https://drive.google.com/viewerng/viewer?url=${this.pdf}`);
         this.files = [
             {
@@ -45,7 +48,10 @@ export class SingleDocComponent implements OnInit {
 
     ngOnInit() {
         console.log(this.pdf);
-        this.documentService.getCase(1).subscribe((data: any) => {
+        this.route.params.subscribe((params) => {
+          this.caseID = params['id'];
+        });
+        this.documentService.getCase(this.caseID).subscribe((data: any) => {
             data.documents.forEach(doc => {
                 this.uploadService.files.push(new File([doc.name], doc.name, {
                     type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
@@ -55,5 +61,4 @@ export class SingleDocComponent implements OnInit {
             this.caseData = data;
         });
     }
-
 }

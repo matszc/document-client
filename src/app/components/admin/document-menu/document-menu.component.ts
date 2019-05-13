@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {MenuItem} from 'primeng/api';
 import {Router} from '@angular/router';
-import {AuthService} from '../../services/auth.service';
+import {AuthService} from '../../../services/auth.service';
 
 @Component({
-  selector: 'app-document-menu',
+  selector: 'app-document-menu-admin',
   templateUrl: './document-menu.component.html',
   styleUrls: ['./document-menu.component.scss']
 })
-export class DocumentMenuComponent implements OnInit {
+export class DocumentMenuAdminComponent implements OnInit {
 
   public items: MenuItem[];
 

@@ -3,7 +3,7 @@
 <article>
     <p-card class="action-card">
         <p-header class="action-header">
-            <h3>Wysyłanie dokumentów dla niezalogowanych</h3>
+            <h3>Dodaj Sprawę</h3>
         </p-header>
         <form [formGroup]="sendForm" (ngSubmit)="onSubmitEmail(sendForm.value)">
             <div class="ui-inputgroup ui-float-label input-field">
@@ -18,18 +18,18 @@
                                class="message"></p-message>
                 </div>
             </div>
-            <p-button label="Wyślij" styleClass="ui-button-info ui-button-raised" class="action-btn"></p-button>
+            <p-button label="Przejdź Dalej" styleClass="ui-button-info ui-button-raised" class="action-btn"></p-button>
         </form>
     </p-card>
 
     <p-card class="action-card">
         <p-header class="action-header">
-            <h3>Podgląd dokumentu dla niezalogowanych</h3>
+            <h3>Zobacz Swoje Sprawy</h3>
         </p-header>
         <form [formGroup]="tokenForm" (ngSubmit)="onSubmitToken(tokenForm.value)">
             <div class="ui-inputgroup ui-float-label input-field">
                 <input id="float-input-token" type="text" size="33" formControlName="token" pInputText>
-                <label for="float-input-token" class="field-label">Twój Email</label>
+                <label for="float-input-token" class="field-label">Podaj Adres Email Aby Otrzymać Token</label>
             </div>
             <div class="message-space">
                 <div *ngIf="t.token.errors && enabledValidatorsToken">
@@ -39,7 +39,7 @@
                                class="message"></p-message>
                 </div>
             </div>
-            <p-button label="Wyślij" styleClass="ui-button-info ui-button-raised" class="action-btn"></p-button>
+            <p-button label="Wyślij Email Z Tokenem" styleClass="ui-button-info ui-button-raised" class="action-btn"></p-button>
         </form>
     </p-card>
 </article>

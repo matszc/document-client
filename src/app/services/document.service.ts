@@ -14,14 +14,25 @@ export class DocumentService {
   }
 
   public getToken(mail) {
-    return this.http.post(`${GLOBAL.URL}/EmailValidation/${mail}`, null);
+    return this.http.post(`${GLOBAL.URL}/unregistered/sendtoken/${mail}`, null);
   }
 
   public sendCase(data) {
-    console.log(data);
-    // TODO implement route on server first
-    // return this.http.post(`${GLOBAL.URL}/Documents`, data);
+    return this.http.post(`${GLOBAL.URL}/cases`, data);
   }
 
+  public getCase(caseId) {
+    return this.http.get(`${GLOBAL.URL}/cases/${caseId}`);
+  }
 
+  public sendCaseUnregistred(email, data) {
+    return this.http.post(`${GLOBAL.URL}/unregistered/cases/${email}`, data);
+  }
+
+   public editComment(caseId, comment) {
+     return this.http.put(`${GLOBAL.URL}/cases/${caseId}`, comment);
+   }
+   public getCases() {
+     return this.http.get(`${GLOBAL.URL}/cases`);
+   }
 }

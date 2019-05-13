@@ -28,8 +28,8 @@ export class SenderComponent implements OnInit, OnDestroy {
     this.enabledValidators = false;
     this.documentTypes = [
       {label: 'Wybierz Rodzaj', value: null},
-      {label: 'Podanie', value: 5},
-      {label: 'Skarga', value: 4},
+      {label: 'Podanie', value: 'podanie'},
+      {label: 'Skarga', value: 'skarga'},
 
     ];
     this.differ = this.iterableDiffers.find([]).create(null);
@@ -44,9 +44,13 @@ export class SenderComponent implements OnInit, OnDestroy {
       this.enabledValidators = true;
       if (!this.sendForm.invalid) {
         this.uploadService.startUpload()
-            .then((urls: Array<string>) => {
-              value.files = urls;
-              this.documentService.sendCase(value);
+            .then((files: any) => {
+              value.documents = files;
+              const email = value.email;
+              delete value.email;
+              this.documentService.sendCaseUnregistred(email, value).subscribe(() => {
+                this.router.navigate(['home']);
+              });
             })
             .catch((error) => {
               console.log(`Some failed: `, error.message);
@@ -66,12 +70,19 @@ export class SenderComponent implements OnInit, OnDestroy {
       'type': ['', Validators.required],
       'description': ['', Validators.required],
       'email': ['', [Validators.required, Validators.email]],
-      'files': [this.documentService.notLoggedInUserEmail]
+      'documents': ['']
     });
   }
 
   ngOnDestroy(): void {
-    this.documentService.notLoggedInUserEmail = '';
+    this.uploadService.files = [];
   }
+
+  /*ngDoCheck(): void {
+    const changes = this.differ.diff(this.uploadService.files);
+    if (changes) {
+      this.updateForm();
+    }
+  }*/
 
 }

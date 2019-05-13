@@ -26,7 +26,7 @@ export class UploadService {
             this.storage.upload(path, file).then(() => {
                 ref.getDownloadURL().subscribe(u => {
                     return new Promise(() => {
-                        res(u);
+                        res({name: file.name, url: u});
                     });
                 });
             });

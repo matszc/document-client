@@ -25,6 +25,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {DocumentsComponent} from './components/documents/documents.component';
 import { AdminComponent } from './components/admin/admin.component';
+import {DocumentMenuAdminComponent} from './components/admin/document-menu/document-menu.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { AdminComponent } from './components/admin/admin.component';
         AccountComponent,
         HomeComponent,
         DocumentsComponent,
-        AdminComponent
+        AdminComponent,
+        DocumentMenuAdminComponent
     ],
     imports: [
         BrowserModule,
@@ -51,6 +53,7 @@ import { AdminComponent } from './components/admin/admin.component';
         AngularFirestoreModule,
         AngularFireStorageModule,
         ButtonModule,
+        TieredMenuModule
     ],
     providers: [
         MessageService,

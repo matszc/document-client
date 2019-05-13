@@ -17,8 +17,12 @@ article {
     position: relative;
     left:100px;
   }
+  tr {
+    text-align: center;
+  }
   tr:hover {
     background: #999999;
+    cursor: pointer;
   }
 }
 

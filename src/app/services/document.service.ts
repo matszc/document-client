@@ -32,6 +32,7 @@ export class DocumentService {
    public editComment(caseId, comment) {
      return this.http.put(`${GLOBAL.URL}/cases/${caseId}`, comment);
    }
-
-
+   public getCases() {
+     return this.http.get(`${GLOBAL.URL}/cases`);
+   }
 }

@@ -11,7 +11,7 @@
     </section>
   </p-panel>-->
 <div class="table">
-  <p-table [columns]="cols" [value]="mockData" [paginator]="true" [rows]="15">
+  <p-table [columns]="cols" [value]="Cases" [paginator]="true" [rows]="12">
     <ng-template pTemplate="caption">
       Lista twoich spraw
     </ng-template>
@@ -26,10 +26,15 @@
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-rowData let-columns="columns">
-      <tr>
-        <td *ngFor="let col of columns" (click)="viewDoc(rowData.id)">
-          {{rowData[col.field]}}
-        </td>
+      <tr (click)="viewDoc(rowData.id)">
+<!--        <td *ngFor="let col of columns" (click)="viewDoc(rowData.id)">
+            {{rowData[col.field]}}
+        </td>-->
+        <td>{{rowData['id']}}</td>
+        <td>{{rowData['title']}}</td>
+        <td>{{rowData['date'] | date: 'dd-mm-yyyy'}}</td>
+        <td>{{rowData['type']}}</td>
+        <td>{{rowData['status']}}</td>
       </tr>
     </ng-template>
 

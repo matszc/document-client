@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
-import {DocumentService} from '../../../services/document.service';
-import {UploadService} from '../../../services/upload.service';
 import {MessageService} from 'primeng/api';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {DocumentService} from '../../../../services/document.service';
+import {UploadService} from '../../../../services/upload.service';
 
 @Component({
     selector: 'app-single-doc',
@@ -26,7 +26,8 @@ export class SingleDocComponent implements OnInit, OnDestroy {
                 private documentService: DocumentService,
                 private uploadService: UploadService,
                 private messageService: MessageService,
-                private route: ActivatedRoute) {
+                private route: ActivatedRoute,
+                private router: Router) {
         this.url = sanitizer.bypassSecurityTrustResourceUrl(`https://drive.google.com/viewerng/viewer?url=${this.pdf}`);
         this.files = [
             {
@@ -47,17 +48,21 @@ export class SingleDocComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.route.params.subscribe((params) => {
-          this.caseID = params['id'];
-        });
-        this.documentService.getCase(this.caseID).subscribe((data: any) => {
-            data.documents.forEach(doc => {
-                this.uploadService.files.push(new File([doc.name], doc.name, {
-                    type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-                }));
+        if (this.documentService.tempUnregistredToken === '' || this.documentService.notLoggedInUserEmail === '') {
+            this.router.navigate(['home/for-not-logged-in']);
+        } else {
+            this.route.params.subscribe((params) => {
+                this.caseID = params['id'];
             });
-            this.caseData = data;
-        });
+            this.documentService.getCaseUnregistred(this.caseID).subscribe((data: any) => {
+                data.documents.forEach(doc => {
+                    this.uploadService.files.push(new File([doc.name], doc.name, {
+                        type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                    }));
+                });
+                this.caseData = data;
+            });
+        }
     }
 
     ngOnDestroy(): void {

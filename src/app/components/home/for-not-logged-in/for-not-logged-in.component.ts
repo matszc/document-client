@@ -47,11 +47,11 @@ export class ForNotLoggedInComponent implements OnInit {
         }
     }
 
-    onSubmitToken(value) {
+    onSubmitToken(value, email) {
         this.enabledValidatorsToken = true;
         if (!this.tokenForm.invalid) {
             this.documentService.getToken(value.token).subscribe(() => {
-                console.log('done');
+                this.documentService.notLoggedInUserEmail = email;
                 this.display = true;
                 this.messageService.add({severity: 'success', summary: 'Info', detail: 'Wysłano Token na Twój Adres Email'});
             });
@@ -60,8 +60,9 @@ export class ForNotLoggedInComponent implements OnInit {
 
     public checkToken(token) {
         if (token) {
+            this.documentService.tempUnregistredToken = token;
             this.display = false;
-            console.log(token);
+            this.router.navigate([`home/for-not-logged-in/view`]);
         }
 
     }

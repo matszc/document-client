@@ -9,8 +9,9 @@
             <input #dropzoneInput class="file-input" type="file" accept=".doc, .docx" (change)="onDrop($event.target.files)">
         </label>
     </div>
-    <div *ngFor="let file of uploadService.files">
-        <app-uploader-task [file]="file" [role]="role"></app-uploader-task>
+    <div *ngFor="let file of uploadService.files; let i = index">
+        <app-uploader-task *ngIf="role === 'edit'" [file]="file" [role]="role" [document]="documents[i]"></app-uploader-task>
+        <app-uploader-task *ngIf="role === 'send'" [file]="file" [role]="role"></app-uploader-task>
     </div>
     <button type="button" pButton icon="pi pi-plus" class="upload-button" (click)="dropzoneInput.click()"></button>
 

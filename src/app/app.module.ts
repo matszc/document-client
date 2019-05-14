@@ -22,11 +22,9 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
-import {InputTextareaModule} from 'primeng/inputtextarea';
 import {DocumentsComponent} from './components/documents/documents.component';
 import { AdminComponent } from './components/admin/admin.component';
 import {DocumentMenuAdminComponent} from './components/admin/document-menu/document-menu.component';
-
 
 @NgModule({
     declarations: [
@@ -36,8 +34,7 @@ import {DocumentMenuAdminComponent} from './components/admin/document-menu/docum
         HomeComponent,
         DocumentsComponent,
         AdminComponent,
-        DocumentMenuAdminComponent
-    ],
+        DocumentMenuAdminComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,

@@ -9,6 +9,7 @@ import {UploadService} from '../../../../../services/upload.service';
 export class UploaderTaskComponent implements OnInit {
 
   @Input() file: File;
+  @Input() document;
 
   constructor(private uploadService: UploadService) { }
 

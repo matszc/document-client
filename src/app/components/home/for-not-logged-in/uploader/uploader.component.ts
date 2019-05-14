@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AngularFireUploadTask} from '@angular/fire/storage';
 import {UploadService} from '../../../../services/upload.service';
 import {MessageService} from 'primeng/api';
@@ -13,6 +13,8 @@ export class UploaderComponent implements OnInit {
 
 
   public isHovering: boolean;
+  @Input() documents;
+  @Input() role;
 
 
 

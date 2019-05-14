@@ -8,9 +8,11 @@ import {GLOBAL} from '../config';
 export class DocumentService {
 
   public notLoggedInUserEmail: string;
+  public tempUnregistredToken: string;
 
   constructor(private http: HttpClient) {
     this.notLoggedInUserEmail = '';
+    this.tempUnregistredToken = '';
   }
 
   public getToken(mail) {
@@ -35,4 +37,12 @@ export class DocumentService {
    public getCases() {
      return this.http.get(`${GLOBAL.URL}/cases`);
    }
+
+  public getCasesUnregistred() {
+    return this.http.get(`${GLOBAL.URL}/unregistered/cases/${this.notLoggedInUserEmail}/${this.tempUnregistredToken}`);
+  }
+
+  public getCaseUnregistred(caseId) {
+    return this.http.get(`${GLOBAL.URL}/unregistered/cases/${caseId}/${this.tempUnregistredToken}/${this.notLoggedInUserEmail}`);
+  }
 }

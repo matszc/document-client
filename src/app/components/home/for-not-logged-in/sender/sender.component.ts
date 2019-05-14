@@ -69,7 +69,7 @@ export class SenderComponent implements OnInit, OnDestroy {
       'title': ['', Validators.required],
       'type': ['', Validators.required],
       'description': ['', Validators.required],
-      'email': ['', [Validators.required, Validators.email]],
+      'email': [this.documentService.notLoggedInUserEmail, [Validators.required, Validators.email]],
       'documents': ['']
     });
   }

@@ -33,8 +33,7 @@ import {DocumentMenuAdminComponent} from './components/admin/document-menu/docum
         AccountComponent,
         HomeComponent,
         DocumentsComponent,
-        AdminComponent,
-        DocumentMenuAdminComponent],
+        AdminComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -49,8 +48,7 @@ import {DocumentMenuAdminComponent} from './components/admin/document-menu/docum
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule,
         AngularFireStorageModule,
-        ButtonModule,
-        TieredMenuModule
+        ButtonModule
     ],
     providers: [
         MessageService,

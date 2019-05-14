@@ -7,10 +7,14 @@ import {AdminService} from '../../../services/admin.service';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
+  private users;
 
   constructor(private adminService: AdminService) { }
 
   ngOnInit() {
+/*    this.adminService.getActiveUsers().subscribe((users) => {
+      // console.log(users);
+    });*/
   }
 
 }

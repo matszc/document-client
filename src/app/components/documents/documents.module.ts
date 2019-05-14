@@ -22,7 +22,7 @@ import {
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ToastModule} from 'primeng/toast';
 import {DocumentMenuComponent} from '../document-menu/document-menu.component';
-import {DropzoneDirective} from '../../dropzone.directive';
+import {DropzoneDirective} from './dropzone.directive';
 import {DataViewModule} from 'primeng/dataview';
 import {TableModule} from 'primeng/table';
 import {SenderComponent} from './send/sender/sender.component';
@@ -36,8 +36,8 @@ import {SenderComponent} from './send/sender/sender.component';
         UploaderComponent,
         UploaderTaskComponent,
         DocumentMenuComponent,
-        DropzoneDirective,
-        SenderComponent
+        SenderComponent,
+        DropzoneDirective
     ],
   imports: [
     CommonModule,

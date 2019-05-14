@@ -1,0 +1,19 @@
+article {
+  padding-top: 10px;
+
+  .view-panel {
+    width: calc(100% - 220px);
+    margin: auto;
+    padding: 0 10px;
+
+
+  }
+
+  .view-panel.comment-panel {
+    margin-top: 20px;
+
+    textarea {
+      width: 100%;
+    }
+  }
+}

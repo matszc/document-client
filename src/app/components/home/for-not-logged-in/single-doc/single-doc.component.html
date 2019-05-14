@@ -1,5 +1,4 @@
 <article *ngIf="caseData">
-    <app-document-menu></app-document-menu>
 
     <p-panel class="view-panel">
         <p-header>
@@ -14,7 +13,7 @@
         <!--<div *ngFor="let file of files">
             <app-uploader-task [file]="file"></app-uploader-task>
         </div>-->
-        <app-uploader [role]="'edit'" [documents]="caseData.documents"></app-uploader>
+        <app-uploader [documents]="caseData.documents" [role]="'view'"></app-uploader>
         <p-footer class="footer">
             <!--<a href="https://firebasestorage.googleapis.com/v0/b/documentos-serveros.appspot.com/o/docs%2F1554725135222_Wyk%C5%82ad%204%20robotyka.docx?alt=media&token=3b011a26-afc1-44ca-9afa-4bb4c47afc95">
                 <p-button label="Pobierz Dokument" styleClass="ui-button-info ui-button-raised"
@@ -27,8 +26,5 @@
             Komentarz
         </p-header>
         <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize" #message [value]="caseData.comment"></textarea>
-        <p-footer class="footer">
-            <p-button label="Zapisz Komentarz" styleClass="ui-button-info ui-button-raised" class="send-btn" (click)="addComment(message.value)"></p-button>
-        </p-footer>
     </p-panel>
 </article>

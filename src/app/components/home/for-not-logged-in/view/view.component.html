@@ -1,0 +1,61 @@
+<article>
+
+<div class="table">
+  <p-table #dt [columns]="cols" [value]="Cases" [paginator]="true" [rows]="12">
+    <ng-template pTemplate="caption">
+      Lista twoich spraw
+      <div style="text-align: right">
+        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+        <input type="text" pInputText size="50" placeholder="Filter"
+               (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto" class="margin">
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+          {{col.header}}
+          <p-sortIcon [field]="col.field" ></p-sortIcon>
+        </th>
+      </tr>
+      <tr>
+        <th></th>
+        <th><input placeholder="tytuł" pInputText type="text" (input)="dt.filter($event.target.value, 'title', cols[1].filterMatchMode)"></th>
+        <th></th>
+        <th> <p-dropdown class="dropdown" [options]="types" (onChange)="dt.filter($event.value, 'type', 'equals')"></p-dropdown></th>
+        <th> <p-dropdown class="dropdown" [options]="statuts" (onChange)="dt.filter($event.value, 'status', 'equals')"></p-dropdown></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr (click)="viewDoc(rowData.id)">
+<!--        <td *ngFor="let col of columns" (click)="viewDoc(rowData.id)">
+            {{rowData[col.field]}}
+        </td>-->
+        <td>{{rowData['id']}}</td>
+        <td>{{rowData['title']}}</td>
+        <td>{{rowData['date'] | date: 'dd-mm-yyyy'}}</td>
+        <td>{{rowData['type']}}</td>
+        <td>{{rowData['status']}}</td>
+      </tr>
+    </ng-template>
+
+  </p-table>
+<!--  <p-table [columns]="cols" [value]="mockData">
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+          {{col.header}}
+          <p-sortIcon [field]="col.field"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+        <td *ngFor="let col of columns">
+          {{rowData[col.field]}}
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>-->
+</div>
+</article>
+

@@ -46,7 +46,13 @@ export class DocumentMenuComponent implements OnInit {
     if (this.authService.currentUserValue.role === 'admin') {
       this.items.splice(2, 0, {
         label: 'Panel Administracyjny',
-        command: () => this.router.navigate(['/admin'])
+        command: () => this.router.navigate(['/admin']),
+        items: [
+          {label: 'Konta', command: () => this.router.navigate(['/admin/users'])},
+          {label: 'Dokumenty'},
+          {label: 'Moje konto'},
+          {label: 'Dodaj konto'}
+        ]
       });
     }
   }

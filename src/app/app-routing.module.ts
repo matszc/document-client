@@ -1,12 +1,9 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {AccountComponent} from './components/account/account.component';
-import {LoginComponent} from './components/account/login/login.component';
-import {ProfileComponent} from './components/account/profile/profile.component';
 import {HomeComponent} from './components/home/home.component';
 import {AuthGuard} from './guards/auth.guard';
-import {DocumentsComponent} from './components/documents/documents.component';
-import {DocumentMenuComponent} from './components/document-menu/document-menu.component';
+import {AdminGuard} from './guards/admin.guard';
+import {UnregistredGuard} from './guards/unregistred.guard';
 
 const routes: Routes = [
     {
@@ -18,6 +15,7 @@ const routes: Routes = [
     },
     {
         path: 'home', component: HomeComponent,
+        canActivate: [UnregistredGuard],
         loadChildren: './components/home/home.module#HomeModule',
     },
     {
@@ -27,7 +25,7 @@ const routes: Routes = [
     },
     {
         path: 'admin',
-        canActivate: [AuthGuard],
+        canActivate: [AdminGuard],
         loadChildren: './components/admin/admin.module#AdminModule',
     },
 

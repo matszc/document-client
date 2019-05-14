@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DocumentService} from '../../../services/document.service';
 import {UploadService} from '../../../services/upload.service';
@@ -10,7 +10,7 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
     templateUrl: './single-doc.component.html',
     styleUrls: ['./single-doc.component.scss']
 })
-export class SingleDocComponent implements OnInit {
+export class SingleDocComponent implements OnInit, OnDestroy {
 
     document = {
         from: 'user'
@@ -60,5 +60,9 @@ export class SingleDocComponent implements OnInit {
             console.log(data);
             this.caseData = data;
         });
+    }
+
+    ngOnDestroy(): void {
+        this.uploadService.files = [];
     }
 }

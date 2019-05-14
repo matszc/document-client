@@ -1,4 +1,4 @@
-import {Component, DoCheck, IterableDiffers, OnInit} from '@angular/core';
+import {Component, DoCheck, IterableDiffers, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MessageService, SelectItem} from 'primeng/api';
 import {AuthService} from '../../../../services/auth.service';
@@ -11,7 +11,7 @@ import {DocumentService} from '../../../../services/document.service';
   templateUrl: './sender.component.html',
   styleUrls: ['./sender.component.scss']
 })
-export class SenderComponent implements OnInit {
+export class SenderComponent implements OnInit, OnDestroy {
 
   public sendForm: FormGroup;
   public enabledValidators: boolean;
@@ -72,6 +72,10 @@ export class SenderComponent implements OnInit {
       'email': ['', [Validators.required, Validators.email]],
       'documents': ['']
     });
+  }
+
+  ngOnDestroy(): void {
+    this.uploadService.files = [];
   }
 
   /*ngDoCheck(): void {

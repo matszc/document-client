@@ -9,6 +9,6 @@ export class AdminService {
 
   constructor(private http: HttpClient) { }
   public getActiveUsers() {
-    return this.http.get(`${GLOBAL.URL}/activeUsers`);
+    return this.http.get(`${GLOBAL.URL}/users/activeUsers`);
   }
 }

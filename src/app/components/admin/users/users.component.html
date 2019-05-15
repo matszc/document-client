@@ -1,8 +1,33 @@
 <article>
     <app-document-menu-admin></app-document-menu-admin>
-
-    <div class="users">
-
-    </div>
-
+  <div class="users">
+    <p-table [value]="users">
+      <ng-template pTemplate="header">
+        <tr>
+          <th *ngFor="let col of cols">
+            {{col.header}}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-user>
+        <tr>
+          <td *ngFor="let col of cols">
+            {{user[col.field]}}
+          </td>
+          <td><p-button type="button" label="Edytuj" (click)="showDialogEdit()" class="ui-button-raised"></p-button></td>
+          <td><button pButton type="button" label="Usuń" (click)="showDialogDelete()" class="ui-button-raised ui-button-danger"></button></td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
 </article>
+<p-dialog header="Edytuj" [(visible)]="displayEdit">
+  Content
+</p-dialog>
+<p-dialog header="Usuń" [(visible)]="displayDelete">
+  <p-header>Czy na pewno chcesz usunąć użytkownika ?</p-header>
+  <p-footer>
+    <button pButton type="button" label="Nie" (click)="showDialogDelete()"></button>
+    <button pButton type="button" label="Tak" (click)="deleteUser()"></button>
+  </p-footer>
+</p-dialog>

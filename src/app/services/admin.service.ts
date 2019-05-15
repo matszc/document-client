@@ -11,4 +11,7 @@ export class AdminService {
   public getActiveUsers() {
     return this.http.get(`${GLOBAL.URL}/users/activeUsers`);
   }
+  public addUser(user: any) {
+    return this.http.post(`${GLOBAL.URL}/users/registration`, user);
+  }
 }

@@ -1,3 +1,49 @@
 <article>
 <app-document-menu-admin></app-document-menu-admin>
+  <form [formGroup]="newUserForm" (ngSubmit)="onSubmit()">
+  <div class="formCard">
+    <h2>Dodaj nowego użytkownika</h2>
+    <p-card>
+      <div class="form">
+        <div class="d-block margin">
+          <label for="login" class="d-block margin-l">Podaj login</label>
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="pi pi-user-plus"></i></span>
+            <input type="text" id="login" pInputText placeholder="Login" formControlName="Login">
+          </div>
+        </div>
+        <div class="d-block margin">
+          <label for="password" class="d-block margin-l">Podaj Hasło</label>
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="pi pi-key"></i></span>
+            <input id="password" type="password" pInputText placeholder="Hasło" formControlName="Password">
+          </div>
+        </div>
+        <div class="d-block margin">
+          <label for="repeatPassowrd" class="d-block margin-l">Powtórz hasło</label>
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="pi pi-key"></i></span>
+            <input id="repeatPassowrd" type="password" pInputText placeholder="Powtórz hasło">
+          </div>
+        </div>
+        <div class="d-block margin">
+          <label for="email" class="d-block margin-l">Poda e-mail</label>
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="pi pi-envelope"></i></span>
+            <input id="email" type="email" pInputText placeholder="adres e-mail" formControlName="Email">
+          </div>
+        </div>
+        <div>
+        </div>
+        <div class="margin">
+          <p>Uprawnienia</p>
+          <ng-container *ngFor="let role of roles">
+            <p-radioButton name="role" value="{{role}}" label="{{role}}" formControlName="Role" class="d-block"></p-radioButton>
+          </ng-container>
+        </div>
+        <button pButton type="submit" label="Dodaj" class="d-block"></button>
+        </div>
+    </p-card>
+  </div>
+  </form>
 </article>

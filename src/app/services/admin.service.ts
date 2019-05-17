@@ -14,4 +14,7 @@ export class AdminService {
   public addUser(user: any) {
     return this.http.post(`${GLOBAL.URL}/users/registration`, user);
   }
+  public updateUser(email: string, user) {
+    return this.http.put(`${GLOBAL.URL}/users/${email}`, user);
+  }
 }

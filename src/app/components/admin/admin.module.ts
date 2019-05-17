@@ -11,6 +11,7 @@ import {ButtonModule} from 'primeng/button';
 import {DialogModule} from 'primeng/dialog';
 import {CardModule} from 'primeng/card';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { EditDialogComponent } from './users/edit-dialog/edit-dialog.component';
 
 
 
@@ -19,7 +20,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
         UsersComponent,
         DocumentMenuAdminComponent,
         AdminDocumentsComponent,
-        AddAccountComponent],
+        AddAccountComponent,
+        EditDialogComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

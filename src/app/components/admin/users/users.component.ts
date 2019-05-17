@@ -11,6 +11,8 @@ export class UsersComponent implements OnInit {
   public cols: any[];
   public displayEdit = false;
   public displayDelete = false;
+  public targetLogin;
+  public targetEmail;
 
   constructor(private adminService: AdminService) {
     this.cols = [
@@ -31,14 +33,21 @@ export class UsersComponent implements OnInit {
       });
     });
   }
-  public showDialogEdit() {
+  public showDialogEdit(targetEmail, targetLogin) {
+    this.targetEmail = targetEmail;
+    this.targetLogin = targetLogin;
     this.displayEdit = true;
   }
-  public showDialogDelete() {
+  public showDialogDelete(targetEmail, targetLogin) {
+    this.targetEmail = targetEmail;
+    this.targetLogin = targetLogin;
     this.displayDelete = !this.displayDelete;
   }
   public deleteUser() {
     this.displayDelete = false;
+  }
+  public closeEditDialog(close: boolean) {
+    this.displayEdit = close;
   }
 
 }

@@ -4,6 +4,7 @@
   <div class="formCard">
     <h2>Dodaj nowego użytkownika</h2>
     <p-card>
+      <p-progressSpinner *ngIf="loading" [style]="{width:'50px', height: '50px'}" strokeWidth="7"></p-progressSpinner>
       <div class="form">
         <div class="d-block margin">
           <label for="login" class="d-block margin-l">Podaj login</label>

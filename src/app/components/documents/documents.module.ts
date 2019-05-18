@@ -10,14 +10,14 @@ import {UploaderComponent} from './send/uploader/uploader.component';
 import {UploaderTaskComponent} from './send/uploader/uploader-task/uploader-task.component';
 import {PanelModule} from 'primeng/panel';
 import {
-    ButtonModule,
-    CardModule,
-    DropdownModule, InputTextareaModule,
-    InputTextModule,
-    MessageModule,
-    MessagesModule,
-    TieredMenuModule,
-    TooltipModule
+  ButtonModule,
+  CardModule,
+  DropdownModule, InputTextareaModule,
+  InputTextModule,
+  MessageModule,
+  MessagesModule, ProgressSpinnerModule,
+  TieredMenuModule,
+  TooltipModule
 } from 'primeng/primeng';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ToastModule} from 'primeng/toast';
@@ -54,7 +54,8 @@ import {SenderComponent} from './send/sender/sender.component';
     InputTextModule,
     DataViewModule,
     TableModule,
-    InputTextareaModule
+    InputTextareaModule,
+    ProgressSpinnerModule
   ]
 })
 export class DocumentsModule {

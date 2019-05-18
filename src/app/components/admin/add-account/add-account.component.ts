@@ -11,8 +11,10 @@ import {Router} from '@angular/router';
 export class AddAccountComponent implements OnInit {
   public newUserForm: FormGroup;
   public roles: any[];
+  public loading;
   constructor(private formBuilder: FormBuilder, private adminService: AdminService, private router: Router) {
     this.roles = ['admin', 'registered'];
+    this.loading = false;
   }
 
   ngOnInit() {
@@ -25,11 +27,12 @@ export class AddAccountComponent implements OnInit {
   }
   onSubmit() {
     if (this.newUserForm.valid) {
+      this.loading = true;
       const newUser = this.newUserForm.value;
       console.log(newUser);
       this.adminService.addUser(newUser).subscribe(() => {
         this.router.navigate(['/admin/users']);
-      });
+      }, () => this.loading = false);
     }
   }
 

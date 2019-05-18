@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {UsersComponent} from './users/users.component';
 import {AdminRoutingModule} from './admin-routing.module';
 import {DocumentMenuAdminComponent} from './document-menu/document-menu.component';
-import {InputTextModule, RadioButtonModule, TieredMenuModule} from 'primeng/primeng';
+import {InputTextModule, ProgressSpinnerModule, RadioButtonModule, TieredMenuModule} from 'primeng/primeng';
 import { AdminDocumentsComponent } from './admin-documents/admin-documents.component';
 import { AddAccountComponent } from './add-account/add-account.component';
 import {TableModule} from 'primeng/table';
@@ -33,7 +33,8 @@ import { EditDialogComponent } from './users/edit-dialog/edit-dialog.component';
     ReactiveFormsModule,
     InputTextModule,
     RadioButtonModule,
-    FormsModule
+    FormsModule,
+    ProgressSpinnerModule
   ]
 })
 export class AdminModule {

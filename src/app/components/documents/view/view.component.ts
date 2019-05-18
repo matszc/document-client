@@ -10,13 +10,14 @@ import {DocumentService} from '../../../services/document.service';
 
 export class ViewComponent implements OnInit {
 
-  // public mockData;
   public cols: any[];
   public Cases: any;
   public statuts: any[];
   public types: any[];
+  public loading: boolean;
 
   constructor(private router: Router, private document: DocumentService) {
+    this.loading = true;
     this.cols = [
       {field: 'id', header: 'Id'},
       {field: 'title', header: 'Tytul'},
@@ -34,18 +35,12 @@ export class ViewComponent implements OnInit {
       { label: 'skarga', value: 'skarga'},
       { label: 'podanie', value: 'podanie'}
     ];
-/*    this.mockData = [];
-    for (let i = 0; i < 50; i++) {
-      this.mockData.push( {
-        title: Math.random().toString(36).substring(2, 16) + Math.random().toString(36).substring(2, 16) + '.docx',
-        id: Math.random().toString(36).substring(2, 16) + Math.random().toString(36).substring(2, 16)
-      });
-    }*/
   }
 
   ngOnInit() {
     this.document.getCases().subscribe( (Cases) => {
       this.Cases = Cases;
+      this.loading = false;
     });
 
   }

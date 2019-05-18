@@ -18,10 +18,9 @@ export class DocumentMenuAdminComponent implements OnInit {
 
   ngOnInit() {
   this.items = [
-    {label: 'Konta'},
-    {label: 'Dokumenty'},
-    {label: 'Moje konto'},
-    {label: 'Dodaj konto'},
+    {label: 'Konta', command: () => this.router.navigate(['/admin/users'])},
+    {label: 'Dokumenty', command: () => this.router.navigate((['/admin/documents']))},
+    {label: 'Dodaj konto', command: () => this.router.navigate(['admin/add-account'])},
     {label: 'Wyjdź', command: () => this.router.navigate(['documents/view'])}
     ];
   }

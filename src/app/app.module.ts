@@ -25,6 +25,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {DocumentsComponent} from './components/documents/documents.component';
 import { AdminComponent } from './components/admin/admin.component';
 import {DocumentMenuAdminComponent} from './components/admin/document-menu/document-menu.component';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 @NgModule({
     declarations: [
@@ -48,7 +49,8 @@ import {DocumentMenuAdminComponent} from './components/admin/document-menu/docum
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule,
         AngularFireStorageModule,
-        ButtonModule
+        ButtonModule,
+        ProgressSpinnerModule
     ],
     providers: [
         MessageService,

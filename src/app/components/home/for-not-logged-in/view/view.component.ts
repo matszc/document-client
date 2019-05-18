@@ -15,8 +15,10 @@ export class ViewComponent implements OnInit, OnDestroy {
   public Cases: any;
   public statuts: any[];
   public types: any[];
+  public loading: boolean;
 
   constructor(private router: Router, private document: DocumentService) {
+    this.loading = true;
     this.cols = [
       {field: 'id', header: 'Id'},
       {field: 'title', header: 'Tytul'},
@@ -46,6 +48,7 @@ export class ViewComponent implements OnInit, OnDestroy {
     } else {
       this.document.getCasesUnregistred().subscribe( (Cases) => {
         this.Cases = Cases;
+        this.loading = false;
       });
     }
   }

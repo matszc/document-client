@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AccountRoutingModule } from './account-routing.module';
 import {ProfileComponent} from './profile/profile.component';
 import {LoginComponent} from './login/login.component';
-import {ButtonModule, InputTextModule, MessageModule, MessagesModule, PanelModule} from 'primeng/primeng';
+import {ButtonModule, InputTextModule, MessageModule, MessagesModule, PanelModule, ProgressSpinnerModule} from 'primeng/primeng';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
@@ -22,6 +22,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MessageModule,
     ButtonModule,
     PanelModule,
+    ProgressSpinnerModule,
   ]
 })
 export class AccountModule { }

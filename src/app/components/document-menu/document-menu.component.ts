@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MenuItem} from 'primeng/api';
 import {Router} from '@angular/router';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-document-menu',
@@ -11,7 +12,9 @@ export class DocumentMenuComponent implements OnInit {
 
   public items: MenuItem[];
 
-  constructor(private router: Router) { }
+  constructor(
+      private router: Router,
+      private authService: AuthService) { }
 
   ngOnInit() {
     this.items = [
@@ -26,10 +29,7 @@ export class DocumentMenuComponent implements OnInit {
             {label: 'Other'},
           ]
         },
-          {label: 'View',
-            items: [
-                {label: 'My Documents', command: () => this.router.navigate(['documents/view'])}
-              ]
+          {label: 'Moje sprawy', command: () => this.router.navigate(['documents/view'])
           }
         ]
       },
@@ -43,6 +43,17 @@ export class DocumentMenuComponent implements OnInit {
       },
       {label: 'Quit'}
     ];
+    if (this.authService.currentUserValue.role === 'admin') {
+      this.items.splice(2, 0, {
+        label: 'Panel Administracyjny',
+        command: () => this.router.navigate(['/admin']),
+        items: [
+          {label: 'Konta', command: () => this.router.navigate(['/admin/users'])},
+          {label: 'Dokumenty', command: () => this.router.navigate((['/admin/documents']))},
+          {label: 'Dodaj konto', command: () => this.router.navigate(['admin/add-account'])},
+        ]
+      });
+    }
   }
 
 }

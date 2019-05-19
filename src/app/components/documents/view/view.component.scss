@@ -11,6 +11,30 @@ article {
       flex-flow: wrap;
     }
   }
-
+  .table {
+    width:80%;
+    margin: auto;
+    position: relative;
+    left:100px;
+  }
+  tr {
+    text-align: center;
+  }
+  tr:hover {
+    background: #999999;
+    cursor: pointer;
+  }
+  .margin {
+    margin: 25px;
+  }
+  .dropdown {
+    width:100%;
+  }
+}
+p-progressSpinner {
+  position: relative;
+  top: 25vh;
+  left: 50vw;
+  z-index: 2;
 }
 

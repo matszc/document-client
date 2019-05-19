@@ -16,27 +16,17 @@ export class UploadService {
 
     public startUpload() {
         this.uploads = [...this.files];
-        Promise.all(
-            this.uploads.map(item => this.uploadSingle(item)))
-            .then((url) => {
-                console.log(`All success`);
-            })
-            .catch((error) => {
-                console.log(`Some failed: `, error.message);
-            });
+        return Promise.all(this.uploads.map(item => this.uploadSingle(item)));
     }
 
     private uploadSingle(file) {
         const path = `docs/${Date.now()}_${file.name}`;
         const ref = this.storage.ref(path);
-        return new Promise((p) => {
+        return new Promise((res) => {
             this.storage.upload(path, file).then(() => {
                 ref.getDownloadURL().subscribe(u => {
                     return new Promise(() => {
-                        console.log(u);
-
-                        // TODO request
-                        p();
+                        res({name: file.name, url: u});
                     });
                 });
             });

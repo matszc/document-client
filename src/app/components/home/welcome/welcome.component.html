@@ -1,0 +1,19 @@
+<h2>Witaj w naszym serwisie, wybierz sposób logowania</h2>
+
+<article>
+  <p-card class="login-card">
+    <p-header class="login-header">
+      <h3>Mam konto (pełne logowanie)</h3>
+
+    </p-header>
+    <p-button label="Zaloguj się" styleClass="ui-button-info ui-button-raised" (click)="redirect('account/login')" class="login-btn"></p-button>
+  </p-card>
+
+  <p-card class="login-card">
+    <p-header class="login-header">
+      <h3>Dla niezalogowanych</h3>
+    </p-header>
+    <p-button label="Przejdź" styleClass="ui-button-info ui-button-raised" (click)="redirect('home/for-not-logged-in')" class="login-btn"></p-button>
+  </p-card>
+
+</article>

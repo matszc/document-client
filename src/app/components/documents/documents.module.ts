@@ -10,20 +10,22 @@ import {UploaderComponent} from './send/uploader/uploader.component';
 import {UploaderTaskComponent} from './send/uploader/uploader-task/uploader-task.component';
 import {PanelModule} from 'primeng/panel';
 import {
-    ButtonModule,
-    CardModule,
-    DropdownModule,
-    InputTextModule,
-    MessageModule,
-    MessagesModule,
-    TieredMenuModule,
-    TooltipModule
+  ButtonModule,
+  CardModule,
+  DropdownModule, InputTextareaModule,
+  InputTextModule,
+  MessageModule,
+  MessagesModule, ProgressSpinnerModule,
+  TieredMenuModule,
+  TooltipModule
 } from 'primeng/primeng';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ToastModule} from 'primeng/toast';
 import {DocumentMenuComponent} from '../document-menu/document-menu.component';
-import {DropzoneDirective} from '../../dropzone.directive';
+import {DropzoneDirective} from './dropzone.directive';
 import {DataViewModule} from 'primeng/dataview';
+import {TableModule} from 'primeng/table';
+import {SenderComponent} from './send/sender/sender.component';
 
 @NgModule({
     declarations: [
@@ -34,23 +36,27 @@ import {DataViewModule} from 'primeng/dataview';
         UploaderComponent,
         UploaderTaskComponent,
         DocumentMenuComponent,
-        DropzoneDirective,
+        SenderComponent,
+        DropzoneDirective
     ],
-    imports: [
-        CommonModule,
-        DocumentsRoutingModule,
-        PanelModule,
-        TooltipModule,
-        MessagesModule,
-        MessageModule,
-        DropdownModule,
-        ButtonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        TieredMenuModule,
-        InputTextModule,
-        DataViewModule
-    ]
+  imports: [
+    CommonModule,
+    DocumentsRoutingModule,
+    PanelModule,
+    TooltipModule,
+    MessagesModule,
+    MessageModule,
+    DropdownModule,
+    ButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TieredMenuModule,
+    InputTextModule,
+    DataViewModule,
+    TableModule,
+    InputTextareaModule,
+    ProgressSpinnerModule
+  ]
 })
 export class DocumentsModule {
 }

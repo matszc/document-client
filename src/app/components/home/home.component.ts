@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -9,13 +8,13 @@ import {AuthService} from '../../services/auth.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router, public authService: AuthService) { }
-
-  public redirect(loc: string): void {
-    this.router.navigate([loc]);
-  }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  isSendComponent() {
+    return this.router.url === '/home/for-not-logged-in/send';
   }
 
 }

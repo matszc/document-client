@@ -1,0 +1,24 @@
+<form [formGroup]="editUserForm">
+  <div class="input">
+    <input formControlName="loginFormControl" id="login" type="text" pInputText>
+    <label for="login">Nowy login</label>
+  </div>
+  <div class="input">
+    <input formControlName="passwordFormControl" id="password" type="password" pInputText>
+    <label for="password">Nowe hasło</label>
+  </div>
+  <div class="input">
+    <input formControlName="re_passwordFormControl" id="re_password" type="password" pInputText>
+    <label for="re_password">Powtórz nowe hasło</label>
+  </div>
+  <div class="input">
+    <p>Nadaj uprawnienia</p>
+    <ng-container *ngFor="let role of roles">
+      <p-radioButton name="role" value="{{role}}" label="{{role}}" formControlName="roleFormControl" class="radio"></p-radioButton>
+    </ng-container>
+  </div>
+  <div class="buttons">
+    <p-button label="Zmień" (click)="onSubmit()"></p-button>
+    <p-button label="Anuluj" (click)="closeDialog()"></p-button>
+  </div>
+</form>

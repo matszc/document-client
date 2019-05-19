@@ -1,5 +1,9 @@
-<p-menubar [model]="items" class="top-menu">
-    <a href="home" class="app-title">Document App
+<p-menubar *ngIf="authService.currentUserValue" [model]="items" class="top-menu">
+    <a href="home" class="app-title">System Obiegu Dokumentów
         <span *ngIf="authService.currentUserValue">(user: {{authService.currentUserValue.login}})</span>
     </a>
+</p-menubar>
+
+<p-menubar *ngIf="!authService.currentUserValue" class="top-menu">
+    <a href="home" class="app-title">System Obiegu Dokumentów</a>
 </p-menubar>

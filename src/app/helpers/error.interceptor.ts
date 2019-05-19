@@ -33,6 +33,16 @@ export class ErrorInterceptor implements HttpInterceptor {
                 // owner not found
                 this.messageService.add({severity: 'error', summary: 'Error', detail: err.error.message});
             }
+            if (err.status === 667) {
+                // owner not found
+                this.messageService.add({severity: 'error', summary: 'Error', detail: err.error.message});
+            }
+
+            if (err.status === 409) {
+                // wrong token
+                this.messageService.add({severity: 'error', summary: 'Error', detail: 'Token Jest Nieaktulny'});
+                this.router.navigate(['home/for-not-logged-in']);
+            }
 
             const error = err.error.message || err.statusText;
             return throwError(error);

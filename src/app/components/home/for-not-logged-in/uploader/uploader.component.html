@@ -1,0 +1,33 @@
+<div *ngIf="role === 'view'" class="dropzone"
+     dropzone
+     (hovered)="toggleHover($event)"
+     [class.hovering]="isHovering">
+    <p>Lista Załączonych Dokumentów</p>
+    <div class="file">
+        <label class="file-label">
+            <input #dropzoneInput class="file-input" type="file" accept=".doc, .docx" (change)="onDrop($event.target.files)">
+        </label>
+    </div>
+    <div *ngFor="let file of uploadService.files; let i = index">
+        <app-uploader-task [file]="file" [document]="documents[i]"></app-uploader-task>
+    </div>
+</div>
+
+<div *ngIf="role === 'send'" class="dropzone"
+     dropzone
+     (hovered)="toggleHover($event)"
+     (dropped)="onDrop($event)"
+     [class.hovering]="isHovering">
+    <p>Przeciągnij Tu Plik Z Dokumentem</p>
+    <div class="file">
+        <label class="file-label">
+            <input #dropzoneInput class="file-input" type="file" accept=".doc, .docx" (change)="onDrop($event.target.files)">
+        </label>
+    </div>
+    <div *ngFor="let file of uploadService.files; let i = index">
+        <app-uploader-task [file]="file"></app-uploader-task>
+    </div>
+    <button type="button" pButton icon="pi pi-plus" class="upload-button" (click)="dropzoneInput.click()"></button>
+</div>
+
+

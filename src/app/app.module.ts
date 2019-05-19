@@ -22,9 +22,10 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
-import {InputTextareaModule} from 'primeng/inputtextarea';
 import {DocumentsComponent} from './components/documents/documents.component';
-
+import { AdminComponent } from './components/admin/admin.component';
+import {DocumentMenuAdminComponent} from './components/admin/document-menu/document-menu.component';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,7 @@ import {DocumentsComponent} from './components/documents/documents.component';
         AccountComponent,
         HomeComponent,
         DocumentsComponent,
-    ],
+        AdminComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -48,8 +49,8 @@ import {DocumentsComponent} from './components/documents/documents.component';
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule,
         AngularFireStorageModule,
-        InputTextareaModule,
         ButtonModule,
+        ProgressSpinnerModule
     ],
     providers: [
         MessageService,

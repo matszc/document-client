@@ -14,23 +14,30 @@ export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
   public enabledValidators: boolean;
+  public loading: boolean;
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
     this.enabledValidators = false;
+    this.loading = false;
   }
 
   get f(): any { return this.loginForm.controls; }
 
   public onSubmit(value): void {
-    this.enabledValidators = true;
-
     if (!this.loginForm.invalid) {
+      this.loading = true;
       const loginData = {
-        login: value.username,
+        identifier: value.username,
         password: value.password
       };
 
-      this.authService.login(loginData as LoginData).subscribe(() => this.router.navigate(['/documents/view']));
+      this.authService.login(loginData as LoginData)
+        .subscribe(() => {
+        this.enabledValidators = true;
+        this.router.navigate(['/documents/view']);
+      }, () => {
+          this.loading = false;
+        });
     }
   }
 

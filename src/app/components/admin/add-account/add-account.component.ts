@@ -12,20 +12,23 @@ export class AddAccountComponent implements OnInit {
   public newUserForm: FormGroup;
   public roles: any[];
   public loading;
+  public engableValidators;
   constructor(private formBuilder: FormBuilder, private adminService: AdminService, private router: Router) {
-    this.roles = ['admin', 'registered'];
+    this.roles = ['admin', 'skarga', 'podanie'];
     this.loading = false;
+    this.engableValidators = false;
   }
 
   ngOnInit() {
     this.newUserForm = this.formBuilder.group({
       Login: new FormControl('', Validators.required),
       Password: new FormControl('', Validators.minLength(6)),
-      Email: new FormControl('', Validators.required),
+      Email: new FormControl('', [Validators.required, Validators.email]),
       Role: new FormControl('', Validators.required)
     });
   }
   onSubmit() {
+    this.engableValidators = true;
     if (this.newUserForm.valid) {
       this.loading = true;
       const newUser = this.newUserForm.value;

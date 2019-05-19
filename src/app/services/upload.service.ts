@@ -14,9 +14,9 @@ export class UploadService {
     constructor(private storage: AngularFireStorage, private db: AngularFirestore) {
     }
 
-    public startUpload() {
-        this.uploads = [...this.files];
-        return Promise.all(this.uploads.map(item => this.uploadSingle(item)));
+    public startUpload(files) {
+        // this.uploads = [...this.files];
+        return Promise.all(files.map(item => this.uploadSingle(item)));
     }
 
     private uploadSingle(file) {

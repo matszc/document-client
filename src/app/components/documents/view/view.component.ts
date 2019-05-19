@@ -1,6 +1,8 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import {Router} from '@angular/router';
 import {DocumentService} from '../../../services/document.service';
+import {AuthService} from '../../../services/auth.service';
+import {AdminService} from '../../../services/admin.service';
 
 @Component({
   selector: 'app-view',
@@ -16,7 +18,10 @@ export class ViewComponent implements OnInit {
   public types: any[];
   public loading: boolean;
 
-  constructor(private router: Router, private document: DocumentService) {
+  constructor(private router: Router,
+              private document: DocumentService,
+              private authService: AuthService,
+              private adminService: AdminService) {
     this.loading = true;
     this.cols = [
       {field: 'id', header: 'Id'},
@@ -38,10 +43,18 @@ export class ViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.document.getCases().subscribe( (Cases) => {
-      this.Cases = Cases;
-      this.loading = false;
-    });
+    if (this.authService.currentUserValue.role !== 'admin') {
+      this.document.getCases(this.authService.currentUserValue.role).subscribe( (Cases) => {
+        this.Cases = Cases;
+        this.loading = false;
+      });
+    } else {
+      this.adminService.getCases().subscribe( (Cases) => {
+        this.Cases = Cases;
+        this.loading = false;
+      });
+    }
+
 
   }
   public viewDoc(id: string): void {

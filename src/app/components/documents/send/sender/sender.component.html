@@ -45,21 +45,6 @@
       </div>
     </div>
     <app-uploader [role]="'send'"></app-uploader>
-    <!--<div class="full-input">
-      <div class="ui-inputgroup ui-float-label input-field">
-        <input id="float-input-email" type="email" size="33" formControlName="email" pInputText
-               [value]="authService.currentUserValue.email">
-        <label for="float-input-email" class="field-label">Twój Email</label>
-      </div>
-      <div class="message-space">
-        <div *ngIf="f.email.errors && enabledValidators">
-          <p-message *ngIf="f.email.hasError('required')" severity="error" text="Wymagany Email"
-                     class="message"></p-message>
-          <p-message *ngIf="f.email.hasError('email')" severity="error" text="Email Ma Zły Format"
-                     class="message"></p-message>
-        </div>
-      </div>
-    </div>-->
     <p-footer class="footer">
       <p-button label="Send" styleClass="ui-button-info ui-button-raised" class="send-btn"></p-button>
     </p-footer>

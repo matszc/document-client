@@ -43,7 +43,7 @@ export class SenderComponent implements OnInit, OnDestroy {
     if (this.uploadService.files.length) {
       this.enabledValidators = true;
       if (!this.sendForm.invalid) {
-        this.uploadService.startUpload()
+        this.uploadService.startUpload(this.uploadService.files)
             .then((files: any) => {
               value.documents = files;
               this.documentService.sendCase(value).subscribe(() => {

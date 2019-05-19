@@ -14,7 +14,7 @@
           <td *ngFor="let col of cols">
             {{user[col.field]}}
           </td>
-          <td><p-button type="button" label="Edytuj" (click)="showDialogEdit(user['email'], user['login'])" class="ui-button-raised"></p-button></td>
+          <td><p-button type="button" label="Edytuj" (click)="showDialogEdit(user)" class="ui-button-raised"></p-button></td>
           <td><button pButton type="button" label="Usuń" (click)="showDialogDelete(user['email'], user['login'])" class="ui-button-raised ui-button-danger"></button></td>
         </tr>
       </ng-template>
@@ -22,7 +22,7 @@
   </div>
 </article>
 <p-dialog header="Zmień dane konta {{targetLogin}}" [(visible)]="displayEdit">
-  <app-edit-dialog [oldLogin]="targetLogin" [email]="targetEmail" (eventClose) = closeEditDialog($event)></app-edit-dialog>
+  <app-edit-dialog [user]="user" (eventClose) = closeEditDialog($event)></app-edit-dialog>
 </p-dialog>
 <p-dialog header="Usuń" [(visible)]="displayDelete">
   <p>Czy na pewno chcesz usunąć to konto ?</p>
@@ -30,6 +30,6 @@
   <p *ngIf="targetEmail">E-mail: {{targetEmail}}</p>
   <p-footer>
     <button pButton type="button" label="Nie" (click)="showDialogDelete('', '')"></button>
-    <button pButton type="button" label="Tak" (click)="deleteUser()"></button>
+    <button pButton type="button" label="Tak" (click)="deleteUser(targetEmail)"></button>
   </p-footer>
 </p-dialog>

@@ -17,4 +17,7 @@ export class AdminService {
   public updateUser(email: string, user) {
     return this.http.put(`${GLOBAL.URL}/users/${email}`, user);
   }
+  public dropUser(email: string, user) {
+    return this.http.put(`${GLOBAL.URL}/users/dropUser/${email}`, user);
+  }
 }

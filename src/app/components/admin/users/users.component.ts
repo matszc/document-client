@@ -13,6 +13,7 @@ export class UsersComponent implements OnInit {
   public displayDelete = false;
   public targetLogin;
   public targetEmail;
+  public user;
 
   constructor(private adminService: AdminService) {
     this.cols = [
@@ -33,9 +34,8 @@ export class UsersComponent implements OnInit {
       });
     });
   }
-  public showDialogEdit(targetEmail, targetLogin) {
-    this.targetEmail = targetEmail;
-    this.targetLogin = targetLogin;
+  public showDialogEdit(user) {
+    this.user = user;
     this.displayEdit = true;
   }
   public showDialogDelete(targetEmail, targetLogin) {
@@ -43,7 +43,12 @@ export class UsersComponent implements OnInit {
     this.targetLogin = targetLogin;
     this.displayDelete = !this.displayDelete;
   }
-  public deleteUser() {
+  public deleteUser(email: string) {
+    const user = [''];
+    console.log(email);
+    this.adminService.dropUser(email, user).subscribe(() => {
+      window.location.reload();
+    });
     this.displayDelete = false;
   }
   public closeEditDialog(close: boolean) {

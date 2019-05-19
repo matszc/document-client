@@ -11,8 +11,7 @@ export class EditDialogComponent implements OnInit, OnChanges {
   public editUserForm: FormGroup;
   public roles;
   public close = false;
-  @Input() oldLogin;
-  @Input() email;
+  @Input() user;
   @Output() eventClose = new EventEmitter<boolean>();
   constructor(private adminService: AdminService, private formBuilder: FormBuilder) {
     this.roles = ['admin', 'registered'];
@@ -27,7 +26,10 @@ export class EditDialogComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
   ngOnChanges(): void {
-    this.editUserForm.get('loginFormControl').setValue(this.oldLogin);
+    if (this.user) {
+      this.editUserForm.get('loginFormControl').setValue(this.user['login']);
+      this.editUserForm.get('roleFormControl').setValue(this.user['role_name']);
+    }
   }
   onSubmit() {
     if (this.editUserForm.valid) {
@@ -37,9 +39,10 @@ export class EditDialogComponent implements OnInit, OnChanges {
         Role: this.editUserForm.value.roleFormControl,
         // Password: ''
     };
-      this.adminService.updateUser(this.email, user).subscribe(() => {
+      this.adminService.updateUser(this.user['email'], user).subscribe(() => {
         console.log('dzila');
       });
+      console.log(user);
       this.closeDialog();
     }
   }

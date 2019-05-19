@@ -1,7 +1,11 @@
 h2 {
   text-align: center;
 }
-
+p-progressSpinner {
+  position: absolute;
+  top: 50vh;
+  left:calc(50vw - 25px);
+}
 article {
   display: flex;
   justify-content: space-around;

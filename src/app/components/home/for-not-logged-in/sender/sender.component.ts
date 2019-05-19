@@ -17,6 +17,7 @@ export class SenderComponent implements OnInit, OnDestroy {
   public enabledValidators: boolean;
   public documentTypes: SelectItem[];
   private differ: any;
+  public loading: boolean;
 
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
@@ -33,6 +34,7 @@ export class SenderComponent implements OnInit, OnDestroy {
 
     ];
     this.differ = this.iterableDiffers.find([]).create(null);
+    this.loading = false;
   }
 
   get f(): any {
@@ -43,6 +45,7 @@ export class SenderComponent implements OnInit, OnDestroy {
     if (this.uploadService.files.length) {
       this.enabledValidators = true;
       if (!this.sendForm.invalid) {
+        this.loading = true;
         this.uploadService.startUpload()
             .then((files: any) => {
               value.documents = files;
@@ -50,16 +53,16 @@ export class SenderComponent implements OnInit, OnDestroy {
               delete value.email;
               this.documentService.sendCaseUnregistred(email, value).subscribe(() => {
                 this.router.navigate(['home']);
-              });
+              }, () => this.loading = false);
             })
             .catch((error) => {
               console.log(`Some failed: `, error.message);
+              // this.loading = false;
             });
       }
     } else {
       this.messageService.add({severity: 'warn', summary: 'Warning', detail: 'Nie Dodano Plików'});
     }
-
   }
 
 

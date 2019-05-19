@@ -18,6 +18,7 @@ export class ForNotLoggedInComponent implements OnInit {
     public enabledValidatorsToken: boolean;
     public display: boolean;
     public enteredToken: string;
+    public loading: boolean;
 
     constructor(private router: Router,
                 public authService: AuthService,
@@ -50,11 +51,13 @@ export class ForNotLoggedInComponent implements OnInit {
     onSubmitToken(value, email) {
         this.enabledValidatorsToken = true;
         if (!this.tokenForm.invalid) {
+          this.loading = true;
             this.documentService.getToken(value.token).subscribe(() => {
                 this.documentService.notLoggedInUserEmail = email;
                 this.display = true;
                 this.messageService.add({severity: 'success', summary: 'Info', detail: 'Wysłano Token na Twój Adres Email'});
-            });
+                this.loading = false;
+            }, () => this.loading = false );
         }
     }
 

@@ -49,9 +49,8 @@ export class DocumentMenuComponent implements OnInit {
         command: () => this.router.navigate(['/admin']),
         items: [
           {label: 'Konta', command: () => this.router.navigate(['/admin/users'])},
-          {label: 'Dokumenty'},
-          {label: 'Moje konto'},
-          {label: 'Dodaj konto'}
+          {label: 'Dokumenty', command: () => this.router.navigate((['/admin/documents']))},
+          {label: 'Dodaj konto', command: () => this.router.navigate(['admin/add-account'])},
         ]
       });
     }

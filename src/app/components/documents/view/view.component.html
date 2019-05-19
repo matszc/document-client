@@ -2,16 +2,8 @@
 
   <app-document-menu></app-document-menu>
 
-<!--  <p-panel class="view-element">
-    <p-header>
-      Lista Twoich Dokumentów
-    </p-header>
-    <section>
-      <app-tile *ngFor="let doc of mockData" [title]="doc.title" [id]="doc.id"></app-tile>
-    </section>
-  </p-panel>-->
 <div class="table">
-  <p-table #dt [columns]="cols" [value]="Cases" [paginator]="true" [rows]="12">
+  <p-table #dt *ngIf="Cases" [columns]="cols" [value]="Cases" [paginator]="true" [rows]="12">
     <ng-template pTemplate="caption">
       Lista twoich spraw
       <div style="text-align: right">
@@ -49,23 +41,7 @@
     </ng-template>
 
   </p-table>
-<!--  <p-table [columns]="cols" [value]="mockData">
-    <ng-template pTemplate="header" let-columns>
-      <tr>
-        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-          {{col.header}}
-          <p-sortIcon [field]="col.field"></p-sortIcon>
-        </th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-      <tr>
-        <td *ngFor="let col of columns">
-          {{rowData[col.field]}}
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>-->
 </div>
+  <p-progressSpinner *ngIf="loading" [style]="{width:'50px', height: '50px'}" strokeWidth="7"></p-progressSpinner>
 </article>
 

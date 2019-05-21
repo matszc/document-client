@@ -2,20 +2,43 @@
   <div class="input">
     <input formControlName="loginFormControl" id="login" type="text" pInputText>
     <label for="login">Nowy login</label>
+    <div class="message">
+      <p-message severity="error" text="Login jest wymagany"
+                 *ngIf="(!editUserForm.controls['loginFormControl'].valid&&editUserForm.controls['loginFormControl'].dirty) ||
+                        (editUserForm.controls['loginFormControl'].hasError('required') && enableValidators)"></p-message>
+    </div>
   </div>
   <div class="input">
-    <input formControlName="passwordFormControl" id="password" type="password" pInputText>
+    <input formControlName="Password" id="password" type="password" pInputText>
     <label for="password">Nowe hasło</label>
+    <div class="message">
+      <p-message severity="error" text="Hasło jest wymagane"
+                 *ngIf="editUserForm.controls['Password'].hasError('required')&&editUserForm.controls['Password'].dirty ||
+                        editUserForm.controls['Password'].hasError('required') && enableValidators"></p-message>
+      <p-message severity="error" text="Za krótkie hasło"
+                 *ngIf="editUserForm.controls['Password'].hasError('minlength')&&editUserForm.controls['Password'].dirty&&
+            editUserForm.controls['Password'].touched"></p-message>
+    </div>
   </div>
   <div class="input">
-    <input formControlName="re_passwordFormControl" id="re_password" type="password" pInputText>
-    <label for="re_password">Powtórz nowe hasło</label>
+    <input formControlName="RepeatPassword" id="repeatPassword" type="password" pInputText>
+    <label for="repeatPassword">Powtórz nowe hasło</label>
+    <div class="message">
+    <p-message severity="error" text="Hasła nie są identyczne"
+               *ngIf="editUserForm.controls['RepeatPassword'].hasError('MatchPassword')&&editUserForm.controls['RepeatPassword'].dirty ||
+                        editUserForm.controls['RepeatPassword'].hasError('MatchPassword') && enableValidators"></p-message>
+    </div>
   </div>
   <div class="input">
     <p>Nadaj uprawnienia</p>
     <ng-container *ngFor="let role of roles">
       <p-radioButton name="role" value="{{role}}" label="{{role}}" formControlName="roleFormControl" class="radio"></p-radioButton>
     </ng-container>
+    <div class="message">
+      <p-message severity="error" text="Wybierz uprawnienia"
+                 *ngIf="editUserForm.controls['roleFormControl'].hasError('required')&&editUserForm.controls['roleFormControl'].dirty ||
+                        editUserForm.controls['roleFormControl'].hasError('required') && enableValidators"></p-message>
+    </div>
   </div>
   <div class="buttons">
     <p-button label="Zmień" (click)="onSubmit()"></p-button>

@@ -1,6 +1,7 @@
 import {Component, Input, OnInit, OnChanges, Output, EventEmitter} from '@angular/core';
 import {FormControl, Validators, FormGroup, FormBuilder} from '@angular/forms';
 import {AdminService} from '../../../../services/admin.service';
+import {PasswordValidator} from '../../../../helpers/password-validator';
 
 @Component({
   selector: 'app-edit-dialog',
@@ -11,33 +12,38 @@ export class EditDialogComponent implements OnInit, OnChanges {
   public editUserForm: FormGroup;
   public roles;
   public close = false;
-  @Input() oldLogin;
-  @Input() email;
+  @Input() targetUser;
   @Output() eventClose = new EventEmitter<boolean>();
+  public enableValidators;
   constructor(private adminService: AdminService, private formBuilder: FormBuilder) {
-    this.roles = ['admin', 'registered'];
-    this.editUserForm = this.formBuilder.group({
-      loginFormControl: new FormControl('', Validators.required),
-      passwordFormControl: new FormControl('', Validators.minLength(6)),
-      re_passwordFormControl: new FormControl(''),
-      roleFormControl: new FormControl('', Validators.required)
-    });
+    this.enableValidators = false;
+    this.roles = ['admin', 'skarga', 'podanie'];
   }
 
   ngOnInit() {
+    this.editUserForm = this.formBuilder.group({
+      loginFormControl: new FormControl('', Validators.required),
+      Password: new FormControl('', [Validators.minLength(6), Validators.required]),
+      RepeatPassword: new FormControl(''),
+      roleFormControl: new FormControl('', Validators.required)
+    }, {validator: PasswordValidator.MatchPassword});
   }
   ngOnChanges(): void {
-    this.editUserForm.get('loginFormControl').setValue(this.oldLogin);
+    if (this.targetUser) {
+      this.editUserForm.get('loginFormControl').setValue(this.targetUser['login']);
+      this.editUserForm.get('roleFormControl').setValue(this.targetUser['role_name']);
+    }
   }
   onSubmit() {
+    this.enableValidators = true;
     if (this.editUserForm.valid) {
       const user = {
         Login: this.editUserForm.value.loginFormControl,
-        NewPassword: this.editUserForm.value.passwordFormControl,
+        NewPassword: this.editUserForm.value.Password,
         Role: this.editUserForm.value.roleFormControl,
         // Password: ''
     };
-      this.adminService.updateUser(this.email, user).subscribe(() => {
+      this.adminService.updateUser(this.targetUser['email'], user).subscribe(() => {
         console.log('dzila');
       });
       this.closeDialog();

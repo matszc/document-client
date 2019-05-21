@@ -13,17 +13,18 @@ export class UsersComponent implements OnInit {
   public displayDelete = false;
   public targetLogin;
   public targetEmail;
+  public selectedUser;
 
   constructor(private adminService: AdminService) {
-    this.cols = [
-      {field: 'id', header: 'Lp'},
-      {field: 'login', header: 'Login'},
-      {field: 'email', header: 'E-mail'},
-      {field: 'role_name', header: 'Rola'}
-    ];
   }
 
   ngOnInit() {
+    this.cols = [
+      {field: 'id', header: 'Lp', width: '10%'},
+      {field: 'login', header: 'Login'},
+      {field: 'email', header: 'E-mail', width: '22%'},
+      {field: 'role_name', header: 'Rola'},
+    ];
     this.adminService.getActiveUsers().subscribe((users) => {
       this.users = users;
       console.log(users);
@@ -33,9 +34,8 @@ export class UsersComponent implements OnInit {
       });
     });
   }
-  public showDialogEdit(targetEmail, targetLogin) {
-    this.targetEmail = targetEmail;
-    this.targetLogin = targetLogin;
+  public showDialogEdit(user) {
+    this.selectedUser = user;
     this.displayEdit = true;
   }
   public showDialogDelete(targetEmail, targetLogin) {

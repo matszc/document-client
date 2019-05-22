@@ -16,12 +16,12 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     this.items = [
       {
-        label: 'Account',
+        label: 'Konto',
         icon: 'pi pi-fw pi-briefcase',
         items: [
-          {label: 'Login', icon: 'pi pi-fw pi-sign-in', routerLink: ['account/login']},
-          {label: 'My Profile', icon: 'pi pi-fw pi-user', routerLink: ['account/profile']},
-          {label: 'Logout', icon: 'pi pi-fw pi-sign-out', command: () => this.authService.logout()}
+          {label: 'Zaloguj', icon: 'pi pi-fw pi-sign-in', routerLink: ['account/login']},
+          {label: 'Mój Profil', icon: 'pi pi-fw pi-user', routerLink: ['account/profile']},
+          {label: 'Wyloguj', icon: 'pi pi-fw pi-sign-out', command: () => this.authService.logout()}
         ]
       }
     ];

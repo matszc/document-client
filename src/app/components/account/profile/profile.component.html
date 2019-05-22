@@ -1,21 +1,18 @@
 <article>
     <p-accordion>
-        <p-accordionTab header="Edytuj Profil">
+        <p-accordionTab header="Edytuj Profil" [selected]="true">
             <form [formGroup]="ProfileForm" (ngSubmit)="onSubmit()">
                 <h3>Login</h3>
                 <span class="ui-float-label">
-                    <input id="login-input" type="text" formControlName="LoginFormControl" size="30" pInputText>
-                    <label for="login-input">Login</label>
+                    <input disabled placeholder="Login" id="login-input" type="text" formControlName="LoginFormControl" size="33" pInputText>
                 </span>
                 <h3>Email</h3>
                 <span class="ui-float-label">
-                    <input id="email-input" type="text" formControlName="EmailFormControl" size="30" pInputText>
-                    <label for="email-input">Email</label>
+                    <input disabled placeholder="Email" id="email-input" type="text" formControlName="EmailFormControl" size="33" pInputText>
                 </span>
                 <h3>Hasło</h3>
                 <span class="ui-float-label">
-                    <input id="password-input" type="password" size="33" formControlName="password" pInputText>
-                    <label for="password-input">Hasło</label>
+                    <input placeholder="Hasło" id="password-input" type="password" size="33" formControlName="PasswordFormControl" pInputText>
                 </span>
                 <p-button label="Edytuj"></p-button>
             </form>

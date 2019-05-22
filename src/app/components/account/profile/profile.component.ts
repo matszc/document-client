@@ -30,8 +30,8 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.ProfileForm = this.formBuilder.group({
-      LoginFormControl: new FormControl(''),
-      EmailFormControl: new FormControl(''),
+      LoginFormControl: new FormControl(this.authService.currentUserValue.login),
+      EmailFormControl: new FormControl(this.authService.currentUserValue.email),
       PasswordFormControl: new FormControl(''),
     });
   }

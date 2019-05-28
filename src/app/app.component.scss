@@ -6,3 +6,6 @@
     stroke: #d62d20;
   }
 }
+::ng-deep .ui-message-error {
+  background-color: #ff1110;
+}

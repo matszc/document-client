@@ -36,7 +36,11 @@
         <td>{{rowData['title']}}</td>
         <td>{{rowData['date'] | date: 'dd-mm-yyyy'}}</td>
         <td>{{rowData['type']}}</td>
-        <td>{{rowData['status']}}</td>
+        <ng-container>
+          <td *ngIf="rowData['status'] === 'not considered'">Nierozpatrzone</td>
+          <td *ngIf="rowData['status'] === 'considered'">Rozpatrzone</td>
+          <td *ngIf="rowData['status'] === 'spam'">Spam</td>
+        </ng-container>
       </tr>
     </ng-template>
 

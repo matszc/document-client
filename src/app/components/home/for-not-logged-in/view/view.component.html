@@ -39,7 +39,7 @@
                             </td>-->
                     <td>{{rowData['id']}}</td>
                     <td>{{rowData['title']}}</td>
-                    <td>{{rowData['date'] | date: 'dd-mm-yyyy'}}</td>
+                    <td>{{rowData['date'] | date: 'dd-MM-yyyy'}}</td>
                     <td>{{rowData['type']}}</td>
                     <ng-container>
                         <td *ngIf="rowData['status'] === 'not considered'">Nierozpatrzone</td>

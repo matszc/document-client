@@ -2,17 +2,25 @@
     <p-accordion>
         <p-accordionTab header="Edytuj Profil" [selected]="true">
             <form [formGroup]="ProfileForm" (ngSubmit)="onSubmit()">
-                <h3>Login</h3>
+                <label for="login-input" class="label">Login</label>
                 <span class="ui-float-label">
-                    <input disabled placeholder="Login" id="login-input" type="text" formControlName="LoginFormControl" size="33" pInputText>
+                    <input placeholder="Login" id="login-input" type="text" formControlName="LoginFormControl" size="33" pInputText>
                 </span>
-                <h3>Email</h3>
+                <label for="email-input" class="label">Email</label>
                 <span class="ui-float-label">
-                    <input disabled placeholder="Email" id="email-input" type="text" formControlName="EmailFormControl" size="33" pInputText>
+                    <input placeholder="Email" id="email-input" type="text" formControlName="EmailFormControl" size="33" pInputText>
                 </span>
-                <h3>Hasło</h3>
+                <label for="password-input" class="label">Nowe hasło</label>
                 <span class="ui-float-label">
-                    <input placeholder="Hasło" id="password-input" type="password" size="33" formControlName="PasswordFormControl" pInputText>
+                    <input placeholder="Hasło" id="password-input" type="password" size="33" formControlName="Password" pInputText>
+                </span>
+              <label for="re-password-input" class="label">Powtórz hasło</label>
+              <span class="ui-float-label">
+                    <input placeholder="Hasło" id="re-password-input" type="password" size="33" formControlName="RepeatPassword" pInputText>
+                </span>
+              <label for="old-password-input" class="label">Podaj stare hasło</label>
+              <span class="ui-float-label">
+                    <input placeholder="Hasło" id="old-password-input" type="password" size="33" formControlName="OldPassword" pInputText>
                 </span>
                 <p-button label="Edytuj"></p-button>
             </form>

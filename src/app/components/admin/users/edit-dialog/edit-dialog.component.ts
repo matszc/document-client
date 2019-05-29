@@ -25,6 +25,7 @@ export class EditDialogComponent implements OnInit, OnChanges {
       loginFormControl: new FormControl('', Validators.required),
       Password: new FormControl('', [Validators.minLength(6), Validators.required]),
       RepeatPassword: new FormControl(''),
+      Email: new FormControl('', [Validators.required, Validators.email]),
       roleFormControl: new FormControl('', Validators.required)
     }, {validator: PasswordValidator.MatchPassword});
   }
@@ -32,6 +33,7 @@ export class EditDialogComponent implements OnInit, OnChanges {
     if (this.targetUser) {
       this.editUserForm.get('loginFormControl').setValue(this.targetUser['login']);
       this.editUserForm.get('roleFormControl').setValue(this.targetUser['role_name']);
+      this.editUserForm.get('Email').setValue(this.targetUser['email']);
     }
   }
   onSubmit() {
@@ -41,10 +43,11 @@ export class EditDialogComponent implements OnInit, OnChanges {
         Login: this.editUserForm.value.loginFormControl,
         NewPassword: this.editUserForm.value.Password,
         Role: this.editUserForm.value.roleFormControl,
+        Email: this.editUserForm.value.Email
         // Password: ''
     };
       this.adminService.updateUser(this.targetUser['email'], user).subscribe(() => {
-        console.log('dzila');
+        window.location.reload();
       });
       this.closeDialog();
     }

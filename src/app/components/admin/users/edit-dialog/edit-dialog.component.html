@@ -30,6 +30,16 @@
     </div>
   </div>
   <div class="input">
+    <input id="email" formControlName="Email" pInputText>
+    <label for="email">Adres e-mail</label>
+    <p-message severity="error" text="Email jest wymagany"
+               *ngIf="editUserForm.controls['Email'].hasError('required')&&editUserForm.controls['Email'].dirty ||
+                        editUserForm.controls['Email'].hasError('required') && enableValidators"></p-message>
+    <p-message severity="error" text="Niepoprawny email"
+               *ngIf="editUserForm.controls['Email'].hasError('email')&&editUserForm.controls['Email'].dirty&&
+            editUserForm.controls['Email'].touched"></p-message>
+  </div>
+  <div class="input">
     <p>Nadaj uprawnienia</p>
     <ng-container *ngFor="let role of roles">
       <p-radioButton name="role" value="{{role}}" label="{{role}}" formControlName="roleFormControl" class="radio"></p-radioButton>

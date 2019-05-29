@@ -19,10 +19,13 @@ export class AdminService {
     }
 
     public updateUser(email: string, user) {
-        return this.http.put(`${GLOBAL.URL}/users/${email}`, user);
+      return this.http.put(`${GLOBAL.URL}/users/admin/${email}`, user);
     }
 
     public getCases() {
         return this.http.get(`${GLOBAL.URL}/cases/admin`);
+    }
+    public updateUser1(email: string, user) {
+      return this.http.put(`${GLOBAL.URL}/users/${email}`, user);
     }
 }

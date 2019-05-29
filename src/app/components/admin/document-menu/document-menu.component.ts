@@ -37,7 +37,7 @@ export class DocumentMenuAdminComponent implements OnInit {
                 ]
             },
             {
-                label: 'Exit',
+                label: 'Wyloguj',
                 icon: 'pi pi-fw pi-power-off',
                 command: () => this.authService.logout()
             }

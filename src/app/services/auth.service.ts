@@ -35,7 +35,7 @@ export class AuthService {
                 // login successful if there's a jwt token in the response
                 if (user && user.token) {
                     console.log(user);
-                    this.messageService.add({severity: 'success', summary: 'Info', detail: 'Login Success'});
+                    this.messageService.add({severity: 'success', summary: 'Info', detail: 'Zalogowano'});
                     this.loading = false;
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
@@ -63,7 +63,7 @@ export class AuthService {
         if (this.currentUserValue) {
             localStorage.removeItem('currentUser');
             this.currentUserSubject.next(null);
-            this.messageService.add({severity: 'warn', summary: 'Warning', detail: 'User Logged Out'});
+            this.messageService.add({severity: 'warn', summary: 'Uwaga', detail: 'Użytkownik wylogowany'});
             this.router.navigate(['']);
         }
 

@@ -15,7 +15,7 @@
             {{user[col.field]}}
           </td>
           <td><p-button type="button" label="Edytuj" (click)="showDialogEdit(user)" class="ui-button-raised"></p-button></td>
-          <td><button pButton type="button" label="Usuń" (click)="showDialogDelete(user['email'], user['login'])" class="ui-button-raised ui-button-danger"></button></td>
+          <td><button pButton type="button" label="Zablokuj" (click)="showDialogDelete(user['email'], user['login'])" class="ui-button-raised ui-button-danger"></button></td>
         </tr>
       </ng-template>
     </p-table>
@@ -25,7 +25,7 @@
   <app-edit-dialog [targetUser]="selectedUser" (eventClose) = closeEditDialog($event)></app-edit-dialog>
 </p-dialog>
 <p-dialog header="Usuń" [(visible)]="displayDelete">
-  <p>Czy na pewno chcesz usunąć to konto ?</p>
+  <p>Czy na pewno chcesz zablkować to konto ?</p>
   <p *ngIf="targetLogin">Login: {{targetLogin}}</p>
   <p *ngIf="targetEmail">E-mail: {{targetEmail}}</p>
   <p-footer>

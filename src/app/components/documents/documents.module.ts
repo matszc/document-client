@@ -4,7 +4,6 @@ import {CommonModule} from '@angular/common';
 import {DocumentsRoutingModule} from './documents-routing.module';
 import {ViewComponent} from './view/view.component';
 import {SingleDocComponent} from './single-doc/single-doc.component';
-import {TileComponent} from './view/tile/tile.component';
 import {SendComponent} from './send/send.component';
 import {UploaderComponent} from './send/uploader/uploader.component';
 import {UploaderTaskComponent} from './send/uploader/uploader-task/uploader-task.component';
@@ -31,7 +30,6 @@ import {SenderComponent} from './send/sender/sender.component';
     declarations: [
         ViewComponent,
         SingleDocComponent,
-        TileComponent,
         SendComponent,
         UploaderComponent,
         UploaderTaskComponent,

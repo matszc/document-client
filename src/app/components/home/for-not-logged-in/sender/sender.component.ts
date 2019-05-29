@@ -52,7 +52,7 @@ export class SenderComponent implements OnInit, OnDestroy {
               const email = value.email;
               delete value.email;
               this.documentService.sendCaseUnregistred(email, value).subscribe(() => {
-                this.router.navigate(['home']);
+                this.router.navigate(['home/for-not-logged-in']);
               }, () => this.loading = false);
             })
             .catch((error) => {

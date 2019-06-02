@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {DocumentService} from '../../../services/document.service';
 import {AuthService} from '../../../services/auth.service';
@@ -11,9 +11,6 @@ import {AdminService} from '../../../services/admin.service';
 })
 
 export class ViewComponent implements OnInit {
-  // TODO Przyciski do cofania dla niezalogowanych
-  // TODO Używanie tokenów więcej niż raz
-  // TODO Blokowanie użytkowników
   public cols: any[];
   public Cases: any;
   public statuts: any[];

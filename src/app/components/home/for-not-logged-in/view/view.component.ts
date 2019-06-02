@@ -1,4 +1,4 @@
-import {Component, OnInit, Injectable, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Router} from '@angular/router';
 import {DocumentService} from '../../../../services/document.service';
 
@@ -51,6 +51,9 @@ export class ViewComponent implements OnInit, OnDestroy {
         this.loading = false;
       });
     }
+  }
+  public exit() {
+    this.router.navigate(['home/for-not-logged-in']);
   }
 
   ngOnDestroy(): void {

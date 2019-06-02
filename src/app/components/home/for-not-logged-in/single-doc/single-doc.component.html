@@ -10,15 +10,8 @@
         <p><b>Email Wysyłającego: </b>{{caseData.user_email}}</p>
         <hr>
         <p><b>Lista Załączonych Plików: </b></p>
-        <!--<div *ngFor="let file of files">
-            <app-uploader-task [file]="file"></app-uploader-task>
-        </div>-->
         <app-uploader [documents]="caseData.documents" [role]="'view'"></app-uploader>
         <p-footer class="footer">
-            <!--<a href="https://firebasestorage.googleapis.com/v0/b/documentos-serveros.appspot.com/o/docs%2F1554725135222_Wyk%C5%82ad%204%20robotyka.docx?alt=media&token=3b011a26-afc1-44ca-9afa-4bb4c47afc95">
-                <p-button label="Pobierz Dokument" styleClass="ui-button-info ui-button-raised"
-                          class="download-btn"></p-button>
-            </a>-->
         </p-footer>
     </p-panel>
     <p-panel class="view-panel comment-panel">
@@ -26,5 +19,9 @@
             Komentarz
         </p-header>
         <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize" #message [value]="caseData.comment"></textarea>
+      <p-footer class="footer">
+        <p-button label="Wróć" styleClass="ui-button-info ui-button-raised" class="send-btn" (click)="navigateBack()"></p-button>
+        <p-button label="Wyjdź" styleClass="ui-button-info ui-button-raised" class="send-btn" (click)="exit()"></p-button>
+      </p-footer>
     </p-panel>
 </article>

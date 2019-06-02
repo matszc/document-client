@@ -30,6 +30,6 @@
   <p *ngIf="targetEmail">E-mail: {{targetEmail}}</p>
   <p-footer>
     <button pButton type="button" label="Nie" (click)="showDialogDelete('', '')"></button>
-    <button pButton type="button" label="Tak" (click)="deleteUser()"></button>
+    <button pButton type="button" label="Tak" (click)="deleteUser(targetEmail)"></button>
   </p-footer>
 </p-dialog>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AdminService} from '../../../services/admin.service';
+import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-users',
@@ -15,7 +16,7 @@ export class UsersComponent implements OnInit {
   public targetEmail;
   public selectedUser;
 
-  constructor(private adminService: AdminService) {
+  constructor(private adminService: AdminService, private messageService: MessageService) {
   }
 
   ngOnInit() {
@@ -43,7 +44,12 @@ export class UsersComponent implements OnInit {
     this.targetLogin = targetLogin;
     this.displayDelete = !this.displayDelete;
   }
-  public deleteUser() {
+  public deleteUser(targetEmail: string) {
+    this.adminService.dropUser(targetEmail).subscribe(() => {
+      window.location.reload();
+      // this.messageService.add({severity: 'success', summary: 'Info', detail: 'Użytkownik został zablokowany'});
+      // TODO Zmiana sttusu bez odświeżania
+    });
     this.displayDelete = false;
   }
   public closeEditDialog(close: boolean) {

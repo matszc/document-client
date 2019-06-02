@@ -16,6 +16,14 @@ article {
     margin: auto;
     position: relative;
     left:100px;
+
+    p-table {
+      ::ng-deep {
+        table {
+          table-layout: inherit;
+        }
+      }
+    }
   }
   tr {
     text-align: center;

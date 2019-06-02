@@ -2,21 +2,17 @@ import {Component, Input, OnInit} from '@angular/core';
 import {AngularFireUploadTask} from '@angular/fire/storage';
 import {UploadService} from '../../../../services/upload.service';
 import {MessageService} from 'primeng/api';
+import {SenderHomeComponent} from '../sender/sender.component';
 
 @Component({
-  selector: 'app-uploader',
+  selector: 'app-uploader-home',
   templateUrl: './uploader.component.html',
   styleUrls: ['./uploader.component.scss']
 })
-export class UploaderComponent implements OnInit {
-
-
-
+export class UploaderHomeComponent implements OnInit {
   public isHovering: boolean;
   @Input() documents;
   @Input() role;
-
-
 
   constructor(public uploadService: UploadService, private messageService: MessageService) { }
 

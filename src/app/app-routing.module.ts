@@ -1,20 +1,20 @@
 import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
-import {HomeComponent} from './components/home/home.component';
+import {RouterModule, Routes} from '@angular/router';
 import {AuthGuard} from './guards/auth.guard';
 import {AdminGuard} from './guards/admin.guard';
 import {UnregistredGuard} from './guards/unregistred.guard';
 
 const routes: Routes = [
     {
-        path: '', redirectTo: 'home', pathMatch: 'full'},
+        path: '', redirectTo: 'home', pathMatch: 'full'
+    },
     {
         path: 'account',
         loadChildren: './components/account/account.module#AccountModule',
 
     },
     {
-        path: 'home', component: HomeComponent,
+        path: 'home',
         canActivate: [UnregistredGuard],
         loadChildren: './components/home/home.module#HomeModule',
     },

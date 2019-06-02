@@ -7,11 +7,11 @@ import {UploadService} from '../../../../services/upload.service';
 import {DocumentService} from '../../../../services/document.service';
 
 @Component({
-  selector: 'app-sender',
+  selector: 'app-sender-home',
   templateUrl: './sender.component.html',
   styleUrls: ['./sender.component.scss']
 })
-export class SenderComponent implements OnInit, OnDestroy {
+export class SenderHomeComponent implements OnInit, OnDestroy {
 
   public sendForm: FormGroup;
   public enabledValidators: boolean;

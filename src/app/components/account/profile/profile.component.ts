@@ -39,9 +39,11 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    const login = this.authService.currentUserValue ? this.authService.currentUserValue.login : '';
+    const email = this.authService.currentUserValue ? this.authService.currentUserValue.email : '';
     this.ProfileForm = this.formBuilder.group({
-      LoginFormControl: new FormControl(this.authService.currentUserValue.login),
-      EmailFormControl: new FormControl(this.authService.currentUserValue.email),
+      LoginFormControl: new FormControl(login),
+      EmailFormControl: new FormControl(email),
       Password: new FormControl(''),
       RepeatPassword: new FormControl(''),
       OldPassword: new FormControl('')

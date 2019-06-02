@@ -42,7 +42,7 @@ export class DocumentMenuAdminComponent implements OnInit {
                 command: () => this.authService.logout()
             }
         ];
-        if (this.authService.currentUserValue.role === 'admin') {
+        if (this.authService.currentUserValue && this.authService.currentUserValue.role === 'admin') {
             this.items.splice(1, 0, {
                 label: 'Admin',
                 icon: 'pi pi-fw pi-sitemap',

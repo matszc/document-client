@@ -6,4 +6,20 @@ article {
   position: relative;
   left:100px;
   margin: auto;
+
+  p-table {
+    ::ng-deep {
+      table {
+        table-layout: inherit;
+      }
+    }
+  }
+}
+
+tr {
+  text-align: center;
+}
+tr:hover {
+  background: #999999;
+  cursor: pointer;
 }

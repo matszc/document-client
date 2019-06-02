@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MenuItem} from 'primeng/api';
 import {Router} from '@angular/router';
-import {AuthService} from '../../services/auth.service';
+import {AuthService} from '../../../services/auth.service';
 
 @Component({
     selector: 'app-document-menu',
@@ -42,7 +42,7 @@ export class DocumentMenuComponent implements OnInit {
                 command: () => this.authService.logout()
             }
         ];
-        if (this.authService.currentUserValue.role === 'admin') {
+        if (this.authService.currentUserValue && this.authService.currentUserValue.role === 'admin') {
             this.items.splice(1, 0, {
                 label: 'Admin',
                 icon: 'pi pi-fw pi-sitemap',

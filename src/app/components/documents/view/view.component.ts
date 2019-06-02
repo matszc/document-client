@@ -45,8 +45,9 @@ export class ViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.authService.currentUserValue.role !== 'admin') {
-      this.document.getCases(this.authService.currentUserValue.role).subscribe( (Cases) => {
+    const role = this.authService.currentUserValue ? this.authService.currentUserValue.role : '';
+    if (role !== 'admin') {
+      this.document.getCases(role).subscribe( (Cases) => {
         this.Cases = Cases;
         this.loading = false;
       });

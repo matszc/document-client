@@ -42,7 +42,7 @@ export class AdminDocumentsComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.authService.currentUserValue.role !== 'admin') {
+    if (this.authService.currentUserValue && this.authService.currentUserValue.role !== 'admin') {
       this.document.getCases(this.authService.currentUserValue.role).subscribe( (Cases) => {
         this.Cases = Cases;
         this.loading = false;

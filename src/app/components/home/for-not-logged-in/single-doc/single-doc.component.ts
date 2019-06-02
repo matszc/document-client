@@ -6,11 +6,11 @@ import {DocumentService} from '../../../../services/document.service';
 import {UploadService} from '../../../../services/upload.service';
 
 @Component({
-    selector: 'app-single-doc',
+    selector: 'app-single-doc-home',
     templateUrl: './single-doc.component.html',
     styleUrls: ['./single-doc.component.scss']
 })
-export class SingleDocComponent implements OnInit, OnDestroy {
+export class SingleDocHomeComponent implements OnInit, OnDestroy {
 
     document = {
         from: 'user'

@@ -34,9 +34,6 @@
             </ng-template>
             <ng-template pTemplate="body" let-rowData let-columns="columns">
                 <tr (click)="viewDoc(rowData.id)">
-                    <!--        <td *ngFor="let col of columns" (click)="viewDoc(rowData.id)">
-                                {{rowData[col.field]}}
-                            </td>-->
                     <td>{{rowData['id']}}</td>
                     <td>{{rowData['title']}}</td>
                     <td>{{rowData['date'] | date: 'dd-MM-yyyy'}}</td>
@@ -48,26 +45,9 @@
                     </ng-container>
                 </tr>
             </ng-template>
-
         </p-table>
+        <p-button label="Wyjdź" styleClass="ui-button-info ui-button-raised" class="send-btn" (click)="exit()"></p-button>
         <p-progressSpinner *ngIf="loading" [style]="{width:'50px', height: '50px'}" strokeWidth="7"></p-progressSpinner>
-        <!--  <p-table [columns]="cols" [value]="mockData">
-            <ng-template pTemplate="header" let-columns>
-              <tr>
-                <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-                  {{col.header}}
-                  <p-sortIcon [field]="col.field"></p-sortIcon>
-                </th>
-              </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-rowData let-columns="columns">
-              <tr>
-                <td *ngFor="let col of columns">
-                  {{rowData[col.field]}}
-                </td>
-              </tr>
-            </ng-template>
-          </p-table>-->
     </div>
 </article>
 

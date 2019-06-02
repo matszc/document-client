@@ -28,4 +28,10 @@ export class AdminService {
     public updateUser1(email: string, user) {
       return this.http.put(`${GLOBAL.URL}/users/${email}`, user);
     }
+    public getSpam() {
+      return this.http.get(`https://localhost:44397/spam`);
+    }
+    public dropUser(email: string) {
+      return this.http.put(`${GLOBAL.URL}/Users/dropUser/${email}`, {});
+    }
 }

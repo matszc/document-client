@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, FormBuilder} from '@angular/forms';
+import {FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {AuthService} from '../../../services/auth.service';
 import {LoginData} from '../../../models/login';
 import {PasswordValidator} from '../../../helpers/password-validator';
@@ -14,8 +14,10 @@ import {MessageService} from 'primeng/api';
 export class ProfileComponent implements OnInit {
   public userInfo;
   public ProfileForm: FormGroup;
+  public enableValidators: boolean;
   constructor(public authService: AuthService, private formBuilder: FormBuilder, private adminService: AdminService,
               private messageService: MessageService) {
+    this.enableValidators = false;
     this.userInfo = authService.currentUserValue;
   }
 
@@ -23,6 +25,7 @@ export class ProfileComponent implements OnInit {
     return this.ProfileForm.controls;
   }
   public onSubmit(): void {
+    this.enableValidators = true;
     if (!this.ProfileForm.invalid) {
       const email = this.authService.currentUserValue.email;
       const profile = {
@@ -44,9 +47,9 @@ export class ProfileComponent implements OnInit {
     this.ProfileForm = this.formBuilder.group({
       LoginFormControl: new FormControl(login),
       EmailFormControl: new FormControl(email),
-      Password: new FormControl(''),
+      Password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       RepeatPassword: new FormControl(''),
-      OldPassword: new FormControl('')
+      OldPassword: new FormControl('', Validators.required)
     }, {validator: PasswordValidator.MatchPassword});
     this.ProfileForm.controls.LoginFormControl.disable();
     this.ProfileForm.controls.EmailFormControl.disable();

@@ -7,6 +7,9 @@ form {
 .input {
   margin: 5vh;
 }
+.message {
+  margin: 1vh 0;
+}
 label {
   margin-left: 10px;
 }
@@ -14,4 +17,7 @@ label {
   margin: 15px 40px;
   display: flex;
   justify-content: space-between;
+}
+table > tr > td :first-child {
+  width:5px;
 }

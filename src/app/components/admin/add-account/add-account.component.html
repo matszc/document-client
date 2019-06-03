@@ -1,57 +1,70 @@
 <article>
-<app-document-menu-admin></app-document-menu-admin>
+  <app-document-menu-admin></app-document-menu-admin>
   <form [formGroup]="newUserForm" (ngSubmit)="onSubmit()">
-  <div class="formCard">
-    <h2>Dodaj nowego użytkownika</h2>
-    <p-card>
-      <p-progressSpinner *ngIf="loading" [style]="{width:'50px', height: '50px'}" strokeWidth="7"></p-progressSpinner>
-      <div class="form">
-        <div class="margin">
-          <label for="login" class="d-block margin-l">Podaj login</label>
-          <div class="ui-inputgroup">
-            <span class="ui-inputgroup-addon"><i class="pi pi-user-plus"></i></span>
-            <input type="text" id="login" pInputText placeholder="Login" formControlName="Login">
-            <p-message severity="error" text="Login jest wymagany"
-                       *ngIf="(!newUserForm.controls['Login'].valid&&newUserForm.controls['Login'].dirty) ||
-                        (newUserForm.controls['Login'].hasError('required') && engableValidators)"></p-message>
+    <div class="formCard">
+      <h2>Dodaj nowego użytkownika</h2>
+      <p-card>
+        <p-progressSpinner *ngIf="loading" [style]="{width:'50px', height: '50px'}" strokeWidth="7"></p-progressSpinner>
+        <div class="form">
+          <div class="margin">
+            <label for="login" class="d-block margin-l">Podaj login</label>
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="pi pi-user-plus"></i></span>
+              <input type="text" id="login" pInputText placeholder="Login" formControlName="Login">
+              <p-message severity="error" text="Login jest wymagany"
+                         *ngIf="(!newUserForm.controls['Login'].valid&&newUserForm.controls['Login'].dirty) ||
+                        (newUserForm.controls['Login'].hasError('required') && enableValidators)"></p-message>
+            </div>
           </div>
-        </div>
-        <div class="d-block margin">
-          <label for="password" class="d-block margin-l">Podaj Hasło</label>
-          <div class="ui-inputgroup">
-            <span class="ui-inputgroup-addon"><i class="pi pi-key"></i></span>
-            <input id="password" type="password" pInputText placeholder="Hasło" formControlName="Password">
+          <div class="d-block margin">
+            <label for="password" class="d-block margin-l">Podaj Hasło</label>
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="pi pi-key"></i></span>
+              <input id="password" type="password" pInputText placeholder="Hasło" formControlName="Password">
+              <p-message severity="error" text="Hasło jest wymagane"
+                         *ngIf="newUserForm.controls['Password'].hasError('required')&&newUserForm.controls['Password'].dirty ||
+                        newUserForm.controls['Password'].hasError('required') && enableValidators"></p-message>
+              <p-message severity="error" text="Za krótkie hasło"
+                         *ngIf="newUserForm.controls['Password'].hasError('minlength')&&newUserForm.controls['Password'].dirty&&
+            newUserForm.controls['Password'].touched"></p-message>
+
+            </div>
           </div>
-        </div>
-        <div class="d-block margin">
-          <label for="repeatPassowrd" class="d-block margin-l">Powtórz hasło</label>
-          <div class="ui-inputgroup">
-            <span class="ui-inputgroup-addon"><i class="pi pi-key"></i></span>
-            <input id="repeatPassowrd" type="password" pInputText placeholder="Powtórz hasło">
+          <div class="d-block margin">
+            <label for="repeatPassowrd" class="d-block margin-l">Powtórz hasło</label>
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="pi pi-key"></i></span>
+              <input id="repeatPassowrd" type="password" pInputText formControlName="RepeatPassword" placeholder="Powtórz hasło">
+              <p-message severity="error" text="Hasła nie są identyczne"
+                         *ngIf="newUserForm.controls['RepeatPassword'].hasError('MatchPassword')&&newUserForm.controls['RepeatPassword'].dirty ||
+                        newUserForm.controls['RepeatPassword'].hasError('MatchPassword') && enableValidators"></p-message>
+            </div>
           </div>
-        </div>
-        <div class="d-block margin">
-          <label for="email" class="d-block margin-l">Podaj e-mail</label>
-          <div class="ui-inputgroup">
-            <span class="ui-inputgroup-addon"><i class="pi pi-envelope"></i></span>
-            <input id="email" type="email" pInputText placeholder="adres e-mail" formControlName="Email">
-            <p-message severity="error" text="Email jest wymagany"
-                       *ngIf="newUserForm.controls['Email'].hasError('required')&&newUserForm.controls['Email'].dirty ||
-                        newUserForm.controls['Email'].hasError('required') && engableValidators"></p-message>
-            <p-message severity="error" text="Niepoprawny email"
-                       *ngIf="newUserForm.controls['Email'].hasError('email')&&newUserForm.controls['Email'].dirty&&
-newUserForm.controls['Email'].touched"></p-message>
+          <div class="d-block margin">
+            <label for="email" class="d-block margin-l">Podaj e-mail</label>
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="pi pi-envelope"></i></span>
+              <input id="email" type="email" pInputText placeholder="adres e-mail" formControlName="Email">
+              <p-message severity="error" text="Email jest wymagany"
+                         *ngIf="newUserForm.controls['Email'].hasError('required')&&newUserForm.controls['Email'].dirty ||
+                        newUserForm.controls['Email'].hasError('required') && enableValidators"></p-message>
+              <p-message severity="error" text="Niepoprawny email"
+                         *ngIf="newUserForm.controls['Email'].hasError('email')&&newUserForm.controls['Email'].dirty&&
+            newUserForm.controls['Email'].touched"></p-message>
+            </div>
           </div>
+          <div class="margin">
+            <p>Uprawnienia</p>
+            <ng-container *ngFor="let role of roles">
+              <p-radioButton name="role" value="{{role}}" label="{{role}}" formControlName="Role" class="d-block"></p-radioButton>
+            </ng-container>
+            <p-message severity="error" text="Wybierz uprawnienia"
+                       *ngIf="newUserForm.controls['Role'].hasError('required')&&newUserForm.controls['Role'].dirty ||
+                        newUserForm.controls['Role'].hasError('required') && enableValidators"></p-message>
+          </div>
+          <button pButton type="submit" label="Dodaj" class="d-block"></button>
         </div>
-        <div class="margin">
-          <p>Uprawnienia</p>
-          <ng-container *ngFor="let role of roles">
-            <p-radioButton name="role" value="{{role}}" label="{{role}}" formControlName="Role" class="d-block"></p-radioButton>
-          </ng-container>
-        </div>
-        <button pButton type="submit" label="Dodaj" class="d-block"></button>
-        </div>
-    </p-card>
-  </div>
+      </p-card>
+    </div>
   </form>
 </article>

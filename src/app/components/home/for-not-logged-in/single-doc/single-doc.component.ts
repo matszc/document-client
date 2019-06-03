@@ -1,16 +1,16 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MessageService} from 'primeng/api';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {DocumentService} from '../../../../services/document.service';
 import {UploadService} from '../../../../services/upload.service';
 
 @Component({
-    selector: 'app-single-doc',
+    selector: 'app-single-doc-home',
     templateUrl: './single-doc.component.html',
     styleUrls: ['./single-doc.component.scss']
 })
-export class SingleDocComponent implements OnInit, OnDestroy {
+export class SingleDocHomeComponent implements OnInit, OnDestroy {
 
     document = {
         from: 'user'
@@ -41,12 +41,6 @@ export class SingleDocComponent implements OnInit, OnDestroy {
         ];
     }
 
-    addComment(value) {
-        this.documentService.editComment(this.caseData.id, { comment: value}).subscribe(() => {
-            this.messageService.add({severity: 'success', summary: 'Info', detail: 'Komentarz Został Zmieniony'});
-        });
-    }
-
     ngOnInit() {
         if (this.documentService.tempUnregistredToken === '' || this.documentService.notLoggedInUserEmail === '') {
             this.router.navigate(['home/for-not-logged-in']);
@@ -64,7 +58,12 @@ export class SingleDocComponent implements OnInit, OnDestroy {
             });
         }
     }
-
+  public navigateBack() {
+      this.router.navigate(['home/for-not-logged-in/view']);
+  }
+  public exit() {
+      this.router.navigate(['home/for-not-logged-in']);
+  }
     ngOnDestroy(): void {
         this.uploadService.files = [];
     }

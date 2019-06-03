@@ -46,13 +46,6 @@ export class LoginComponent implements OnInit {
       'username': ['', Validators.required],
       'password': ['', Validators.compose([Validators.required, Validators.minLength(6)])]
     });
-
-
-
-/*    console.log(this.f.username.errors);*/
   }
-
-
-
 
 }

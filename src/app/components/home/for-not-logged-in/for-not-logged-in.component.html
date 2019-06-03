@@ -39,8 +39,11 @@
                     <p-message *ngIf="t.token.hasError('email')" severity="error" text="Email Ma Zły Format"
                                class="message"></p-message>
                 </div>
+              <a (click)="InsertExistToken()">Mam już token</a>
             </div>
+          <div>
             <p-button label="Wyślij Email Z Tokenem" styleClass="ui-button-info ui-button-raised" class="action-btn"></p-button>
+          </div>
         </form>
     </p-card>
 </article>
@@ -58,4 +61,22 @@
     <p-footer>
         <p-button label="Wyślij" styleClass="ui-button-info ui-button-raised" class="dialog-btn" (click)="checkToken(enteredToken.value)"></p-button>
     </p-footer>
+</p-dialog>
+<p-dialog [(visible)]="displayEmailWithToken" [style]="{width: '400px', height: '250px'}">
+  <p-header>
+    Wprowadź Email oraz Token
+  </p-header>
+  <form [formGroup]="reneterTokenForm">
+  <div class="ui-inputgroup ui-float-label input-field dialog-input">
+    <input id="email" type="text" size="46" pInputText formControlName="mail">
+    <label for="email" class="field-label">Adres e-mail</label>
+  </div>
+  <div class="ui-inputgroup ui-float-label input-field dialog-input">
+    <input id="existToken" type="text" size="46" pInputText formControlName="existToken">
+    <label for="existToken" class="field-label">Aktualny Token</label>
+  </div>
+  </form>
+  <p-footer>
+    <p-button label="Wyślij" styleClass="ui-button-info ui-button-raised" class="dialog-btn" (click)="reneterTokenFormSubmit()"></p-button>
+  </p-footer>
 </p-dialog>

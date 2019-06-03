@@ -21,7 +21,7 @@
       </tr>
       <tr>
         <th></th>
-        <th><input placeholder="tytuł" pInputText type="text" (input)="dt.filter($event.target.value, 'title', cols[1].filterMatchMode)"></th>
+        <th><input placeholder="Tytuł" pInputText type="text" (input)="dt.filter($event.target.value, 'title', cols[1].filterMatchMode)"></th>
         <th></th>
         <th> <p-dropdown class="dropdown" [options]="types" (onChange)="dt.filter($event.value, 'type', 'equals')"></p-dropdown></th>
         <th> <p-dropdown class="dropdown" [options]="statuts" (onChange)="dt.filter($event.value, 'status', 'equals')"></p-dropdown></th>
@@ -34,9 +34,13 @@
         </td>-->
         <td>{{rowData['id']}}</td>
         <td>{{rowData['title']}}</td>
-        <td>{{rowData['date'] | date: 'dd-mm-yyyy'}}</td>
+        <td>{{rowData['date'] | date: 'dd-MM-yyyy'}}</td>
         <td>{{rowData['type']}}</td>
-        <td>{{rowData['status']}}</td>
+        <ng-container>
+          <td *ngIf="rowData['status'] === 'not considered'">Nierozpatrzone</td>
+          <td *ngIf="rowData['status'] === 'considered'">Rozpatrzone</td>
+          <td *ngIf="rowData['status'] === 'spam'">Spam</td>
+        </ng-container>
       </tr>
     </ng-template>
 

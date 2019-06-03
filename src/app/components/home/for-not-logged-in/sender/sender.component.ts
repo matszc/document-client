@@ -7,11 +7,11 @@ import {UploadService} from '../../../../services/upload.service';
 import {DocumentService} from '../../../../services/document.service';
 
 @Component({
-  selector: 'app-sender',
+  selector: 'app-sender-home',
   templateUrl: './sender.component.html',
   styleUrls: ['./sender.component.scss']
 })
-export class SenderComponent implements OnInit, OnDestroy {
+export class SenderHomeComponent implements OnInit, OnDestroy {
 
   public sendForm: FormGroup;
   public enabledValidators: boolean;
@@ -46,18 +46,17 @@ export class SenderComponent implements OnInit, OnDestroy {
       this.enabledValidators = true;
       if (!this.sendForm.invalid) {
         this.loading = true;
-        this.uploadService.startUpload()
+        this.uploadService.startUpload(this.uploadService.files)
             .then((files: any) => {
               value.documents = files;
               const email = value.email;
               delete value.email;
               this.documentService.sendCaseUnregistred(email, value).subscribe(() => {
-                this.router.navigate(['home']);
+                this.router.navigate(['home/for-not-logged-in']);
               }, () => this.loading = false);
             })
             .catch((error) => {
               console.log(`Some failed: `, error.message);
-              // this.loading = false;
             });
       }
     } else {
@@ -80,12 +79,5 @@ export class SenderComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.uploadService.files = [];
   }
-
-  /*ngDoCheck(): void {
-    const changes = this.differ.diff(this.uploadService.files);
-    if (changes) {
-      this.updateForm();
-    }
-  }*/
 
 }

@@ -9,7 +9,7 @@
         </label>
     </div>
     <div *ngFor="let file of uploadService.files; let i = index">
-        <app-uploader-task [file]="file" [document]="documents[i]"></app-uploader-task>
+        <app-uploader-task-home [file]="file" [document]="documents[i]"></app-uploader-task-home>
     </div>
 </div>
 
@@ -25,7 +25,7 @@
         </label>
     </div>
     <div *ngFor="let file of uploadService.files; let i = index">
-        <app-uploader-task [file]="file"></app-uploader-task>
+        <app-uploader-task-home [file]="file"></app-uploader-task-home>
     </div>
     <button type="button" pButton icon="pi pi-plus" class="upload-button" (click)="dropzoneInput.click()"></button>
 </div>

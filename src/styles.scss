@@ -4,3 +4,8 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+textarea:focus + label,input:focus + label {
+  color: white;
+  font-weight: bold;
+}

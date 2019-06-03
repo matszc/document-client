@@ -19,6 +19,8 @@ export class ForNotLoggedInComponent implements OnInit {
     public display: boolean;
     public enteredToken: string;
     public loading: boolean;
+    public displayEmailWithToken: boolean;
+    public reneterTokenForm: FormGroup;
 
     constructor(private router: Router,
                 public authService: AuthService,
@@ -29,6 +31,7 @@ export class ForNotLoggedInComponent implements OnInit {
         this.enabledValidatorsToken = false;
         this.display = false;
         this.enteredToken = '';
+        this.displayEmailWithToken = false;
     }
 
     get f(): any {
@@ -77,6 +80,21 @@ export class ForNotLoggedInComponent implements OnInit {
         this.tokenForm = this.formBuilder.group({
             'token': ['', [Validators.required, Validators.email]]
         });
+      this.reneterTokenForm = this.formBuilder.group({
+        'mail': ['', Validators.required],
+        'existToken': ['', Validators.required]
+      });
+    }
+    public InsertExistToken() {
+      this.displayEmailWithToken = true;
+    }
+    public reneterTokenFormSubmit() {
+      if (this.reneterTokenForm.valid) {
+        this.documentService.notLoggedInUserEmail = this.reneterTokenForm.value.mail;
+        this.documentService.tempUnregistredToken = this.reneterTokenForm.value.existToken;
+        this.displayEmailWithToken = false;
+        this.router.navigate([`home/for-not-logged-in/view`]);
+      }
     }
 
 }

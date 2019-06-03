@@ -1,3 +1,30 @@
 article {
   padding-top: 10px;
 }
+.table {
+  width: 80%;
+  position: relative;
+  left:100px;
+  margin: auto;
+
+  p-table {
+    ::ng-deep {
+      table {
+        table-layout: inherit;
+      }
+    }
+  }
+}
+
+tr {
+  text-align: center;
+}
+tr:hover {
+  background: #999999;
+  cursor: pointer;
+}
+tr:hover {
+     background: #999999;
+     cursor: pointer;
+   }
+

@@ -1,14 +1,15 @@
-import {Component, OnInit, Injectable, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Router} from '@angular/router';
 import {DocumentService} from '../../../../services/document.service';
+import {SenderHomeComponent} from '../sender/sender.component';
 
 @Component({
-  selector: 'app-view',
+  selector: 'app-view-home',
   templateUrl: './view.component.html',
   styleUrls: ['./view.component.scss']
 })
 
-export class ViewComponent implements OnInit, OnDestroy {
+export class ViewHomeComponent implements OnInit, OnDestroy {
 
   // public mockData;
   public cols: any[];
@@ -51,6 +52,9 @@ export class ViewComponent implements OnInit, OnDestroy {
         this.loading = false;
       });
     }
+  }
+  public exit() {
+    this.router.navigate(['home/for-not-logged-in']);
   }
 
   ngOnDestroy(): void {

@@ -1,3 +1,41 @@
-<p>
-  profile works!
-</p>
+<article>
+    <p-accordion>
+        <p-accordionTab header="Edytuj Profil" [selected]="true">
+            <form [formGroup]="ProfileForm" (ngSubmit)="onSubmit()">
+                <label for="login-input" class="label">Login</label>
+                <span class="ui-float-label">
+                    <input placeholder="Login" id="login-input" type="text" formControlName="LoginFormControl" size="33" pInputText>
+                </span>
+                <label for="email-input" class="label">Email</label>
+                <span class="ui-float-label">
+                    <input placeholder="Email" id="email-input" type="text" formControlName="EmailFormControl" size="33" pInputText>
+                </span>
+                <label for="password-input" class="label">Nowe hasło</label>
+                <span class="ui-float-label">
+                    <input placeholder="Hasło" id="password-input" type="password" size="33" formControlName="Password" pInputText>
+                </span>
+              <p-message severity="error" text="Hasło jest wymagane"
+                         *ngIf="ProfileForm.controls['Password'].hasError('required')&&ProfileForm.controls['Password'].dirty ||
+                        ProfileForm.controls['Password'].hasError('required') && enableValidators"></p-message>
+              <p-message severity="error" text="Za krótkie hasło"
+                         *ngIf="ProfileForm.controls['Password'].hasError('minlength')&&ProfileForm.controls['Password'].dirty&&
+            ProfileForm.controls['Password'].touched"></p-message>
+              <label for="re-password-input" class="label">Powtórz hasło</label>
+              <span class="ui-float-label">
+                    <input placeholder="Hasło" id="re-password-input" type="password" size="33" formControlName="RepeatPassword" pInputText>
+                </span>
+              <p-message severity="error" text="Hasła nie są identyczne"
+                         *ngIf="ProfileForm.controls['RepeatPassword'].hasError('MatchPassword')&&ProfileForm.controls['RepeatPassword'].dirty ||
+                        ProfileForm.controls['RepeatPassword'].hasError('MatchPassword') && enableValidators"></p-message>
+              <label for="old-password-input" class="label">Podaj stare hasło</label>
+              <span class="ui-float-label">
+                    <input placeholder="Hasło" id="old-password-input" type="password" size="33" formControlName="OldPassword" pInputText>
+                </span>
+              <p-message severity="error" text="Podaj stare hasło"
+                         *ngIf="ProfileForm.controls['OldPassword'].hasError('required')&&ProfileForm.controls['OldPassword'].dirty ||
+                        ProfileForm.controls['OldPassword'].hasError('required') && enableValidators"></p-message>
+                <p-button label="Edytuj"></p-button>
+            </form>
+        </p-accordionTab>
+    </p-accordion>
+</article>

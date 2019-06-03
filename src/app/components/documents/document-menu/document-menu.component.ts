@@ -4,11 +4,11 @@ import {Router} from '@angular/router';
 import {AuthService} from '../../../services/auth.service';
 
 @Component({
-    selector: 'app-document-menu-admin',
+    selector: 'app-document-menu',
     templateUrl: './document-menu.component.html',
     styleUrls: ['./document-menu.component.scss']
 })
-export class DocumentMenuAdminComponent implements OnInit {
+export class DocumentMenuComponent implements OnInit {
 
     public items: MenuItem[];
 

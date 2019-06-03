@@ -28,7 +28,6 @@ export class UsersComponent implements OnInit {
     ];
     this.adminService.getActiveUsers().subscribe((users) => {
       this.users = users;
-      console.log(users);
       let index = 1;
       this.users.forEach((user) => {
         user.id = index++;
@@ -47,7 +46,6 @@ export class UsersComponent implements OnInit {
   public deleteUser(targetEmail: string) {
     this.adminService.dropUser(targetEmail).subscribe(() => {
       window.location.reload();
-      // this.messageService.add({severity: 'success', summary: 'Info', detail: 'Użytkownik został zablokowany'});
       // TODO Zmiana sttusu bez odświeżania
     });
     this.displayDelete = false;

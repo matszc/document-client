@@ -41,12 +41,6 @@ export class SingleDocHomeComponent implements OnInit, OnDestroy {
         ];
     }
 
-    addComment(value) {
-        this.documentService.editComment(this.caseData.id, { comment: value}).subscribe(() => {
-            this.messageService.add({severity: 'success', summary: 'Info', detail: 'Komentarz Został Zmieniony'});
-        });
-    }
-
     ngOnInit() {
         if (this.documentService.tempUnregistredToken === '' || this.documentService.notLoggedInUserEmail === '') {
             this.router.navigate(['home/for-not-logged-in']);

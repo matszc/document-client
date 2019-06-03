@@ -41,7 +41,6 @@ export class AddAccountComponent implements OnInit {
         Email: this.newUserForm.value.Email,
         Role: this.newUserForm.value.Role
       };
-      console.log(newUser);
       this.adminService.addUser(newUser).subscribe(() => {
         this.messageService.add({severity: 'success', summary: 'Info', detail: 'Dodano użytkownika'});
         this.router.navigate(['/admin/users']);

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {AuthService} from '../../../services/auth.service';
-import {LoginData} from '../../../models/login';
 import {PasswordValidator} from '../../../helpers/password-validator';
 import {AdminService} from '../../../services/admin.service';
 import {MessageService} from 'primeng/api';

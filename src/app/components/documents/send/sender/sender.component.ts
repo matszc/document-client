@@ -79,11 +79,4 @@ export class SenderComponent implements OnInit, OnDestroy {
     this.uploadService.files = [];
   }
 
-  /*ngDoCheck(): void {
-    const changes = this.differ.diff(this.uploadService.files);
-    if (changes) {
-      this.updateForm();
-    }
-  }*/
-
 }

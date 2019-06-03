@@ -57,7 +57,6 @@ export class SenderHomeComponent implements OnInit, OnDestroy {
             })
             .catch((error) => {
               console.log(`Some failed: `, error.message);
-              // this.loading = false;
             });
       }
     } else {
@@ -80,12 +79,5 @@ export class SenderHomeComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.uploadService.files = [];
   }
-
-  /*ngDoCheck(): void {
-    const changes = this.differ.diff(this.uploadService.files);
-    if (changes) {
-      this.updateForm();
-    }
-  }*/
 
 }

@@ -15,6 +15,12 @@ article {
     width: 98%;
     margin: auto;
     position: relative;
+
+    ::ng-deep {
+      table {
+        table-layout: inherit;
+      }
+    }
   }
   tr {
     text-align: center;

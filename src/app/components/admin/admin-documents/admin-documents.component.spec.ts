@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed, tick,} from '@angular/core/testing';
 
 import { AdminDocumentsComponent } from './admin-documents.component';
 import {AddAccountComponent} from '../add-account/add-account.component';
@@ -27,10 +27,14 @@ import {AppRoutingModule} from '../../../app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {JwtInterceptor} from '../../../helpers/jwt.interceptor';
 import {ErrorInterceptor} from '../../../helpers/error.interceptor';
+import {Observable} from 'rxjs';
+import anything = jasmine.anything;
+import {Cases} from '../../../models/case';
 
 describe('AdminDocumentsComponent', () => {
   let component: AdminDocumentsComponent;
   let fixture: ComponentFixture<AdminDocumentsComponent>;
+  let spiner;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -77,9 +81,14 @@ describe('AdminDocumentsComponent', () => {
     fixture = TestBed.createComponent(AdminDocumentsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    spiner = fixture.elementRef.nativeElement.querySelector('p-progressSpinner');
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  it('should have progressSpinner at start', () => {
+    expect(component.loading).toEqual(true);
+    expect(spiner).toBeTruthy();
   });
 });

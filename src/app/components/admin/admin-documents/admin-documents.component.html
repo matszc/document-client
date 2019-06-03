@@ -27,9 +27,6 @@
       </ng-template>
       <ng-template pTemplate="body" let-rowData let-columns="columns">
         <tr (click)="viewDoc(rowData.id)">
-          <!--        <td *ngFor="let col of columns" (click)="viewDoc(rowData.id)">
-                      {{rowData[col.field]}}
-                  </td>-->
           <td>{{rowData['id']}}</td>
           <td>{{rowData['title']}}</td>
           <td>{{rowData['date'] | date: 'dd-mm-yyyy'}}</td>

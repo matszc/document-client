@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MessageService} from 'primeng/api';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {DocumentService} from '../../../../services/document.service';
 import {UploadService} from '../../../../services/upload.service';
 
@@ -64,7 +64,12 @@ export class SingleDocHomeComponent implements OnInit, OnDestroy {
             });
         }
     }
-
+  public navigateBack() {
+      this.router.navigate(['home/for-not-logged-in/view']);
+  }
+  public exit() {
+      this.router.navigate(['home/for-not-logged-in']);
+  }
     ngOnDestroy(): void {
         this.uploadService.files = [];
     }

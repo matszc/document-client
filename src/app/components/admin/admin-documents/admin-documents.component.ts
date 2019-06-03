@@ -42,19 +42,10 @@ export class AdminDocumentsComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.authService.currentUserValue && this.authService.currentUserValue.role !== 'admin') {
-      this.document.getCases(this.authService.currentUserValue.role).subscribe( (Cases) => {
+      this.adminService.getSpam().subscribe( (Cases) => {
         this.Cases = Cases;
         this.loading = false;
       });
-    } else {
-      this.adminService.getCases().subscribe( (Cases) => {
-        this.Cases = Cases;
-        this.loading = false;
-      });
-    }
-
-
   }
   public viewDoc(id: string): void {
     this.router.navigate([`documents/view/${id}`]);

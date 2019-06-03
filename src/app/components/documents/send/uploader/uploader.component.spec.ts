@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { UploaderComponent } from './uploader.component';
+import {UploaderComponent} from './uploader.component';
 import {SendComponent} from '../send.component';
 import {HomeComponent} from '../../../home/home.component';
 import {DocumentMenuComponent} from '../../document-menu/document-menu.component';
@@ -13,25 +13,27 @@ import {DocumentsRoutingModule} from '../../documents-routing.module';
 import {PanelModule} from 'primeng/panel';
 import {
   ButtonModule,
-  DropdownModule, InputTextareaModule,
+  DropdownModule,
+  InputTextareaModule,
   InputTextModule,
-  MessageModule, MessageService,
-  MessagesModule, ProgressSpinnerModule,
+  MessageModule,
+  MessageService,
+  MessagesModule,
+  ProgressSpinnerModule,
   TieredMenuModule,
   TooltipModule
 } from 'primeng/primeng';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DataViewModule} from 'primeng/dataview';
 import {TableModule} from 'primeng/table';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from '../../../../app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../../../../../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireStorageModule} from '@angular/fire/storage';
-import {JwtInterceptor} from '../../../../helpers/jwt.interceptor';
-import {ErrorInterceptor} from '../../../../helpers/error.interceptor';
+import {RouterModule} from '@angular/router';
 
 describe('UploaderComponent', () => {
   let component: UploaderComponent;
@@ -72,12 +74,11 @@ describe('UploaderComponent', () => {
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule,
         AngularFireStorageModule,
+        RouterModule.forRoot([])
       ],
       providers: [
-        MessageService,
-        {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-        {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
-      ],
+        {provide: MessageService}
+      ]
     })
     .compileComponents();
   }));
@@ -91,4 +92,5 @@ describe('UploaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

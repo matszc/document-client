@@ -32,6 +32,9 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {JwtInterceptor} from '../../../../../helpers/jwt.interceptor';
 import {ErrorInterceptor} from '../../../../../helpers/error.interceptor';
+import {UploadService} from '../../../../../services/upload.service';
+import {AuthService} from '../../../../../services/auth.service';
+import {Router} from '@angular/router';
 
 describe('UploaderTaskComponent', () => {
   let component: UploaderTaskComponent;
@@ -74,10 +77,8 @@ describe('UploaderTaskComponent', () => {
         AngularFireStorageModule,
       ],
       providers: [
-        MessageService,
-        {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-        {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
-      ],
+        {provide: MessageService}
+      ]
     })
     .compileComponents();
   }));
@@ -91,4 +92,5 @@ describe('UploaderTaskComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

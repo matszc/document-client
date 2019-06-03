@@ -6,21 +6,46 @@ import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
     AccordionModule,
-    ButtonModule, CardModule,
+    ButtonModule,
+    CardModule,
     InputTextModule,
-    MessageModule, MessageService,
+    MessageModule,
+    MessageService,
     MessagesModule,
     PanelModule,
     PasswordModule,
     ProgressSpinnerModule
 } from 'primeng/primeng';
-import {AccountRoutingModule} from '../account-routing.module';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from '../../../app-routing.module';
-import {HomeComponent} from '../../home/home.component';
-import {JwtInterceptor} from '../../../helpers/jwt.interceptor';
-import {ErrorInterceptor} from '../../../helpers/error.interceptor';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AuthService} from '../../../services/auth.service';
+import {LoginData} from '../../../models/login';
+import {Observable} from 'rxjs';
+import {User} from '../../../models/user';
+import {Router} from '@angular/router';
+
+let authServiceStub: Partial<AuthService>;
+
+authServiceStub = {
+    login(data: LoginData): Observable<User> {
+        return Observable.create(observer => {
+            observer.next(
+                {
+                    token: 't',
+                    login: data.identifier,
+                    email: 'e',
+                    role: 'r'
+                }
+            );
+            observer.complete();
+        });
+    }
+};
+
+const router = {
+    navigate: jasmine.createSpy('navigate')
+};
 
 describe('LoginComponent', () => {
     let component: LoginComponent;
@@ -47,13 +72,14 @@ describe('LoginComponent', () => {
                 CardModule,
                 HttpClientModule,
                 BrowserAnimationsModule,
-                AppRoutingModule,
+                AppRoutingModule
             ],
             providers: [
-                MessageService,
-                { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-                { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
-            ],
+                {provide: MessageService},
+                {provide: AuthService, useValue: authServiceStub},
+                {provide: Router, useValue: router}
+            ]
+
         })
             .compileComponents();
     }));
@@ -66,5 +92,19 @@ describe('LoginComponent', () => {
 
     it('should create', () => {
         expect(component).toBeTruthy();
+    });
+    it(`should have enabledValidators variable set to false`, () => {
+        expect(component.enabledValidators).toEqual(false);
+    });
+    it(`should have loading variable set to false`, () => {
+        expect(component.loading).toEqual(false);
+    });
+    it(`should toggle both attribute values after calling onSubmit() method`, () => {
+        component.ngOnInit();
+        component.loginForm.controls['username'].setValue('testing');
+        component.loginForm.controls['password'].setValue('testing');
+        component.onSubmit(component.loginForm.value);
+        expect(component.loading).toEqual(true);
+        expect(component.enabledValidators).toEqual(true);
     });
 });

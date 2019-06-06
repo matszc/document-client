@@ -8,7 +8,7 @@ import {MessageService} from 'primeng/api';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  private users;
+  public users;
   public cols: any[];
   public displayEdit = false;
   public displayDelete = false;

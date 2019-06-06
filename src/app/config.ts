@@ -1,3 +1,3 @@
 export const GLOBAL = {
-    URL: 'https://localhost:44397/api'
+    URL: 'https://document-server2api20190604091530.azurewebsites.net/api'
 };

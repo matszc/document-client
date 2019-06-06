@@ -29,7 +29,7 @@ export class AdminService {
       return this.http.put(`${GLOBAL.URL}/users/${email}`, user);
     }
     public getSpam() {
-      return this.http.get(`https://localhost:44397/spam`);
+      return this.http.get(`https://document-server2api20190604091530.azurewebsites.net/spam`);
     }
     public dropUser(email: string) {
       return this.http.put(`${GLOBAL.URL}/Users/dropUser/${email}`, {});

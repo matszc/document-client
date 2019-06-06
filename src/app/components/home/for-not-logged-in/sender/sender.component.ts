@@ -25,7 +25,7 @@ export class SenderHomeComponent implements OnInit, OnDestroy {
               private uploadService: UploadService,
               private messageService: MessageService,
               private iterableDiffers: IterableDiffers,
-              private documentService: DocumentService) {
+              public documentService: DocumentService) {
     this.enabledValidators = false;
     this.documentTypes = [
       {label: 'Wybierz Rodzaj', value: null},

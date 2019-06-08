@@ -1,5 +1,5 @@
 <article>
-    <app-document-menu></app-document-menu>
+  <app-document-menu></app-document-menu>
   <div class="users">
     <p-table [value]="users" [columns]="cols" [resizableColumns]="true">
       <ng-template pTemplate="header" let-columns>
@@ -15,21 +15,21 @@
             {{user[col.field]}}
           </td>
           <td><p-button type="button" label="Edytuj" (click)="showDialogEdit(user)" class="ui-button-raised"></p-button></td>
-          <td><button pButton type="button" label="Zablokuj" (click)="showDialogDelete(user['email'], user['login'])" class="ui-button-raised ui-button-danger"></button></td>
+          <td><button pButton type="button" label="Zablokuj" (click)="showDialogDelete(user)" class="ui-button-raised ui-button-danger"></button></td>
         </tr>
       </ng-template>
     </p-table>
   </div>
 </article>
-<p-dialog header="Zmień dane konta {{targetLogin}}" [(visible)]="displayEdit">
+<p-dialog header="Zmień dane konta {{selectedUser}}" [(visible)]="displayEdit">
   <app-edit-dialog [targetUser]="selectedUser" (eventClose) = closeEditDialog($event)></app-edit-dialog>
 </p-dialog>
 <p-dialog header="Usuń" [(visible)]="displayDelete">
   <p>Czy na pewno chcesz zablkować to konto ?</p>
-  <p *ngIf="targetLogin">Login: {{targetLogin}}</p>
-  <p *ngIf="targetEmail">E-mail: {{targetEmail}}</p>
+  <p *ngIf="selectedUser">Login: {{selectedUser.login}}</p>
+  <p *ngIf="selectedUser">E-mail: {{selectedUser.email}}</p>
   <p-footer>
-    <button pButton type="button" label="Nie" (click)="showDialogDelete('', '')"></button>
-    <button pButton type="button" label="Tak" (click)="deleteUser(targetEmail)"></button>
+    <button pButton type="button" label="Nie" (click)="showDialogDelete(selectedUser)"></button>
+    <button pButton type="button" label="Tak" (click)="deleteUser(selectedUser)"></button>
   </p-footer>
 </p-dialog>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AdminService} from '../../../services/admin.service';
-import {MessageService} from 'primeng/api';
+import {User} from '../../../models/user';
 
 @Component({
   selector: 'app-users',
@@ -8,15 +8,13 @@ import {MessageService} from 'primeng/api';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  public users;
+  public users: Array<User>;
   public cols: any[];
   public displayEdit = false;
   public displayDelete = false;
-  public targetLogin;
-  public targetEmail;
-  public selectedUser;
+  public selectedUser: User;
 
-  constructor(private adminService: AdminService, private messageService: MessageService) {
+  constructor(private adminService: AdminService) {
   }
 
   ngOnInit() {
@@ -26,25 +24,24 @@ export class UsersComponent implements OnInit {
       {field: 'email', header: 'E-mail', width: '22%'},
       {field: 'role_name', header: 'Rola'},
     ];
-    this.adminService.getActiveUsers().subscribe((users) => {
-      this.users = users;
+    this.adminService.getActiveUsers().subscribe((users: Array<User>) => {
+      this.users = [...users];
       let index = 1;
       this.users.forEach((user) => {
         user.id = index++;
       });
     });
   }
-  public showDialogEdit(user) {
+  public showDialogEdit(user: User) {
     this.selectedUser = user;
     this.displayEdit = true;
   }
-  public showDialogDelete(targetEmail, targetLogin) {
-    this.targetEmail = targetEmail;
-    this.targetLogin = targetLogin;
+  public showDialogDelete(user: User) {
+    this.selectedUser = user;
     this.displayDelete = !this.displayDelete;
   }
-  public deleteUser(targetEmail: string) {
-    this.adminService.dropUser(targetEmail).subscribe(() => {
+  public deleteUser(user: User) {
+    this.adminService.dropUser(user.email).subscribe(() => {
       window.location.reload();
       // TODO Zmiana sttusu bez odświeżania
     });

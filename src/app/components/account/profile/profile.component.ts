@@ -4,6 +4,7 @@ import {AuthService} from '../../../services/auth.service';
 import {PasswordValidator} from '../../../helpers/password-validator';
 import {AdminService} from '../../../services/admin.service';
 import {MessageService} from 'primeng/api';
+import {UpdateUser} from '../../../models/update-user';
 
 @Component({
   selector: 'app-profile',
@@ -27,7 +28,7 @@ export class ProfileComponent implements OnInit {
     this.enableValidators = true;
     if (!this.ProfileForm.invalid) {
       const email = this.authService.currentUserValue.email;
-      const profile = {
+      const profile: UpdateUser = {
         Login: this.ProfileForm.value.LoginFormControl,
         Email: this.ProfileForm.value.EmailFormControl,
         NewPassword: this.ProfileForm.value.Password,

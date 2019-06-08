@@ -46,7 +46,7 @@ export class ForNotLoggedInComponent implements OnInit {
         this.enabledValidatorsEmail = true;
         if (!this.sendForm.invalid) {
             this.documentService.notLoggedInUserEmail = this.f.email.value;
-            this.router.navigate([`home/for-not-logged-in/send`]);
+            this.router.navigate([`unregistered/send`]);
             console.log(value);
         }
     }
@@ -68,7 +68,7 @@ export class ForNotLoggedInComponent implements OnInit {
         if (token) {
             this.documentService.tempUnregistredToken = token;
             this.display = false;
-            this.router.navigate([`home/for-not-logged-in/view`]);
+            this.router.navigate([`unregistered/view`]);
         }
 
     }
@@ -93,7 +93,7 @@ export class ForNotLoggedInComponent implements OnInit {
         this.documentService.notLoggedInUserEmail = this.reneterTokenForm.value.mail;
         this.documentService.tempUnregistredToken = this.reneterTokenForm.value.existToken;
         this.displayEmailWithToken = false;
-        this.router.navigate([`home/for-not-logged-in/view`]);
+        this.router.navigate([`unregistered/view`]);
       }
     }
 

@@ -5,7 +5,6 @@ import {MenubarModule} from 'primeng/menubar';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {MenuComponent} from './components/menu/menu.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ToastModule} from 'primeng/toast';
 import {MessageService} from 'primeng/api';
@@ -15,6 +14,7 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {MenuComponent} from './components/shared-components/menu/menu.component';
 
 @NgModule({
     declarations: [

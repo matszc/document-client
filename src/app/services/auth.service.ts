@@ -50,7 +50,7 @@ export class AuthService {
         this.messageService.add({severity: 'success', summary: 'Info', detail: 'Logged In As Guest'});
         localStorage.setItem('currentUser', JSON.stringify(guest));
         this.currentUserSubject.next(guest);
-        this.router.navigate(['documents/send']);
+        this.router.navigate(['documents/sender']);
     }
 
     /*public register(data: RegisterData): Observable<User> {

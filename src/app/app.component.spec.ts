@@ -1,12 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import {MenuComponent} from './components/menu/menu.component';
 import {ToastModule} from 'primeng/toast';
-import {AccountComponent} from './components/account/account.component';
-import {HomeComponent} from './components/home/home.component';
-import {DocumentsComponent} from './components/documents/documents.component';
-import {AdminComponent} from './components/admin/admin.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -20,6 +15,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {JwtInterceptor} from './helpers/jwt.interceptor';
 import {ErrorInterceptor} from './helpers/error.interceptor';
+import {MenuComponent} from './components/shared-components/menu/menu.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -43,11 +39,7 @@ describe('AppComponent', () => {
       ],
       declarations: [
         AppComponent,
-        MenuComponent,
-        AccountComponent,
-        HomeComponent,
-        DocumentsComponent,
-        AdminComponent
+        MenuComponent
       ],
       providers: [
         MessageService,

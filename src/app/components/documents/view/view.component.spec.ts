@@ -2,11 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ViewComponent } from './view.component';
 import {SendComponent} from '../send/send.component';
-import {HomeComponent} from '../../home/home.component';
-import {DocumentMenuComponent} from '../document-menu/document-menu.component';
-import {SenderComponent} from '../send/sender/sender.component';
-import {UploaderComponent} from '../send/uploader/uploader.component';
-import {UploaderTaskComponent} from '../send/uploader/uploader-task/uploader-task.component';
 import {SingleDocComponent} from '../single-doc/single-doc.component';
 import {CommonModule} from '@angular/common';
 import {DocumentsRoutingModule} from '../documents-routing.module';
@@ -32,8 +27,12 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {JwtInterceptor} from '../../../helpers/jwt.interceptor';
 import {ErrorInterceptor} from '../../../helpers/error.interceptor';
+import {DocumentMenuComponent} from '../../shared-components/document-menu/document-menu.component';
+import {SenderComponent} from '../../shared-components/sender/sender.component';
+import {UploaderComponent} from '../../shared-components/uploader/uploader.component';
+import {UploaderTaskComponent} from '../../shared-components/uploader/uploader-task/uploader-task.component';
 
-describe('ViewComponent', () => {
+describe('ViewerComponent', () => {
   let component: ViewComponent;
   let fixture: ComponentFixture<ViewComponent>;
 
@@ -41,7 +40,6 @@ describe('ViewComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         SendComponent,
-        HomeComponent,
         DocumentMenuComponent,
         SenderComponent,
         UploaderComponent,

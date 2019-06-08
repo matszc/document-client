@@ -1,0 +1,28 @@
+<p-panel class="view-panel" *ngIf="caseData">
+    <p-header>
+        Sprawa{{caseData.id}}: {{caseData.title}}
+    </p-header>
+    <p><b>Rodzaj: </b>{{caseData.type}}</p>
+    <p><b>Opis: </b>{{caseData.description}}</p>
+    <p><b>Data: </b>{{caseData.date | date}}</p>
+    <p><b>Email Wysyłającego: </b>{{caseData.user_email}}</p>
+    <div class="full-input">
+        <p-dropdown [options]="documentTypes" [(ngModel)]="caseData.status"></p-dropdown>
+    </div>
+    <hr>
+    <p><b>Lista Załączonych Plików: </b></p>
+    <app-uploader [role]="isRegistered ? 'edit' : 'view'" [documents]="caseData.documents"></app-uploader>
+    <p-footer class="footer">
+    </p-footer>
+</p-panel>
+<p-panel class="view-panel comment-panel" *ngIf="caseData">
+    <p-header>
+        Komentarz
+    </p-header>
+    <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize" #message [value]="caseData.comment"></textarea>
+    <p-footer *ngIf="isRegistered" class="footer">
+        <p-button label="Zakończ Sprawę" styleClass="ui-button-info ui-button-raised" class="send-btn"
+                  (click)="addComment(message.value)"></p-button>
+    </p-footer>
+</p-panel>
+

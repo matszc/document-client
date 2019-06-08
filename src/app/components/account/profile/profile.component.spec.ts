@@ -2,7 +2,6 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {ProfileComponent} from './profile.component';
 import {LoginComponent} from '../login/login.component';
-import {HomeComponent} from '../../home/home.component';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
@@ -40,7 +39,6 @@ describe('ProfileComponent', () => {
             declarations: [
                 ProfileComponent,
                 LoginComponent,
-                HomeComponent
             ],
             imports: [
                 CommonModule,

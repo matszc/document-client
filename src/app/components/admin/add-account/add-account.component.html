@@ -1,5 +1,5 @@
 <article>
-  <app-document-menu-admin></app-document-menu-admin>
+  <app-document-menu></app-document-menu>
   <form [formGroup]="newUserForm" (ngSubmit)="onSubmit()">
     <div class="formCard">
       <h2>Dodaj nowego użytkownika</h2>
@@ -24,9 +24,12 @@
               <p-message severity="error" text="Hasło jest wymagane"
                          *ngIf="newUserForm.controls['Password'].hasError('required')&&newUserForm.controls['Password'].dirty ||
                         newUserForm.controls['Password'].hasError('required') && enableValidators"></p-message>
-              <p-message severity="error" text="Za krótkie hasło"
-                         *ngIf="newUserForm.controls['Password'].hasError('minlength')&&newUserForm.controls['Password'].dirty&&
-            newUserForm.controls['Password'].touched"></p-message>
+              <p-message severity="error"
+                         text="Za krótkie hasło"
+                         *ngIf="newUserForm.controls['Password'].hasError('minlength')
+                         && newUserForm.controls['Password'].dirty
+                         && newUserForm.controls['Password'].touched">
+              </p-message>
 
             </div>
           </div>

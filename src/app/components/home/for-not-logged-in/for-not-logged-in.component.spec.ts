@@ -29,22 +29,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {JwtInterceptor} from '../../../helpers/jwt.interceptor';
 import {ErrorInterceptor} from '../../../helpers/error.interceptor';
-import {SendComponent} from '../../documents/send/send.component';
-import {SenderHomeComponent} from './sender/sender.component';
-import {SingleDocComponent} from '../../documents/single-doc/single-doc.component';
-import {UploaderHomeComponent} from './uploader/uploader.component';
-import {UploaderTaskHomeComponent} from './uploader/uploader-task/uploader-task.component';
-import {TileComponent} from './view/tile/tile.component';
-import {ViewComponent} from '../../documents/view/view.component';
-import {HomeComponent} from '../home.component';
-import {SenderComponent} from '../../documents/send/sender/sender.component';
-import {UploaderComponent} from '../../documents/send/uploader/uploader.component';
-import {UploaderTaskComponent} from '../../documents/send/uploader/uploader-task/uploader-task.component';
-import {DocumentMenuComponent} from '../../documents/document-menu/document-menu.component';
-import {HomeRoutingModule} from '../home-routing.module';
 import {WelcomeComponent} from '../welcome/welcome.component';
-import {ViewHomeComponent} from './view/view.component';
-import {SingleDocHomeComponent} from './single-doc/single-doc.component';
 
 describe('ForNotLoggedInComponent', () => {
     let component: ForNotLoggedInComponent;
@@ -54,14 +39,7 @@ describe('ForNotLoggedInComponent', () => {
         TestBed.configureTestingModule({
             declarations: [
                 ForNotLoggedInComponent,
-                SenderHomeComponent,
-                UploaderHomeComponent,
-                UploaderTaskHomeComponent,
-                TileComponent,
-                HomeComponent,
-                WelcomeComponent,
-                ViewHomeComponent,
-                SingleDocHomeComponent
+                WelcomeComponent
             ],
             imports: [
                 CommonModule,

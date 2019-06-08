@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {GLOBAL} from '../config';
+import {Observable} from 'rxjs';
+import {Case} from '../models/case';
 
 @Injectable({
     providedIn: 'root'
@@ -23,8 +25,8 @@ export class DocumentService {
         return this.http.post(`${GLOBAL.URL}/cases`, data);
     }
 
-    public getCase(caseId) {
-        return this.http.get(`${GLOBAL.URL}/cases/${caseId}`);
+    public getCase(caseId): Observable<Case> {
+        return this.http.get<Case>(`${GLOBAL.URL}/cases/${caseId}`);
     }
 
     public sendCaseUnregistred(email, data) {
@@ -36,8 +38,8 @@ export class DocumentService {
         return this.http.put(`${GLOBAL.URL}/cases/${caseId}`, comment);
     }
 
-    public getCases(status) {
-        return this.http.get(`${GLOBAL.URL}/cases/type/${status}`);
+    public getCases(status): Observable<Array<Case>> {
+        return this.http.get<Array<Case>>(`${GLOBAL.URL}/cases/type/${status}`);
     }
 
     public getCasesUnregistred() {

@@ -4,6 +4,7 @@ import {AuthService} from '../../../services/auth.service';
 import {PasswordValidator} from '../../../helpers/password-validator';
 import {AdminService} from '../../../services/admin.service';
 import {MessageService} from 'primeng/api';
+import {User} from '../../../models/user';
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +12,7 @@ import {MessageService} from 'primeng/api';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  public userInfo;
+  public userInfo: User;
   public ProfileForm: FormGroup;
   public enableValidators: boolean;
   constructor(public authService: AuthService, private formBuilder: FormBuilder, private adminService: AdminService,

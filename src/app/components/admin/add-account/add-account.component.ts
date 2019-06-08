@@ -4,6 +4,7 @@ import {AdminService} from '../../../services/admin.service';
 import {Router} from '@angular/router';
 import {PasswordValidator} from '../../../helpers/password-validator';
 import {MessageService} from 'primeng/api';
+import {RegisterData} from '../../../models/register';
 
 @Component({
   selector: 'app-add-account',
@@ -13,8 +14,8 @@ import {MessageService} from 'primeng/api';
 export class AddAccountComponent implements OnInit {
   public newUserForm: FormGroup;
   public roles: any[];
-  public loading;
-  public enableValidators;
+  public loading: boolean;
+  public enableValidators: boolean;
   constructor(private formBuilder: FormBuilder, private adminService: AdminService, private router: Router,
               private messageService: MessageService) {
     this.roles = ['admin', 'skarga', 'podanie'];
@@ -35,7 +36,7 @@ export class AddAccountComponent implements OnInit {
     this.enableValidators = true;
     if (this.newUserForm.valid) {
       this.loading = true;
-      const newUser = {
+      const newUser: RegisterData = {
         Login: this.newUserForm.value.Login,
         Password: this.newUserForm.value.Password,
         Email: this.newUserForm.value.Email,

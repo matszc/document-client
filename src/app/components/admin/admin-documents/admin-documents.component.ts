@@ -3,6 +3,8 @@ import {Router} from '@angular/router';
 import {DocumentService} from '../../../services/document.service';
 import {AuthService} from '../../../services/auth.service';
 import {AdminService} from '../../../services/admin.service';
+import {Case} from '../../../models/case';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-admin-documents',
@@ -12,7 +14,7 @@ import {AdminService} from '../../../services/admin.service';
 export class AdminDocumentsComponent implements OnInit {
 
   public cols: any[];
-  public Cases: any;
+  public Cases: Case[];
   public statuts: any[];
   public types: any[];
   public loading: boolean;
@@ -42,8 +44,8 @@ export class AdminDocumentsComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.adminService.getSpam().subscribe( (Cases) => {
-        this.Cases = Cases;
+      this.adminService.getSpam().subscribe( (cases: Array<Case>) => {
+        this.Cases = [...cases];
         this.loading = false;
       });
   }

@@ -2,6 +2,7 @@ import {Component, Input, OnInit, OnChanges, Output, EventEmitter} from '@angula
 import {FormControl, Validators, FormGroup, FormBuilder} from '@angular/forms';
 import {AdminService} from '../../../../services/admin.service';
 import {PasswordValidator} from '../../../../helpers/password-validator';
+import {User} from '../../../../models/user';
 
 @Component({
   selector: 'app-edit-dialog',
@@ -10,11 +11,11 @@ import {PasswordValidator} from '../../../../helpers/password-validator';
 })
 export class EditDialogComponent implements OnInit, OnChanges {
   public editUserForm: FormGroup;
-  public roles;
+  public roles: string[];
   public close = false;
-  @Input() targetUser;
+  @Input() targetUser: User;
   @Output() eventClose = new EventEmitter<boolean>();
-  public enableValidators;
+  public enableValidators: boolean;
   constructor(private adminService: AdminService, private formBuilder: FormBuilder) {
     this.enableValidators = false;
     this.roles = ['admin', 'skarga', 'podanie'];
@@ -44,12 +45,11 @@ export class EditDialogComponent implements OnInit, OnChanges {
         NewPassword: this.editUserForm.value.Password,
         Role: this.editUserForm.value.roleFormControl,
         Email: this.editUserForm.value.Email
-        // Password: ''
     };
       this.adminService.updateUser(this.targetUser['email'], user).subscribe(() => {
         window.location.reload();
+        this.closeDialog();
       });
-      this.closeDialog();
     }
   }
   closeDialog() {

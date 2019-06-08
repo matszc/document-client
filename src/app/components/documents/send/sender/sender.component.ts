@@ -17,7 +17,7 @@ export class SenderComponent implements OnInit, OnDestroy {
   public enabledValidators: boolean;
   public documentTypes: SelectItem[];
   private differ: any;
-  public loading;
+  public loading: boolean;
 
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,

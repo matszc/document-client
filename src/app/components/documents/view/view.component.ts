@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {DocumentService} from '../../../services/document.service';
 import {AuthService} from '../../../services/auth.service';
 import {AdminService} from '../../../services/admin.service';
+import {Case} from '../../../models/case';
 
 @Component({
   selector: 'app-view',
@@ -12,7 +13,7 @@ import {AdminService} from '../../../services/admin.service';
 
 export class ViewComponent implements OnInit {
   public cols: any[];
-  public Cases: any;
+  public Cases: Array<Case>;
   public statuts: any[];
   public types: any[];
   public loading: boolean;
@@ -44,8 +45,8 @@ export class ViewComponent implements OnInit {
   ngOnInit() {
     const role = this.authService.currentUserValue ? this.authService.currentUserValue.role : '';
     if (role !== 'admin') {
-      this.document.getCases(role).subscribe( (Cases) => {
-        this.Cases = Cases;
+      this.document.getCases(role).subscribe( (cases: Array<Case>) => {
+        this.Cases = cases;
         this.loading = false;
       });
     } else {

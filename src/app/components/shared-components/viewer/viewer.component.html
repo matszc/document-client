@@ -1,9 +1,9 @@
-<article>
+<article *ngIf="Cases">
 
     <!-- <app-document-menu></app-document-menu>-->
 
     <div class="table">
-        <p-table #dt *ngIf="Cases" [columns]="cols" [value]="Cases" [paginator]="true" [rows]="12">
+        <p-table #dt [columns]="cols" [value]="Cases" [paginator]="true" [rows]="12">
             <ng-template pTemplate="caption">
                 Lista twoich spraw
                 <div style="text-align: right">

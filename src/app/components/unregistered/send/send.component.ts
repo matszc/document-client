@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SendComponent implements OnInit {
 
+  isRegistered = false;
+
   constructor() { }
 
   ngOnInit() {

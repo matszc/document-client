@@ -20,7 +20,6 @@ import {UploaderModule} from '../uploader/uploader.module';
   ],
   imports: [
     CommonModule,
-    CommonModule,
     RouterModule,
     ProgressSpinnerModule,
     FormsModule,

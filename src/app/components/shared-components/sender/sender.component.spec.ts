@@ -1,71 +1,42 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {SenderComponent} from './sender.component';
+import {AppModule} from '../../../app.module';
+import {SenderModule} from './sender.module';
+import {Component, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
-import { SenderComponent } from './sender.component';
-import {UploaderComponent} from '../uploader/uploader.component';
-import {UploaderTaskComponent} from '../uploader/uploader-task/uploader-task.component';
-import {CommonModule} from '@angular/common';
-import {PanelModule} from 'primeng/panel';
-import {
-  ButtonModule,
-  DropdownModule, InputTextareaModule,
-  InputTextModule,
-  MessageModule, MessageService,
-  MessagesModule, ProgressSpinnerModule,
-  TieredMenuModule,
-  TooltipModule
-} from 'primeng/primeng';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {DataViewModule} from 'primeng/dataview';
-import {TableModule} from 'primeng/table';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {AngularFireModule} from '@angular/fire';
-import {AngularFirestoreModule} from '@angular/fire/firestore';
-import {AngularFireStorageModule} from '@angular/fire/storage';
+const router = {
+    navigate: jasmine.createSpy('navigate')
+};
+
 describe('SenderComponent', () => {
-  let component: SenderComponent;
-  let fixture: ComponentFixture<SenderComponent>;
+    let component: SenderComponent;
+    let fixture: ComponentFixture<TestWrapperComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        SenderComponent,
-        UploaderComponent,
-        UploaderTaskComponent,
-      ],
-      imports: [
-        CommonModule,
-        PanelModule,
-        TooltipModule,
-        MessagesModule,
-        MessageModule,
-        DropdownModule,
-        ButtonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        TieredMenuModule,
-        InputTextModule,
-        DataViewModule,
-        TableModule,
-        InputTextareaModule,
-        ProgressSpinnerModule,
-        HttpClientModule,
-        BrowserAnimationsModule
-      ],
-      providers: [
-        MessageService
-      ],
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [TestWrapperComponent],
+            imports: [AppModule, SenderModule],
+            providers: [],
+            schemas: [CUSTOM_ELEMENTS_SCHEMA]
+        })
+            .compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SenderComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(SenderComponent);
+        component = fixture.debugElement.children[0].componentInstance;
+        component.isRegistered = true;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });
+
+@Component({
+    selector: 'app-test-wrapper',
+    template: '<app-sender [isRegistered]="true"></app-sender>'
+})
+class TestWrapperComponent {
+}

@@ -1,9 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {MenuComponent} from './menu.component';
-import {CommonModule} from '@angular/common';
-import {MenubarModule, MessageService, TieredMenuModule} from 'primeng/primeng';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AppModule} from '../../../app.module';
 
 describe('MenuComponent', () => {
     let component: MenuComponent;
@@ -11,24 +8,13 @@ describe('MenuComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [
-                MenuComponent
-            ],
-            imports: [
-                CommonModule,
-                TieredMenuModule,
-                HttpClientModule,
-                BrowserAnimationsModule,
-                MenubarModule
-            ],
-            providers: [
-                MessageService
-            ],
+            declarations: [],
+            imports: [AppModule],
         })
             .compileComponents();
     }));
 
-    /*beforeEach(() => {
+    beforeEach(() => {
         fixture = TestBed.createComponent(MenuComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
@@ -36,5 +22,5 @@ describe('MenuComponent', () => {
 
     it('should create', () => {
         expect(component).toBeTruthy();
-    });*/
+    });
 });

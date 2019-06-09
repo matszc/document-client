@@ -1,78 +1,110 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ViewerComponent } from './viewer.component';
-import {DocumentMenuComponent} from '../document-menu/document-menu.component';
-import {CommonModule} from '@angular/common';
-import {PanelModule} from 'primeng/panel';
-import {
-  ButtonModule,
-  DropdownModule, InputTextareaModule,
-  InputTextModule,
-  MessageModule, MessageService,
-  MessagesModule, ProgressSpinnerModule,
-  TieredMenuModule,
-  TooltipModule
-} from 'primeng/primeng';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {DataViewModule} from 'primeng/dataview';
-import {TableModule} from 'primeng/table';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {AppRoutingModule} from '../../../app-routing.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {AngularFireModule} from '@angular/fire';
-import {environment} from '../../../../environments/environment';
-import {AngularFirestoreModule} from '@angular/fire/firestore';
-import {AngularFireStorageModule} from '@angular/fire/storage';
-import {JwtInterceptor} from '../../../helpers/jwt.interceptor';
-import {ErrorInterceptor} from '../../../helpers/error.interceptor';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ViewerComponent} from './viewer.component';
+import {AppModule} from '../../../app.module';
+import {ViewerModule} from './viewer.module';
+import {Router} from '@angular/router';
+import {AuthService} from '../../../services/auth.service';
+import {AdminService} from '../../../services/admin.service';
+import {DocumentService} from '../../../services/document.service';
+import {LoginData} from '../../../models/login';
+import {Observable} from 'rxjs';
+import {User} from '../../../models/user';
+
+let adminServiceStub: Partial<AdminService>;
+let documentServiceStub: Partial<DocumentService>;
+let authServiceStub: Partial<AuthService>;
+
+authServiceStub = {
+    /*currentUserValue(): User {
+        return {
+            id: 1,
+            login: 'test',
+            email: 'test@test.com',
+            token: 'test',
+            role: 'admin',
+            userId: 54754745
+        };
+    }*/
+};
+/*spyOnProperty(authServiceStub, 'currentUserValue', 'get').and.returnValue({role: 'admin'});*/
+const customCase = Observable.create(observer => {
+    observer.next(
+        [{
+            comment: 'hahah',
+            date: '2019-06-05T08:43:17.21',
+            description: 'aaaaaa',
+            id: '3',
+            status: 'not considered',
+            title: 'podanko',
+            type: 'podanie',
+            user_email: 'sfdhfdshdsf@dfghfd.com'
+        }]
+    );
+    observer.complete();
+});
+
+adminServiceStub = {
+    getCases(): Observable<Object> {
+        return customCase;
+    },
+    getSpam(): Observable<Object> {
+        return customCase;
+    }
+};
+
+documentServiceStub = {
+    getCases(status?): Observable<Object> {
+        return Observable.create(observer => {
+            observer.next(
+                [{
+                    comment: 'ojhj fdhhgdffdh',
+                    date: '2019-06-08T15:52:52.893',
+                    description: 'dssdg',
+                    id: '13',
+                    status: 'not considered',
+                    title: 'ulalala',
+                    type: 'skarga',
+                    user_email: 'skarga@skarga.com'
+                }]
+            );
+            observer.complete();
+        });
+    },
+    getCaseUnregistred(caseId): Observable<Object> {
+        return customCase;
+    }
+};
+
+const router = {
+    navigate: jasmine.createSpy('navigate')
+};
 
 describe('ViewerComponent', () => {
-  let component: ViewerComponent;
-  let fixture: ComponentFixture<ViewerComponent>;
+    let component: ViewerComponent;
+    let fixture: ComponentFixture<ViewerComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        ViewerComponent
-      ],
-      imports: [
-        CommonModule,
-        PanelModule,
-        TooltipModule,
-        MessagesModule,
-        MessageModule,
-        DropdownModule,
-        ButtonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        TieredMenuModule,
-        InputTextModule,
-        DataViewModule,
-        TableModule,
-        InputTextareaModule,
-        ProgressSpinnerModule,
-        HttpClientModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        AngularFireModule.initializeApp(environment.firebase),
-        AngularFirestoreModule,
-        AngularFireStorageModule,
-      ],
-      providers: [
-        MessageService,
-        {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-        {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
-      ],
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [],
+            imports: [AppModule, ViewerModule],
+            providers: [
+                {provide: Router, useValue: router},
+                {provide: AdminService, useValue: adminServiceStub},
+                {provide: DocumentService, useValue: documentServiceStub},
+                /*{provide: AuthService, useValue: authServiceStub},*/
+            ]
+        })
+            .compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ViewerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(ViewerComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    /*it('should create', () => {
+        expect(component).toBeTruthy();
+    });*/
+
 });

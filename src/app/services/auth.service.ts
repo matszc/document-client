@@ -34,7 +34,6 @@ export class AuthService {
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
                 if (user && user.token) {
-                    console.log(user);
                     this.messageService.add({severity: 'success', summary: 'Info', detail: 'Zalogowano'});
                     this.loading = false;
                     // store user details and jwt token in local storage to keep user logged in between page refreshes

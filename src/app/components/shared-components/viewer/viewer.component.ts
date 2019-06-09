@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {DocumentService} from '../../../services/document.service';
 import {AuthService} from '../../../services/auth.service';
 import {AdminService} from '../../../services/admin.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-viewer',
@@ -71,8 +72,6 @@ export class ViewerComponent implements OnInit {
         this.loading = false;
       });
     }
-
-
 
   }
   public viewDoc(id: string): void {

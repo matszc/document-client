@@ -28,7 +28,6 @@ export class DocumentService {
     }
 
     public sendCaseUnregistred(email, data) {
-        console.log(data);
         return this.http.post(`${GLOBAL.URL}/unregistered/cases/${email}`, data);
     }
 

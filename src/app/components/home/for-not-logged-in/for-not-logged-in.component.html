@@ -27,7 +27,7 @@
         <p-header class="action-header">
             <h3>Zobacz Swoje Sprawy</h3>
         </p-header>
-        <form [formGroup]="tokenForm" (ngSubmit)="onSubmitToken(tokenForm.value, emailForView.value)">
+        <form [formGroup]="tokenForm" (ngSubmit)="onSubmitToken()">
             <div class="ui-inputgroup ui-float-label input-field">
                 <input id="float-input-token" type="text" size="33" formControlName="token" pInputText #emailForView>
                 <label for="float-input-token" class="field-label">Podaj Adres Email Aby Otrzymać Token</label>

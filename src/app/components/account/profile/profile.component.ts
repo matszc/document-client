@@ -3,6 +3,8 @@ import {FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {AuthService} from '../../../services/auth.service';
 import {PasswordValidator} from '../../../helpers/password-validator';
 import {AdminService} from '../../../services/admin.service';
+import {User} from '../../../models/user';
+import {UpdateUser} from '../../../models/update-user';
 import {MessageService} from 'primeng/api';
 
 @Component({
@@ -11,7 +13,7 @@ import {MessageService} from 'primeng/api';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  public userInfo;
+  public userInfo: User;
   public ProfileForm: FormGroup;
   public enableValidators: boolean;
   constructor(public authService: AuthService, private formBuilder: FormBuilder, private adminService: AdminService,
@@ -27,7 +29,7 @@ export class ProfileComponent implements OnInit {
     this.enableValidators = true;
     if (!this.ProfileForm.invalid) {
       const email = this.authService.currentUserValue.email;
-      const profile = {
+      const profile: UpdateUser = {
         Login: this.ProfileForm.value.LoginFormControl,
         Email: this.ProfileForm.value.EmailFormControl,
         NewPassword: this.ProfileForm.value.Password,

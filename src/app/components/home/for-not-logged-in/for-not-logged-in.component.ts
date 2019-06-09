@@ -42,25 +42,24 @@ export class ForNotLoggedInComponent implements OnInit {
         return this.tokenForm.controls;
     }
 
-    onSubmitEmail(value) {
+    onSubmitEmail() {
         this.enabledValidatorsEmail = true;
         if (!this.sendForm.invalid) {
             this.documentService.notLoggedInUserEmail = this.f.email.value;
-            this.router.navigate([`home/for-not-logged-in/send`]);
-            console.log(value);
+            this.router.navigate([`unregistered/send`]);
         }
     }
 
     onSubmitToken(value, email) {
         this.enabledValidatorsToken = true;
         if (!this.tokenForm.invalid) {
-          this.loading = true;
+            this.loading = true;
             this.documentService.getToken(value.token).subscribe(() => {
                 this.documentService.notLoggedInUserEmail = email;
                 this.display = true;
                 this.messageService.add({severity: 'success', summary: 'Info', detail: 'Wysłano Token na Twój Adres Email'});
                 this.loading = false;
-            }, () => this.loading = false );
+            }, () => this.loading = false);
         }
     }
 
@@ -68,9 +67,8 @@ export class ForNotLoggedInComponent implements OnInit {
         if (token) {
             this.documentService.tempUnregistredToken = token;
             this.display = false;
-            this.router.navigate([`home/for-not-logged-in/view`]);
+            this.router.navigate([`unregistered/view`]);
         }
-
     }
 
     ngOnInit() {
@@ -80,21 +78,23 @@ export class ForNotLoggedInComponent implements OnInit {
         this.tokenForm = this.formBuilder.group({
             'token': ['', [Validators.required, Validators.email]]
         });
-      this.reneterTokenForm = this.formBuilder.group({
-        'mail': ['', Validators.required],
-        'existToken': ['', Validators.required]
-      });
+        this.reneterTokenForm = this.formBuilder.group({
+            'mail': ['', Validators.required],
+            'existToken': ['', Validators.required]
+        });
     }
+
     public InsertExistToken() {
-      this.displayEmailWithToken = true;
+        this.displayEmailWithToken = true;
     }
+
     public reneterTokenFormSubmit() {
-      if (this.reneterTokenForm.valid) {
-        this.documentService.notLoggedInUserEmail = this.reneterTokenForm.value.mail;
-        this.documentService.tempUnregistredToken = this.reneterTokenForm.value.existToken;
-        this.displayEmailWithToken = false;
-        this.router.navigate([`home/for-not-logged-in/view`]);
-      }
+        if (this.reneterTokenForm.valid) {
+            this.documentService.notLoggedInUserEmail = this.reneterTokenForm.value.mail;
+            this.documentService.tempUnregistredToken = this.reneterTokenForm.value.existToken;
+            this.displayEmailWithToken = false;
+            this.router.navigate([`unregistered/view`]);
+        }
     }
 
 }

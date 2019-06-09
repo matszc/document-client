@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {SendComponent} from './send/send.component';
 import {ViewComponent} from './view/view.component';
 import {SingleDocComponent} from './single-doc/single-doc.component';
+import {SendComponent} from './send/send.component';
 
-const routes: Routes = [
+export const routesDoc: Routes = [
   {path: '', redirectTo: 'view', pathMatch: 'full'},
   {path: 'send', component: SendComponent},
   {path: 'view', component: ViewComponent},
@@ -12,7 +12,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routesDoc)],
   exports: [RouterModule]
 })
 export class DocumentsRoutingModule { }

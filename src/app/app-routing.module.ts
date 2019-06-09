@@ -28,6 +28,10 @@ const routes: Routes = [
         canActivate: [AdminGuard],
         loadChildren: './components/admin/admin.module#AdminModule',
     },
+    {
+        path: 'unregistered',
+        loadChildren: './components/unregistered/unregistered.module#UnregisteredModule',
+    },
 
 ];
 

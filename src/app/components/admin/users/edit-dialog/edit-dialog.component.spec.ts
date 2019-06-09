@@ -4,8 +4,6 @@ import { EditDialogComponent } from './edit-dialog.component';
 import {AddAccountComponent} from '../../add-account/add-account.component';
 import {LoginComponent} from '../../../account/login/login.component';
 import {ProfileComponent} from '../../../account/profile/profile.component';
-import {HomeComponent} from '../../../home/home.component';
-import {DocumentMenuAdminComponent} from '../../document-menu/document-menu.component';
 import {UsersComponent} from '../users.component';
 import {AdminDocumentsComponent} from '../../admin-documents/admin-documents.component';
 import {CommonModule} from '@angular/common';
@@ -27,6 +25,7 @@ import {AppRoutingModule} from '../../../../app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {JwtInterceptor} from '../../../../helpers/jwt.interceptor';
 import {ErrorInterceptor} from '../../../../helpers/error.interceptor';
+import {DocumentMenuComponent} from '../../../shared-components/document-menu/document-menu.component';
 
 describe('EditDialogComponent', () => {
   let component: EditDialogComponent;
@@ -35,13 +34,6 @@ describe('EditDialogComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AddAccountComponent,
-        LoginComponent,
-        ProfileComponent,
-        HomeComponent,
-        DocumentMenuAdminComponent,
-        UsersComponent,
-        AdminDocumentsComponent,
         EditDialogComponent
       ],
       imports: [

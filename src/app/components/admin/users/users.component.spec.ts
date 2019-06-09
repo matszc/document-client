@@ -1,85 +1,51 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { UsersComponent } from './users.component';
-import {AddAccountComponent} from '../add-account/add-account.component';
-import {LoginComponent} from '../../account/login/login.component';
-import {ProfileComponent} from '../../account/profile/profile.component';
-import {HomeComponent} from '../../home/home.component';
-import {DocumentMenuAdminComponent} from '../document-menu/document-menu.component';
-import {AdminDocumentsComponent} from '../admin-documents/admin-documents.component';
-import {EditDialogComponent} from './edit-dialog/edit-dialog.component';
-import {CommonModule} from '@angular/common';
-import {AdminRoutingModule} from '../admin-routing.module';
-import {
-  AccordionModule,
-  ButtonModule,
-  CardModule,
-  DialogModule, DropdownModule,
-  InputTextModule, MessageModule, MessageService, PanelModule,
-  ProgressSpinnerModule,
-  RadioButtonModule,
-  TieredMenuModule
-} from 'primeng/primeng';
-import {TableModule} from 'primeng/table';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {AppRoutingModule} from '../../../app-routing.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {JwtInterceptor} from '../../../helpers/jwt.interceptor';
-import {ErrorInterceptor} from '../../../helpers/error.interceptor';
+import {UsersComponent} from './users.component';
+import {AppModule} from '../../../app.module';
+import {AdminModule} from '../admin.module';
+import {AuthService} from '../../../services/auth.service';
+import {AdminService} from '../../../services/admin.service';
+import {Observable, of} from 'rxjs';
+import {User} from '../../../models/user';
+
+let adminServiceStub: Partial<AdminService>;
+
+adminServiceStub = {
+    getActiveUsers(): Observable<User[]> {
+        const users: User[] = [{
+            id: 1,
+            token: 't',
+            login: 'l',
+            email: 'e',
+            role_name: 'r',
+            role: 'r'
+        }];
+        return of(users);
+    }
+};
 
 describe('UsersComponent', () => {
-  let component: UsersComponent;
-  let fixture: ComponentFixture<UsersComponent>;
+    let component: UsersComponent;
+    let fixture: ComponentFixture<UsersComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        AddAccountComponent,
-        LoginComponent,
-        ProfileComponent,
-        HomeComponent,
-        DocumentMenuAdminComponent,
-        UsersComponent,
-        AdminDocumentsComponent,
-        EditDialogComponent
-      ],
-      imports: [
-        CommonModule,
-        TieredMenuModule,
-        TableModule,
-        ButtonModule,
-        DialogModule,
-        CardModule,
-        ReactiveFormsModule,
-        InputTextModule,
-        RadioButtonModule,
-        FormsModule,
-        ProgressSpinnerModule,
-        MessageModule,
-        DropdownModule,
-        PanelModule,
-        AccordionModule,
-        HttpClientModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-      ],
-      providers: [
-        MessageService,
-        {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-        {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
-      ],
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [],
+            imports: [AppModule, AdminModule],
+            providers: [
+                {provide: AdminService, useValue: adminServiceStub},
+            ]
+        })
+            .compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(UsersComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(UsersComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

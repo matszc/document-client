@@ -1,27 +1,9 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-
 import {ProfileComponent} from './profile.component';
-import {LoginComponent} from '../login/login.component';
-import {HomeComponent} from '../../home/home.component';
-import {CommonModule} from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {
-    AccordionModule,
-    ButtonModule,
-    CardModule,
-    InputTextModule,
-    MessageModule,
-    MessageService,
-    MessagesModule,
-    PanelModule,
-    PasswordModule,
-    ProgressSpinnerModule
-} from 'primeng/primeng';
-import {HttpClientModule} from '@angular/common/http';
-import {AppRoutingModule} from '../../../app-routing.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AuthService} from '../../../services/auth.service';
 import {User} from '../../../models/user';
+import {AppModule} from '../../../app.module';
+import {AccountModule} from '../account.module';
 
 let authServiceStub: Partial<AuthService>;
 
@@ -37,30 +19,9 @@ describe('ProfileComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [
-                ProfileComponent,
-                LoginComponent,
-                HomeComponent
-            ],
-            imports: [
-                CommonModule,
-                FormsModule,
-                ReactiveFormsModule,
-                InputTextModule,
-                AppRoutingModule,
-                MessagesModule,
-                MessageModule,
-                PasswordModule,
-                ButtonModule,
-                PanelModule,
-                ProgressSpinnerModule,
-                AccordionModule,
-                CardModule,
-                HttpClientModule,
-                BrowserAnimationsModule,
-            ],
+            declarations: [],
+            imports: [AppModule, AccountModule],
             providers: [
-                {provide: MessageService},
                 {provide: AuthService, useValue: authServiceStub}
             ]
         })

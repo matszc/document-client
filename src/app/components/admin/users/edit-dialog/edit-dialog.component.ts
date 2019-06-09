@@ -3,6 +3,7 @@ import {FormControl, Validators, FormGroup, FormBuilder} from '@angular/forms';
 import {AdminService} from '../../../../services/admin.service';
 import {PasswordValidator} from '../../../../helpers/password-validator';
 import {User} from '../../../../models/user';
+import {UpdateUser} from '../../../../models/update-user';
 
 @Component({
   selector: 'app-edit-dialog',
@@ -40,12 +41,12 @@ export class EditDialogComponent implements OnInit, OnChanges {
   onSubmit() {
     this.enableValidators = true;
     if (this.editUserForm.valid) {
-      const user = {
+      const user: UpdateUser = {
         Login: this.editUserForm.value.loginFormControl,
-        NewPassword: this.editUserForm.value.Password,
+        Password: this.editUserForm.value.Password,
         Role: this.editUserForm.value.roleFormControl,
         Email: this.editUserForm.value.Email
-    };
+      };
       this.adminService.updateUser(this.targetUser['email'], user).subscribe(() => {
         window.location.reload();
         this.closeDialog();

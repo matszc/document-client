@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AdminService} from '../../../services/admin.service';
 import {MessageService} from 'primeng/api';
-import {User} from '../../../models/user';
 
 @Component({
   selector: 'app-users',
@@ -15,7 +14,7 @@ export class UsersComponent implements OnInit {
   public displayDelete = false;
   public selectedUser: User;
 
-  constructor(private adminService: AdminService, private messageService: MessageService) {
+  constructor(private adminService: AdminService) {
   }
 
   ngOnInit() {

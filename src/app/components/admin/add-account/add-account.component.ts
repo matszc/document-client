@@ -4,7 +4,6 @@ import {AdminService} from '../../../services/admin.service';
 import {Router} from '@angular/router';
 import {PasswordValidator} from '../../../helpers/password-validator';
 import {MessageService} from 'primeng/api';
-import {RegisterData} from '../../../models/register';
 
 @Component({
   selector: 'app-add-account',

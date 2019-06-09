@@ -8,13 +8,11 @@ import {ButtonModule, InputTextModule, MessageModule, MessagesModule, PanelModul
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AccordionModule} from 'primeng/accordion';
 import {CardModule} from 'primeng/card';
-import {AccountComponent} from './account.component';
 
 @NgModule({
     declarations: [
         ProfileComponent,
-        LoginComponent,
-        AccountComponent
+        LoginComponent
     ],
     imports: [
         CommonModule,

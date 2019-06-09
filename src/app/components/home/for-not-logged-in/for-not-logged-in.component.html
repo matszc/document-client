@@ -6,7 +6,7 @@
         <p-header class="action-header">
             <h3>Dodaj Sprawę</h3>
         </p-header>
-        <form [formGroup]="sendForm" (ngSubmit)="onSubmitEmail(sendForm.value)">
+        <form [formGroup]="sendForm" (ngSubmit)="onSubmitEmail()">
             <div class="ui-inputgroup ui-float-label input-field">
                 <input id="float-input-email" type="email" size="33" formControlName="email" pInputText>
                 <label for="float-input-email" class="field-label">Twój Email</label>

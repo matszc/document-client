@@ -1,34 +1,9 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {AddAccountComponent} from './add-account.component';
-import {CommonModule} from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {
-    AccordionModule,
-    ButtonModule,
-    CardModule,
-    DialogModule,
-    DropdownModule,
-    InputTextModule,
-    MessageModule,
-    MessageService,
-    PanelModule,
-    ProgressSpinnerModule,
-    RadioButtonModule,
-    TieredMenuModule
-} from 'primeng/primeng';
-import {HttpClientModule} from '@angular/common/http';
-import {AppRoutingModule} from '../../../app-routing.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {LoginComponent} from '../../account/login/login.component';
-import {ProfileComponent} from '../../account/profile/profile.component';
-import {HomeComponent} from '../../home/home.component';
-import {DocumentMenuAdminComponent} from '../document-menu/document-menu.component';
-import {TableModule} from 'primeng/table';
-import {UsersComponent} from '../users/users.component';
-import {AdminDocumentsComponent} from '../admin-documents/admin-documents.component';
-import {EditDialogComponent} from '../users/edit-dialog/edit-dialog.component';
 import {Router} from '@angular/router';
+import {AppModule} from '../../../app.module';
+import {AdminModule} from '../admin.module';
 
 const router = {
     navigate: jasmine.createSpy('navigate')
@@ -40,38 +15,9 @@ describe('AddAccountComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [
-                AddAccountComponent,
-                LoginComponent,
-                ProfileComponent,
-                HomeComponent,
-                DocumentMenuAdminComponent,
-                UsersComponent,
-                AdminDocumentsComponent,
-                EditDialogComponent
-            ],
-            imports: [
-                CommonModule,
-                TieredMenuModule,
-                TableModule,
-                ButtonModule,
-                DialogModule,
-                CardModule,
-                ReactiveFormsModule,
-                InputTextModule,
-                RadioButtonModule,
-                FormsModule,
-                ProgressSpinnerModule,
-                MessageModule,
-                DropdownModule,
-                PanelModule,
-                AccordionModule,
-                HttpClientModule,
-                AppRoutingModule,
-                BrowserAnimationsModule,
-            ],
+            declarations: [],
+            imports: [AppModule, AdminModule],
             providers: [
-                {provide: MessageService},
                 {provide: Router, useValue: router}
             ]
         })

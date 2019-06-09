@@ -1,29 +1,13 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {LoginComponent} from './login.component';
-import {ProfileComponent} from '../profile/profile.component';
-import {CommonModule} from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {
-    AccordionModule,
-    ButtonModule,
-    CardModule,
-    InputTextModule,
-    MessageModule,
-    MessageService,
-    MessagesModule,
-    PanelModule,
-    PasswordModule,
-    ProgressSpinnerModule
-} from 'primeng/primeng';
-import {HttpClientModule} from '@angular/common/http';
-import {AppRoutingModule} from '../../../app-routing.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AuthService} from '../../../services/auth.service';
 import {LoginData} from '../../../models/login';
 import {Observable} from 'rxjs';
 import {User} from '../../../models/user';
 import {Router} from '@angular/router';
+import {AccountModule} from '../account.module';
+import {AppModule} from '../../../app.module';
 
 let authServiceStub: Partial<AuthService>;
 
@@ -53,29 +37,9 @@ describe('LoginComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [
-                ProfileComponent,
-                LoginComponent
-            ],
-            imports: [
-                CommonModule,
-                FormsModule,
-                ReactiveFormsModule,
-                InputTextModule,
-                MessagesModule,
-                MessageModule,
-                PasswordModule,
-                ButtonModule,
-                PanelModule,
-                ProgressSpinnerModule,
-                AccordionModule,
-                CardModule,
-                HttpClientModule,
-                BrowserAnimationsModule,
-                AppRoutingModule
-            ],
+            declarations: [],
+            imports: [AppModule, AccountModule],
             providers: [
-                {provide: MessageService},
                 {provide: AuthService, useValue: authServiceStub},
                 {provide: Router, useValue: router}
             ]

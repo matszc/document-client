@@ -1,12 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {catchError, map} from 'rxjs/operators';
+import { map} from 'rxjs/operators';
 
 import {User} from '../models/user';
 import {GLOBAL} from '../config';
 import {LoginData} from '../models/login';
-import {RegisterData} from '../models/register';
 import {Router} from '@angular/router';
 import {MessageService} from 'primeng/api';
 
@@ -34,7 +33,6 @@ export class AuthService {
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
                 if (user && user.token) {
-                    console.log(user);
                     this.messageService.add({severity: 'success', summary: 'Info', detail: 'Zalogowano'});
                     this.loading = false;
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -44,21 +42,6 @@ export class AuthService {
                 return user;
             }));
     }
-
-    public loginGuest() {
-        const guest = {login: 'guest', email: ''};
-        this.messageService.add({severity: 'success', summary: 'Info', detail: 'Logged In As Guest'});
-        localStorage.setItem('currentUser', JSON.stringify(guest));
-        this.currentUserSubject.next(guest);
-        this.router.navigate(['documents/send']);
-    }
-
-    /*public register(data: RegisterData): Observable<User> {
-        return this.http.post<User>(`${GLOBAL.URL}/Registration`, data);
-    }*/
-
-
-
     public logout(): void {
         if (this.currentUserValue) {
             localStorage.removeItem('currentUser');

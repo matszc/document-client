@@ -1,9 +1,0 @@
-<div class="upload-element">
-    <img width="25" height="25" src="assets/docx.jpg"><br>
-    <p *ngIf="file">{{file.name}}</p>
-    <a [href]="document.url" *ngIf="role === 'edit' && document">
-        <p-button label="Pobierz" styleClass="ui-button-info ui-button-raised" class="delete-btn"></p-button>
-    </a>
-    <p-button *ngIf="role === 'send'" type="button" (click)="deleteFile(file)" label="Usuń" styleClass="ui-button-error ui-button-raised" class="delete-btn"></p-button>
-    <p-button *ngIf="role === 'edit' && !document" type="button" (click)="deleteFile(file)" label="Usuń" styleClass="ui-button-error ui-button-raised" class="delete-btn"></p-button>
-</div>

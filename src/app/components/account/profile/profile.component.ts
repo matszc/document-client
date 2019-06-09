@@ -3,6 +3,8 @@ import {FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {AuthService} from '../../../services/auth.service';
 import {PasswordValidator} from '../../../helpers/password-validator';
 import {AdminService} from '../../../services/admin.service';
+import {User} from '../../../models/user';
+import {UpdateUser} from '../../../models/update-user';
 import {MessageService} from 'primeng/api';
 
 @Component({

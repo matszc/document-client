@@ -42,7 +42,7 @@ export class ForNotLoggedInComponent implements OnInit {
         return this.tokenForm.controls;
     }
 
-    onSubmitEmail(value) {
+    onSubmitEmail() {
         this.enabledValidatorsEmail = true;
         if (!this.sendForm.invalid) {
             this.documentService.notLoggedInUserEmail = this.f.email.value;

@@ -4,6 +4,7 @@ import {AdminService} from '../../../services/admin.service';
 import {Router} from '@angular/router';
 import {PasswordValidator} from '../../../helpers/password-validator';
 import {MessageService} from 'primeng/api';
+import {User} from '../../../models/user';
 
 @Component({
   selector: 'app-add-account',
@@ -35,11 +36,11 @@ export class AddAccountComponent implements OnInit {
     this.enableValidators = true;
     if (this.newUserForm.valid) {
       this.loading = true;
-      const newUser = {
-        Login: this.newUserForm.value.Login,
-        Password: this.newUserForm.value.Password,
-        Email: this.newUserForm.value.Email,
-        Role: this.newUserForm.value.Role
+      const newUser: User = {
+        login: this.newUserForm.value.Login,
+        password: this.newUserForm.value.Password,
+        email: this.newUserForm.value.Email,
+        role: this.newUserForm.value.Role
       };
       this.adminService.addUser(newUser).subscribe(() => {
         this.messageService.add({severity: 'success', summary: 'Info', detail: 'Dodano użytkownika'});

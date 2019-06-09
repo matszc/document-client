@@ -50,12 +50,13 @@ export class ForNotLoggedInComponent implements OnInit {
         }
     }
 
-    onSubmitToken(value, email) {
+    onSubmitToken() {
+        const value = this.tokenForm.controls['token'].value;
         this.enabledValidatorsToken = true;
         if (!this.tokenForm.invalid) {
             this.loading = true;
-            this.documentService.getToken(value.token).subscribe(() => {
-                this.documentService.notLoggedInUserEmail = email;
+            this.documentService.getToken(value).subscribe(() => {
+                this.documentService.notLoggedInUserEmail = value;
                 this.display = true;
                 this.messageService.add({severity: 'success', summary: 'Info', detail: 'Wysłano Token na Twój Adres Email'});
                 this.loading = false;

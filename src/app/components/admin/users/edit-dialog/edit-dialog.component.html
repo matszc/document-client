@@ -1,4 +1,4 @@
-<form [formGroup]="editUserForm">
+<form [formGroup]="editUserForm" (ngSubmit)="onSubmit()">
   <div class="input">
     <input formControlName="loginFormControl" id="login" type="text" pInputText>
     <label for="login">Nowy login</label>

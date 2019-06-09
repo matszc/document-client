@@ -69,9 +69,24 @@ describe('EditDialogComponent', () => {
     fixture = TestBed.createComponent(EditDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    component.ngOnInit();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  it('Form invalid when empty', () => {
+    expect(component.editUserForm.valid).toBeFalsy();
+  });
+  it('Passwords should match', () => {
+    const MatchPassword =  component.editUserForm.controls['RepeatPassword'];
+    component.editUserForm.get('Password').setValue('secret1');
+    component.editUserForm.get('RepeatPassword').setValue('secret');
+    let errors: {};
+    errors = MatchPassword.errors || {};
+    expect(errors['MatchPassword']).toBeTruthy();
+    component.editUserForm.get('RepeatPassword').setValue('secret1');
+    errors = MatchPassword.errors || {};
+    expect(errors['MatchPassword']).toBeFalsy();
   });
 });

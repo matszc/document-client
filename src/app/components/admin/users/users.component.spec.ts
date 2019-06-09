@@ -3,7 +3,6 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {UsersComponent} from './users.component';
 import {AppModule} from '../../../app.module';
 import {AdminModule} from '../admin.module';
-import {AuthService} from '../../../services/auth.service';
 import {AdminService} from '../../../services/admin.service';
 import {Observable, of} from 'rxjs';
 import {User} from '../../../models/user';
@@ -47,5 +46,9 @@ describe('UsersComponent', () => {
 
     it('should create', () => {
         expect(component).toBeTruthy();
+    });
+    it ('Dialogs should be hidden on start', () => {
+      expect(component.displayEdit).toBeFalsy();
+      expect(component.displayDelete).toBeFalsy();
     });
 });

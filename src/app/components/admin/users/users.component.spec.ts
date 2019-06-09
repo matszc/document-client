@@ -6,17 +6,19 @@ import {AdminModule} from '../admin.module';
 import {AuthService} from '../../../services/auth.service';
 import {AdminService} from '../../../services/admin.service';
 import {Observable, of} from 'rxjs';
+import {User} from '../../../models/user';
 
 let adminServiceStub: Partial<AdminService>;
 
 adminServiceStub = {
-    getActiveUsers(): Observable<Object> {
-        const users = [{
+    getActiveUsers(): Observable<User[]> {
+        const users: User[] = [{
             id: 1,
             token: 't',
             login: 'l',
             email: 'e',
-            role_name: 'r'
+            role_name: 'r',
+            role: 'r'
         }];
         return of(users);
     }

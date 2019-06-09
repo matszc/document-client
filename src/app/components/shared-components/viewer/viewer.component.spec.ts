@@ -9,6 +9,7 @@ import {DocumentService} from '../../../services/document.service';
 import {LoginData} from '../../../models/login';
 import {Observable} from 'rxjs';
 import {User} from '../../../models/user';
+import {Case} from '../../../models/case';
 
 let adminServiceStub: Partial<AdminService>;
 let documentServiceStub: Partial<DocumentService>;
@@ -44,16 +45,16 @@ const customCase = Observable.create(observer => {
 });
 
 adminServiceStub = {
-    getCases(): Observable<Object> {
+    getCases(): Observable<Case[]> {
         return customCase;
     },
-    getSpam(): Observable<Object> {
+    getSpam(): Observable<Case[]> {
         return customCase;
     }
 };
 
 documentServiceStub = {
-    getCases(status?): Observable<Object> {
+    getCases(status?): Observable<Case[]> {
         return Observable.create(observer => {
             observer.next(
                 [{
@@ -70,8 +71,8 @@ documentServiceStub = {
             observer.complete();
         });
     },
-    getCaseUnregistred(caseId): Observable<Object> {
-        return customCase;
+    getCaseUnregistred(caseId): Observable<Case> {
+        return customCase[0];
     }
 };
 
